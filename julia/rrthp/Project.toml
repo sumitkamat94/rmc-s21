@@ -1,0 +1,9 @@
+name = "rrthp"
+uuid = "19b9a4aa-2a30-481d-8011-5201b9eba5ed"
+authors = ["hasan "]
+version = "0.1.0"
+
+[deps]
+GR = "28b8d3ca-fb5f-59d9-8090-bfdbd6d07a71"
+Plotly = "58dd65bb-95f3-509e-9936-c39a10fdeae7"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
