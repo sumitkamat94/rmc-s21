@@ -1,0 +1,4 @@
+Sitemap: https://hpoonawala.github.io/rmc-s21/sitemap.xml
+
+User-agent: *
+Disallow:
