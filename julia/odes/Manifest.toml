@@ -647,12 +647,6 @@ git-tree-sha1 = "89f71b92de3ab39d70bd21a2b11346db5aeb9994"
 uuid = "1dea7af3-3e70-54e6-95c3-0bf5283fa5ed"
 version = "5.41.0"
 
-[[PandaRobot]]
-deps = ["Pkg", "RigidBodyDynamics", "StaticArrays", "Test"]
-path = "PandaRobot"
-uuid = "5766cbbd-2e16-578c-82ed-e9d834b784ce"
-version = "0.0.0"
-
 [[ParameterizedFunctions]]
 deps = ["DataStructures", "DiffEqBase", "Latexify", "LinearAlgebra", "ModelingToolkit"]
 git-tree-sha1 = "86ca1fa2f37f20945a742d50ed12e314b11dfa62"
