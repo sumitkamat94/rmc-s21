@@ -19,6 +19,9 @@ function display_urdf(urdfPath,vis)
     state = MechanismState(mechanism)
     zero_configuration!(state);
     mvis = MechanismVisualizer(mechanism, URDFVisuals(urdfPath),vis)
+    for bd in bodies(mechanism)
+       setelement!(mvis,default_frame(bd),1,"$bd")
+    end
     manipulate!(state) do x
         set_configuration!(mvis, configuration(x))
     end
