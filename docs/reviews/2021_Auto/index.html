@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Training Classifiers For Feedback Control With Safety In Mind</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="/" class="title">
+        Spring 2021
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/menu1/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/menu2/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/menu2/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/menu2/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/menu2/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/menu3/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Training Classifiers For Feedback Control With Safety In Mind</h2>
+<ul>
+
+<li> Authors: Poonawala, H.A.; Lauffer, N.;Topcu, U.;</li>
+
+
+<li>Venue: Automatica</li>
+
+
+<li>Year: 2021</li>
+
+
+<li> Reviewed by: Hasan Poonawala, reviewer no. 2, reviewer no. 3, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#recent_papers">Recent Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper deals with controlling mobile robots directly from sensor data or measurements. It uses tools from supervised machine learning to learn these controllers from data, and Lyapunov-based methods to analyze the correctness of these learned controllers.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(x\): state, \(X\): State space</p>
+</li>
+<li><p>\(y\): measurement, \(Y\): Measurement Space</p>
+</li>
+<li><p>Controller \(u = g(y)\)</p>
+</li>
+<li><p>\(L\): Set of labels</p>
+</li>
+<li><p>\(C_X \colon X \to L\): Classifier in state space</p>
+</li>
+<li><p>\(C_Y \colon Y \to L\): Classifier in measurement space</p>
+</li>
+<li><p>\(V\): Lyapunov function</p>
+</li>
+<li><p>\(W\): set of hyperplanes that parametrizes \(C_X\)</p>
+</li>
+<li><p>\(W^\Delta\): set of hyperplanes that parametrizes a robust version of \(C_X\)</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>Instead of estimating the state of the system for feedback control of the form \(u = k(x)\), the approach tries to classify measurements into classes that indicate the control to be used. The control design problem becomes a classifier design problem, often solved using supervised machine learning.  </p>
+<p>Supervised machine learning uses generalization error to evaluate the learning, where the error is related to a loss function. For control systems, we evaluate controllers based on closed-loop stability and behavior. The paper formulates a supervised learning problem where the closed-loop stability properties also affect the learning.  </p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>The paper distinguishes between the measurement space \(Y\) and the state space \(X\) of the dynamical system being controlled. It assumes that there is a relationship \(Y = \mathcal H(x)\), which is unknown but implictly captured by data comprising pairs of states ann measurements in those states. For example, the camera image a robot gets when it is some position and heading in a room.</p>
+</li>
+<li><p>The classifier \(C_X\) it learns is parametrized by a collection of hyperplanes \(W\), that divides the state space into polyhedral regions. In effect, multiple binary classifiers are combined to get a multi-label classifier.</p>
+</li>
+<li><p>Given this division of the state space \(X\), they parametrize a piecewise Linear Lyapunov function \(V\), and formulate stability conditions for the pieces.</p>
+</li>
+<li><p>Using some mathematical results, these stability conditions become constraints on the the classifier hyperplanes \(W\) and the Lyapunov function \(V\).</p>
+</li>
+<li><p>The constraints define an optimization problem, so that they can be combined with the supervised learning constraints to create a single optimization problem.</p>
+</li>
+<li><p>If the solution has a certain value, then the controller design is correct in the state space.</p>
+</li>
+<li><p>The classifier \(C_X\) designed in state-space needs to be converted into a classifier \(C_Y\) of measurements, which is done using another supervised learning problem</p>
+</li>
+<li><p>Since this transformation is imperfect, the authors account for potential inaccuracies by solving a robust version of the optimization problem to train \(W^\Delta\).</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>The paper focuses on a single example of a path-following robot.</p>
+</li>
+<li><p>For this method to work, we must know the state space dynamics and also have data that describes measurements obtained in a state. Both assumptions are impractical.</p>
+</li>
+<li><p>The paper casts training as a bilinear optimization problem, which are often unreliable to solve. It&#39;s not clear if the optimization will succeed in other problems.</p>
+</li>
+<li><p>The piecewise approach might be impractical in high dimensional systems</p>
+</li>
+</ul>
+<h3 id="recent_papers"><a href="#recent_papers">Recent Papers</a></h3>
+<p><em>Note: This section makes more sense for papers published 1-2 years ago or earlier, unlike this paper that is still in press.</em></p>
+<ul>
+<li><p>The <a href="https://bair.berkeley.edu/blog/2020/03/12/badgr/">BADGER system</a> seems to solve this specific problem of navigation from complex sensor data without state estimation using reinforcement learning. There is no stability analysis, however.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: February 11, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

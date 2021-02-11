@@ -14,3 +14,60 @@ function lx_baz(com, _)
   # do whatever you want here
   return uppercase(brace_content)
 end
+
+# Re-define this function from Franklin.jl, gets overwritten
+# Naturally, utils.jl needs to be included later for this overwrite to work.
+function hfun_taglist()::String
+    tag = locvar(:fd_tag)::String
+
+    c = IOBuffer()
+    write(c, "<ul>")
+
+    rpaths = globvar("fd_tag_pages")[tag]
+    sorter(p) = begin
+        pvd = pagevar(p, "date")
+        if isnothing(pvd)
+            return Date(Dates.unix2datetime(stat(p * ".md").ctime))
+        end
+        return pvd
+    end
+    sort!(rpaths, by=sorter, rev=true)
+
+    #(:hfun_list, "tag: $tag, loop over $rpaths") |> logger
+
+    for rpath in rpaths
+        title = pagevar(rpath, "title")
+        if isnothing(title)
+            title = "/$rpath/"
+        end
+        wurl = globvar("website_url")
+        url = get_url(rpath)
+        write(c, "<li><a href=\"$wurl$url\">$title</a></li>")
+    end
+    write(c, "</ul>")
+    return String(take!(c))
+end
+
+function hfun_taglistall()::String
+    tag = locvar(:fd_tag)::String
+    c = IOBuffer()
+    write(c, "<ul>")
+
+    rpaths = globvar("fd_tag_pages")
+    if ~isnothing(rpaths)
+        for rpath in keys(rpaths)
+            write(c, "<li><a href = \"$rpath/\">$rpath</a></li>")
+        end
+    end
+    write(c, "</ul>")
+    return String(take!(c))
+end
+
+function hfun_reviewer_list()::String
+    c = IOBuffer()
+    revlist = locvar("reviewers")
+    for x in revlist
+        write(c, "$x, ")
+    end
+    return String(take!(c))
+end
