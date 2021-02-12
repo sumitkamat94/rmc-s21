@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<robot name="Collision">
+  <link name="base">
+    <visual>
+      <geometry>
+         <box size="5 5 0.05" />
+      </geometry>
+      <material name="green">
+         <color rgba="0 1 0 0.1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0.0 0"/>
+      <geometry>
+        <box size="5 5 0.05" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="part">
+    <inertial>
+      <origin xyz="0.0 0.0 0.5" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
+    </inertial>
+    <visual>
+      <geometry>
+         <box size="1 1 1" />
+      </geometry>
+      <material name="green">
+         <color rgba="1 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1 1 1" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="fixed" type="floating">
+    <parent link="base" />
+    <child link="part" />
+    <origin xyz="0 0 1" />
+  </joint>
+
+</robot>

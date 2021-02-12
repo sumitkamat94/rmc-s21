@@ -20,8 +20,7 @@ function control!(τ, t, state)
 end
 
 
-urdfPath = PandaRobot.urdfpath()
-#urdfPath = "panda3.urdf"
+urdfPath = "panda.urdf"
 mechanism = parse_urdf(Float64,urdfPath)
 
 state = MechanismState(mechanism)
