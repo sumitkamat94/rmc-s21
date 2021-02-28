@@ -16,6 +16,9 @@ function display_urdf(urdfPath,vis)
     manipulate!(state) do x
         set_configuration!(mvis, configuration(x))
     end
+    for bd in bodies(mechanism)
+        setelement!(mvis,default_frame(bd),0.5,"$bd")
+    end
     return mvis, mechanism
 end
 
