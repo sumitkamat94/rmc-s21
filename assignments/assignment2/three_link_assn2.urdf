@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<robot name="FourLinkAssn2">
+<robot name="ThreeLinkAssn2">
   <link name="base_link">
 
   </link>
