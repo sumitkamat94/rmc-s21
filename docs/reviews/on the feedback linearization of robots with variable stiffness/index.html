@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>On the Feedback Linearization of Robots with Variable Joint Stiffness</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> On the Feedback Linearization of Robots with Variable Joint Stiffness</h2>
+<ul>
+
+<li> Authors: Palli, G.; Melchiorri, C.;De Luca, A.;</li>
+
+
+<li>Venue: IEEE International conference on Robotics and Automation</li>
+
+
+<li>Year: 2008</li>
+
+
+<li> Reviewed by: Pouya Samanipour, second reviewer, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#recent_papers">Recent Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper presents a solution on increasing the safety of using robot in human environment. Inertia of the links and the magnitude of the torque that actuators can apply make a limitation on the safety of robots. In this paper the stiffness of joint is not considered constant and it is used as a external control input. Finally, it was shown that this method is capable of full state linearization and also control of the position as well as stiffness of the joint.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(q\): generalized coordinate for driven links</p>
+</li>
+<li><p>\(\Theta\): generalized coordinate for driven links</p>
+</li>
+<li><p>\(M(q)\) is the inertia of robot links</p>
+</li>
+<li><p>\(N(q, q')\): centrifugal, coriolis and gravity force</p>
+</li>
+<li><p>\(K=diag{k_1,K_2,...,k_n}>0\) is the joint stiffness matrix</p>
+</li>
+<li><p>\(B=diag{b_1,b_2,...,b_n}\) is the inertia matrix of actuators</p>
+</li>
+<li><p>\(\tau\) are the motor torques</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>This paper aims to show how the full state linearization and simultaneous control of both the position and the stiffness of the joints can be achieved via static or dynamic feedback for the general dynamic model of a robotic manipulator with variable joint stiffness. We suppose that the mechanical stiffness of the joint can be modulated by means of external control inputs.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>The paper used the stiffness as an input to the nonlinear model of the robot in the simplest case.</p>
+</li>
+</ul>
+<p>\(u=\begin{pmatrix}
+\tau \\
+ \tau_k \\
+ \end{pmatrix}\), \(x=\begin{pmatrix}
+  q \\
+  q' \\
+  \theta \\
+  \theta' \\
+\end{pmatrix}\)</p>
+<ul>
+<li><p>in order to avoid neglecting the dynamic of stiffness changes, a second order differential equation is considered for the variable stiffness.</p>
+</li>
+<li><p>In this paper, the torque of a desired path in the inverse dynamic is obtained without direct dependencies on \(\Theta\).</p>
+</li>
+<li><p>It was shown in this paper that a static feedback linearization can used if the sum of the vector relative degrees is satisfied.</p>
+</li>
+<li><p>If this condition is not satisfied, then a dynamic feedback linearization is required to control the \(q\) as well as joint stiffness.</p>
+</li>
+<li><p>An auxiliary control input is defined to make the dynamic feedback linearization possible.</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>The inverse kinematic is just implemented for the simple modeling of the stiffness.</p>
+</li>
+<li><p>If one wishes to include hard nonlinearities in the inverse dynamics computation, it should be noted that the link dynamics needs to be differentiated twice</p>
+</li>
+<li><p>Furthermore, in the presence of actuator saturations, it is possible to keep the command torques τd within the</p>
+</li>
+</ul>
+<p>saturation limited.</p>
+<ul>
+<li><p>It is necessary to assume that the joint stiffness are measurable quantities. This assumption is not restrictive because the</p>
+</li>
+</ul>
+<p>knowledge of the system state allows to compute the joint stiffness.</p>
+<h3 id="recent_papers"><a href="#recent_papers">Recent Papers</a></h3>
+<p>*Note: This section makes more sense for papers published 1-2 years ago or earlier, unlike this paper that is still in press.</p>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 10, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

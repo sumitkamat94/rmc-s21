@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Automatic LQR tuning based on Gaussian process global optimization</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Automatic LQR tuning based on Gaussian process global optimization</h2>
+<ul>
+
+<li> Authors: Marco, A.; Hennig, P.; Bohg, J.; Schaal S.; Trimpe S.;</li>
+
+
+<li>Venue: 2016 IEEE International Conference on Robotics and Automation (ICRA)</li>
+
+
+<li>Year: 2016</li>
+
+
+<li> Reviewed by: Sumit Suryakant Kamat, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#overview_broad_area">Overview / Broad Area</a></li><li><a href="#notation">Notation</a></li><li><a href="#problem_statement">Problem Statement</a></li><li><a href="#solution">Solution </a></li><li><a href="#comments">Comments</a></li></ol></div>
+<h3 id="overview_broad_area"><a href="#overview_broad_area">Overview / Broad Area</a></h3>
+<p>Developing an accurate mathematical model of a physical dynamic system can be challenging, time-intensive, and expensive. Furthermore, the mathematical model of the physical dynamic system may not account for parametric uncertainties, non-linearities, unmodeled dynamics, and disturbances due to the limitations of the sensors. If a controller is tuned without considering model uncertainties, then the controller might not achieve the required performance. This motivates the tuning of controller gains using experimental data, as it would reduce the effects of the above-mentioned uncertainties. </p>
+<p>However, tuning of controller gains using methods such as grid search is time-intensive and might require multiple experimental. This necessitates the development of efficient algorithms for obtaining controller gains.</p>
+<p>This paper proposes a framework for tuning controller gains by combining optimal control with Bayesian optimization using limited experimental data. </p>
+
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(x_k\): discrete state, \(\tilde{x}_k\): approximate discrete state</p>
+</li>
+<li><p>\(A_{\text{n}}\), \(B_{\text{n}}\): Nominal plant parameters</p>
+</li>
+<li><p>\(u_k\): Control, \(w_k\): noise</p>
+</li>
+<li><p>\(J\): Nominal Quadratic cost function</p>
+</li>
+<li><p>\(\hat{J}\): Approximate cost function</p>
+</li>
+<li><p>\(\mathcal{D} \sub \mathbb{R}^D\): Doman representing region around nominal design</p>
+</li>
+</ul>
+<h3 id="problem_statement"><a href="#problem_statement">Problem Statement</a></h3>
+<p>Consider the non-linear discrete model \(x_{k+1}=f(x_k,u_k,w_k)\), where \(x_k \in \mathbb{R}^{n_x}\) and \(u_k \in \mathbb{R}^{n_u}\) is the control. The non-linear discrete model has an equilibrium at \(x_k=0\), \(u_k=0\), and \(w_k=0\). The non-linear system can be approximated as a linear discrete &#40;nominal&#41; model \(\tilde{x}_{k+1}=A_n \tilde{x}_{k} +B_n u_k+w_k\) about the equilibirirum. </p>
+<p>The nominal cost function is given by \(J=\lim_{K \to \infty} \frac{1}{K}\mathbb{E} [\sum_{k=0}^{K-1}x_k^TQx_k+u_k^TRu_k]\), where \(Q\) and \(R\) are positive-definite weigthing matrices. The objective is to determine the optimal control method which would minimize the cost function, while using data efficiently from fewer experiments. </p>
+<h3 id="solution"><a href="#solution">Solution </a></h3>
+<p>First, Marco et al. determine the state-feedback control for the non-linear system which would minimize the cost function \(J\).</p>
+<ul>
+<li><p>LQR control given by \(u_k=Fx_k\) is a good candidate for minimizing the nominal cost function \(J\); where \(F=\text{lqr} (A_{n},B_{n},Q,R)\). </p>
+</li>
+<li><p>The controller gain can be parameterized as \(F=\text{lqr} (A_{n},B_{n},W_x(\theta),W_u(\theta))\). This is done to accoun</p>
+</li>
+</ul>
+<p>It follows that \(J=J(\theta)\).  </p>
+<ul>
+<li><p>The objective is to minimize \(J(\theta)\) by varying the parameters \(\theta\). In particular, the optimization problem is given by  </p>
+</li>
+</ul>
+\[\text{arg} \ \text{min} \ J(\theta) \ \ \text{s.t.} \ \ \theta \in \mathcal{D}.\]
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In other words, we minimize \(J\), where \(\theta\) is restricted to \(\mathcal{D}\). </p>
+<ul>
+<li><p>However, note that the cost function \(J\) cannot be determined from the experimental data. This is because \(J\) represents an infinite horizon problem. Hence, they consider the approximate cost function \(\hat{J}= \frac{1}{K} [\sum_{k=0}^{K-1}x_k^TQx_k+u_k^TRu_k]\).</p>
+</li>
+</ul>
+<p>Next, Entropy Search &#40;ES&#41; is combined with optimal control to determine the parameters \(\theta\), which is summarized as follows:</p>
+<ul>
+<li><p>The uncertainity over the objective function \(J\) is represented as a probablity measure \(p(J)\).</p>
+</li>
+<li><p>The prior knowledge of the objection function can be modeled as a Gaussian process, \(J(\theta) \sim \mathcal{GP}(\mu(\theta), k(\theta, \theta_*))\), where \(\mu(\theta)\) is the mean function and \(k(\theta,\theta_*)\) is a covariance function.</p>
+</li>
+<li><p>Note that approximate cost function \(\hat{J}\) can be considered as a noisy evaluation of \(J(\theta)\). Thus we can model the approximate cost function as \(\hat{J}=J(\theta)+\epsilon\), where \(\epsilon\) represents the gaussian noise with variance \(\sigma_{\text{n}}^2\).</p>
+</li>
+<li><p>The optimization problem is defined as, \(p_{\text{min}}(\theta)=p(\theta=\text{arg} \ \text{min} \ J(\theta)) \ \ \text{s.t.} \ \ \theta \in \mathcal{D}.\)</p>
+</li>
+</ul>
+<ul>
+<li><p>ES is used to suggest the location of the parameter \(\theta\) where the approximate cost function \(\hat{J}\) is minimzed. This is done by selecting the next evaluation point which maximizes the relative entropy \(H=\int_{\mathcal{D}} p_{\text{min}}(\theta) \text{log} \frac{p_\text{min}(\theta)}{b(\theta)} \text{d} \theta\), between \(p_{min} (\theta)\) and the uniform distribution \(b(\theta)\) over the bounded region \(\mathcal{D}\). </p>
+</li>
+</ul>
+<ul>
+<li><p>ES selects the next parameter for which the approximate cost function is evaluated by determining where the maximal change of entorpy \(\Delta H(\theta)\) is pretty high.</p>
+</li>
+</ul>
+<ul>
+<li><p>ES also returns the best guess of the maximum of the approximation of \(p_{\text{min}}(\theta)\).</p>
+</li>
+</ul>
+<p>The above mentioned methods when combined together form the Automatic LQR tuning method. The algorithm of the LQR tuning method can be summarized as follows:</p>
+<ul>
+<li><p>The approximate cost &#40;\(\hat{J}\)&#41; is evaluated initially with \(Q\) and \(R\). </p>
+</li>
+<li><p>Then ES is used to return the best guess of \(\theta\) at which we minimize \(\hat{J}\).</p>
+</li>
+<li><p>The approximate cost is evaluated using the weighting matrices \((W_x(\theta), W_u(\theta))\).</p>
+</li>
+<li><p>We then repeat the above two steps until not much improvement is noticed in the approximate cost function.</p>
+</li>
+</ul>
+<p>The paper also discusses experimental results involving a one degree of freedom balancing problem, where they succeessfully demonstrate the tuning of the LQR gains using the Automatic LQR tuning method. The experiment involves the balancing of a pole which is attatched to the end-effector of a robot. They were successful in tuning up to 4 parameters using Automatic LQR tuning in the prescence of uncertainties.</p>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>The paper focuses on LQR tuning using ES.</p>
+</li>
+<li><p>Instead of determining both weighting matrices \(Q\) and \(R\) we parameterize the weighting matrices as a function of \(\theta\) and determine \(\theta\).</p>
+</li>
+<li><p>Entropy search is used to determine the best guess of the location of the parameter \(\theta\), which in turn is used to evaluate the approximate cost function \(\hat{J}\). </p>
+</li>
+<li><p>Other Bayesian algorithms do not store information about the optimal location, however ES aims at collecting the information of the optimal location.</p>
+</li>
+<li><p>Automatic LQR tuning is good to develop appropriate final designs, as this method not only determines the controller gains, but also determines the information of the optimal location.</p>
+</li>
+<li><p>The ES algorithm has higher computational cost in comparison to other Gaussian Process methods, as we don&#39;t prioritize information gain in the other methods.</p>
+</li>
+<li><p>The ES algorithm yields improved controllers much faster than alternative methods where we want to maximize information gain &#40;<a href="https://jmlr.csail.mit.edu/papers/volume13/hennig12a/hennig12a.pdf">P. Hennig 2012</a>&#41;.</p>
+</li>
+<li><p>However, this automatic tuning framework has yet to be further evaluated in practice.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

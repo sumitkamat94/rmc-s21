@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Hybrid Zero Dynamics of Planar Biped Walkers</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Hybrid Zero Dynamics of Planar Biped Walkers</h2>
+<ul>
+
+<li> Authors: E. R. Westervelt, J. W. Grizzle, D/ E/ Koditschek</li>
+
+
+<li>Venue: IEEE</li>
+
+
+<li>Year: 2003</li>
+
+
+<li> Reviewed by: Ryan Lush, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#recent_papers">Recent Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>The broad area of this paper has to do with underactuated biped walkers. They refer to hybrid zero dynamics as closed-loop exponentially stables walking with low energy loss while meeting the kinmeatics and dynamics constraints to make thw walking possible. The control design of this robot consists of a set of holonomic constraints that are imposed on the robot via feedback.</p>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<ul>
+<li><p>The nature of biped walkers forces the researchers to have two mathematical models which must be changed between seamlessly.There is single support which is when one leg is in contact with the ground and one is moving for the enxt step. The second is double support when the swinging leg impacts the ground and the previous leg starts to swing. Since they are able to classify the impact as an infinitesimal amount of time, they can essentially use the one leg swinging mathematical model with discontinuities in the velocities due to the impact at each step.</p>
+</li>
+</ul>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>These researchers are basing their work on a prototype five-link biped robot called RABBIT.</p>
+</li>
+<li><p>This group went through a lot of trouble and work to find the correct optimization for their problem of five-link biped walking. They considers finite Fourier series and compared performance with Nedler and Mead, Genetic, and Simulated Annealing algorithms. They considered a polynomial function of the underactuated dynamics and used sequential quadratic programming. They also considered modified genetic algorithms to generate reference trajectories parameterized as cubic splines.</p>
+</li>
+<li><p>They found stability resulted from a non-trivial periodic orbit and there is an exponentially stable periodic orbit of the hybrid zero dynamics only if &#40;58&#41; holds.</p>
+</li>
+<li><p>A special class of output functions were able to be used to simplify the actual computation of the hybrid zero dynamics while at the same time including a convenient, finite parameterization of the hybrid zero dynamics.</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>These researchers are tackling a very complex and difficult problem. This research likely laid the foundation for even more important work to follow and continue developing this technology to the biped walkers we see today. They are incredibly advanced and becoming scarily capable.</p>
+</li>
+<li><p>This seems like the sort of paper and topic that could be rewritten and redone many times with many iterations of improvement available.</p>
+</li>
+</ul>
+<h3 id="recent_papers"><a href="#recent_papers">Recent Papers</a></h3>
+<p><a href="https://ieeexplore-ieee-org.ezproxy.uky.edu/document/5689612">A Rocking Period Control Method for a Biped Quasi Passive Walker using a Mechanical Oscillator</a></p>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

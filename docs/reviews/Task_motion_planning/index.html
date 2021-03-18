@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Task Motion Planning for Anthropomorphic Arms Based on Human Arm Movement Primitives</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Task Motion Planning for Anthropomorphic Arms Based on Human Arm Movement Primitives</h2>
+<ul>
+
+<li> Authors: Shiqiu Gong, Biyun Xie;</li>
+
+
+<li>Venue: Industrial Robot</li>
+
+
+<li>Year: 2020</li>
+
+
+<li> Reviewed by: Guan Huitao, Sumit Kamat, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#related_paper">Related Paper</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<ul>
+<li><p>This paper represents a set of novel Human arm movement primitives, along with task slicing and sequencing; human arm movement primitives slicing and sequencing.</p>
+</li>
+</ul>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(\hat{Φ}\): rotation along the line between shoulder joint center and wrist joint center.&#40;swivel angle&#41;</p>
+</li>
+<li><p>\(\hat{P}\): position change</p>
+</li>
+<li><p>\(\hat{O}\): orientation change</p>
+</li>
+<li><p>\(\hat{F}\): force change</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<ul>
+<li><p>Achieve the human-like motion and solve for the redundancy problem, we use four parameters to discribe the human arm motion, the specific combination of the four parameters can be used to define all human arm motions.</p>
+</li>
+<li><p>Any task can be decomposed to subtasks and any subtask can be decomposed to HAMPs, the HAMPs then are mapped to joint angles by analytical inverse kinematics.</p>
+</li>
+</ul>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>For any given task, firstly, slice the task into several coretasks and subtasks. The coretasks are the task of perform the desired goal, i.e, move a cup from A to B, and the subtasks are the prepare motion, i.e, move from the fianl position of last coretask to the initial position of next coretask. The subtasks were then sequenced by Monte Carlo mehtod.</p>
+</li>
+<li><p>To execute the subtasks, HAMPs need to be selected and sequenced. Note that four parameters can have 16 different combinations with one of them is null. For this purpose, a total of 12 huamn subjects performed human arm movement for reaching and gripping. Due to the results of the experiment, we have selected the &#40;ΦPO&#41;,&#40;PO&#41;,&#40;P&#41; to be the HAMPs that we use and also the exact sequence we follow.</p>
+</li>
+<li><p>The paper quantified the HAMPs using gaussian and cosine bell-shaped function, because it is widely accepted that the velocity of a single physiological joint and the linear velocity of human arm end-point are unimodal bell-shaped. The mapping can be expressed as:</p>
+</li>
+</ul>
+<p>θ&lt;sub&gt;i&lt;/sub&gt; &#61; f&#40;Φ&#40;t&#41;,P&#40;t&#41;,O&#40;t&#41;&#41;</p>
+<p>P&#40;t&#41; &#61; P&lt;sub&gt;0&lt;/sub&gt;&#43;∫P&#40;t&#41;dt</p>
+<p>Φ&#40;t&#41; &#61; Φ&lt;sub&gt;0&lt;/sub&gt;&#43;∫Φ&#40;t&#41;dt</p>
+<p>O&#40;t&#41; &#61; O&lt;sub&gt;0&lt;/sub&gt;&#43;∫O&#40;t&#41;dt</p>
+<p>where the P&#40;t&#41;,Φ&#40;t&#41;,O&#40;t&#41; can be obtained by the bell-shaped function.</p>
+<ul>
+<li><p>The HAMPs can then be applied to the inverse kinematics, then the general representation of each joint angle can be obtained.</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>The represented HAMPs are novel and can fully express the movements of human arm and Anthropomorphic arm, which constitude a movement primitives library that can be applied to task motion planning.</p>
+</li>
+<li><p>The HAMPs seclecting and sequencing are based on the human subjects motion capture data, thus it is similar to real human arm motions.</p>
+</li>
+<li><p>One interesting finding of this study is that the HAMPs were applied to the bell-shaped function, the resulting angle velocities of each joint are also bell-shaped. The characteristic of P&#40;t&#41;, Φ&#40;t&#41;, and O&#40;t&#41; mapped to the joint angles, which inspires us to use bell-shaped velocities of joint to achieve human-like motions for anthropomorphic arm without human-like indicators.</p>
+</li>
+</ul>
+<h3 id="related_paper"><a href="#related_paper">Related Paper</a></h3>
+<p>Zhao, J., Gong, S. and Zhang, Z. &#40;2018&#41;, “Analytical inverse kinematics of anthropomorphic movements for 7-DOF humanoid manipulators”, Journal of Mechanical Engineering, Vol. 54 No. 21, doi: 10.3901/JME.2018.21.025.</p>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

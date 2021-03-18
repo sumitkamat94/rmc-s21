@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Design of a Modular Snake Robot</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Design of a Modular Snake Robot</h2>
+<ul>
+
+<li> Authors: Wright, C.; Johnson, A.; Peck, A.; McCord, Z.; Naaktgeboren, A.; Gianfortoni, P.; Gonzalez-Rivero, M.; Hatton, R.; Choset, H.</li>
+
+
+<li>Venue: IEE</li>
+
+
+<li>Year: 2007</li>
+
+
+<li> Reviewed by: David Yackzan, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#recent_papers">Recent Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper focuses on the mechanical and electrical design of a snake robot. The authors go into detail on various aspects of their snake robot as they have evolved from earlier/less funtional models.</p>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>The authors outline the advatages of snake robots as hyper-redundant mechanisms in environments with unpredictable terrain. They illustrate their robot climbing up pipes and over stairs to give context to the navigation abilities. The robot discussed in the paper consists of sixteen aluminum modules all equipped with a &quot;Super Servo&quot; which was designed by the lab. The Super Servo is an enhanced hobby servo that incorporates sensors to measure temperature and current, as well as equipment to send and recieve information to/from an outside computer.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>Each of the sixteen modules is able to rotate 180 degrees in a plane perpendicular to the previous module in the chain by actuation of its Super Servo. This allows for three dimensional movement of the mechanism. To enable this, the links are rotated 90 degrees from each adjacent module in the chain. To move, the robot relies on sinusoidal manipulation of its joints.</p>
+</li>
+<li><p>The motion is controlled through the lab&#39;s Message Control Protocol &#40;MCP&#41; whereby a main computer sends positional commands and recieves temperature and current data to/from each of the modules&#39; Super Servos.</p>
+</li>
+<li><p>A controller using PID control was implemented to regulate motion as well as current draw by the motor. Current limiting effectively creates a torque limit, allowing for adjustable compliance levels with the environment.</p>
+</li>
+<li><p>The authors also discuss skin design as a key factor in determining how the system interacts with its environment. It is also critical in making sure the robot&#39;s modules are protected properly from environmental debris and overheating.</p>
+</li>
+<li><p>This paper concludes the discussion on the design of the snake robot by emphasizing the mechanical reliability acheived by the durable, low-friction aluminum module casings.</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>See section <em>IV. Electronics Architecture A. Communications</em> for in depth details on the communication design of the robot</p>
+</li>
+<li><p>See section <em>III. Mechanical Overview B. Modules</em> and <em>VI. Reliability A. Mechanical</em> for in depth details obout the advatages of the &quot;U&quot; shape of the module connectors</p>
+</li>
+</ul>
+<h3 id="recent_papers"><a href="#recent_papers">Recent Papers</a></h3>
+<ul>
+<li><p>This paper outlines a more recent snake bot and a more specific application in which the class of robot is useful for: <em>Lateral Oscillation and Body Compliance Help Snakes and Snake Robots Stably Traverse Large, Smooth Obstacles</em> https://doi-org.ezproxy.uky.edu/10.1093/icb/icaa013</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

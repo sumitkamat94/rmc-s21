@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Neural Network Based Reinforcement Learning for Audio-Visual Gaze Control in Human-Robot Interaction</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Neural Network Based Reinforcement Learning for Audio-Visual Gaze Control in Human-Robot Interaction</h2>
+<ul>
+
+<li> Authors: Lathuiliere, S.; Masse, B.; Masejo, P.; Horaud, R.</li>
+
+
+<li>Venue: arXiv</li>
+
+
+<li>Year: 2018</li>
+
+
+<li> Reviewed by: David Yackzan, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper outlines a research project to design a robot capable of teaching itself to gaze at a speaker in a room through reinforcement learning using audio and visual input. The robot used has 2 degrees of freedom: pan and yaw of the head. This motion determines the field of vision as the cameras are located in the head. The microphones for audio input are not located in the head so their &quot;field of vision&quot; is not impacted by the actuation of the head. The authors present the adaptability of a reinforcement approach to the gaze issue as a significant advantage over similar research that has been conducted using other methods.This approach is very humanistic considering the method of audio-visual input &#40;like a human&#39;s eyes and ears&#41; in combination with the method of reinforcement learning &#40;like how humans learn through rewards&#41;.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(R_t\): The reward at a given time</p>
+</li>
+<li><p>\(F_t\): The number of observed faces at a given time</p>
+</li>
+<li><p>\(\Sigma\): Binary variable representing whether or not speaker is within the field of vision</p>
+</li>
+<li><p>\(\alpha\): Reward weight variable of \(\Sigma\)</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>Rather than using other training methods, the reinforcement learning solution to gaze control requires no supervision. It only requires an accurate method of determining whether or not a decision has the intended outcome, in other words appropriately determining a reward. Reinforcement learning is implemented by outlining a function &#40;called a policy&#41; that will complete an action based on the optimization of a reward function. In this specific case the reward should be given when the robot actuates its head properly to where the speaker is in its field of vision.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>At each time step, the robot gathers data from its motors, cameras, and microphones and completes an action based on the policy function that is injected with these inputs. The action that the policy function returns in this case is the actuation of the motors controlling the head position and field of view.</p>
+</li>
+<li><p>Visual observations of people are made from the camera input using a landmark model whereby the number of people in view are determined by the number of human-features &#40;or landmarks&#41; are detected. These features can be noses, eyes, ears, shoes, hands, legs, etc. This allows for the system to identify observed people as well as observed faces &#40;\(F_t\)&#41;.</p>
+</li>
+<li><p>The audio data from the microphones is taken in and analyzed to render an audio map matrix locating where the sound is in reference to the robot. If the speaker is within the field of vision, the binary variable \(\Sigma\) is set to 1, otherwise it is 0.</p>
+</li>
+<li><p>The reward is then determined by: \(R_t = F_t+1 + \alpha\Sigma_t+1\)</p>
+</li>
+<li><p>The policy is a function of the reward \(R_t\) and the joint positions of the head actuators.</p>
+</li>
+<li><p>It would take an extensive amount of time for the robot to be trained from scratch on startup each time, so the authors outline how the robot pre-trains on a simulated environment at first. This simulated environment presents a processing speed advantage as the model does not require audio and visual data to train, only parameters outlined in the policy, which drastically decreases training time.</p>
+</li>
+<li><p>In order to test the different models, simulated environments were randomly generated and the runs were scored based on the average reward they acheived.</p>
+</li>
+<li><p>The network that acheived the best average reward was called <em>LFNet</em>, a late fusion strategy.</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>The article presents on interesting difficulty that comes when comparing RL models: -When comparing interpretation of data, even if the data is the same, what the robot actually interprets from the given data set will vary depending on the actions it has taken for that specific model. For example, if the robot turns his head \(x\) degrees for one model and \(y\) degrees for the other model, then the interpreted visual data set will be different, even though as a whole the data set may still be the same.</p>
+</li>
+<li><p>The authors do not describe how the robot distinguishes between ambient noise and voices, so if ambient noise is not accounted for and this testing was done in an acoustically controlled environment, then this could present a flaw of the design.</p>
+</li>
+<li><p>In depth technical details about the training algorithms are provided in section 3, pages 5-6 of the article.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

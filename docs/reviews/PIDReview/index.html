@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>On the PID tracking control of robot manipulators</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> On the PID tracking control of robot manipulators</h2>
+<ul>
+
+<li> Authors: Cervantes, I.; Alvarez-Ramirez, J.</li>
+
+
+<li>Venue: Elsevier</li>
+
+
+<li>Year: 2000</li>
+
+
+<li> Reviewed by: Landon Clark, Sumit Kamat, Joshua Ashley, Daniel Kennedy, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#related_papers">Related Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper seeks to serve as a foundational piece of literature proving that, when tuned properly, a PID controller can guarantee semiglobal stability and small arbitrary errors in joint trajectories of robot manipulators. It also provides an effective, and mathematically proven, set of tuning guidelines for the PID parameters based on the system stability. Through the use of feedback compensation and a reduced-order error observer, the proposed solution was able to produce satisfactory results. </p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>This paper uses the Euler-Lagrangian model of dynamics for some basic suppositions, thus we have: \(M(q)\ddot(q)\): inertia matrix, \(C(q, \dot(q))\dot(q)\): Coriolis matrix, and \(g(q)\): gravitational torques</p>
+</li>
+<li><p>\(\bar{M}\): estimate of the inertia matrix</p>
+</li>
+<li><p>\(\tau\): joint torque</p>
+</li>
+<li><p>\(q \in \mathbf{R}^{n}\): vector of joint positions</p>
+</li>
+<li><p>\(e_r\): error, difference between current joint value and expected joint value</p>
+</li>
+<li><p>\(n\): modeling error function &#40;it&#39;s not really this n, but not sure what the real one is&#41;</p>
+</li>
+<li><p>\(\bar{n}\): approximation on \(n\), estimated via observer</p>
+</li>
+<li><p>\(A_c \in \mathbf{R^{2nx2n}}\): State matrix applied to the state of the transient performance of the system</p>
+</li>
+<li><p>\(x(t)\): transient system performance</p>
+</li>
+<li><p>\(\epsilon^{-1}\): adaption rate of the observer</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>This paper seeks to solve the problem of inconclusive results with PID controllers. Early on, it is stated that there lacks any concrete theoretical and practical results in current literature from this time proving the stability and effectiveness of the PID controller. This paper then defines its goals, sufficiently small tracking error, nonlocal stability guarantees, and &quot;easy-to-use&quot; tuning procedures. </p>
+<p>It should be noted that this review will gloss over the derivations in this paper, as this review would either turn directly into the paper itself or there would be too many jumps made along the way, the original meaning being lost via omission - either way invalidating deriving the multitude of equations derived in the paper.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<p>The first proof of this paper seeks to show that their approach to the PID controller is equivalent to a classical PID controller. This is accomplished by deriving viable control gains based on the practical control law \(\tau = \bar{M}[\ddot{q_r} - \bar{n} - Kx]\), \(\bar{M}\), \(\epsilon^{-1}\), and sub-matrices from \(A_c\) &#40;\(K\) from the first equation is one of our submatrices in \(A_c\)&#41;. After this is proven, the paper then goes on to show that the system stability can be modeled as the system \(\dot{x} = A_{c}x + He_0\) where \(e_0\) is the estimation error \(n - \bar{n}\). For the final step of proving the performance of their model, the paper seeks to prove semiglobal tracking. They first prove that the \(A_c\) matrix has the properties of a global exponentially stable state matrix. They then prove that the origin of the tracking error is semiglobally practically stable by classical PID control. In other words, they show that given an area of interest, the PID gains computed earlier can produce a trajectory, that when compared to a spacial locality relative to the area of interest, this trajectory is roughly as similar to the area surrounding the computed area of interest as the actual area of interest compared to the area housing it &#40;i.e. we have only some arbitrary errors in tracking&#41;. This is essentially semiglobal stability.</p>
+<p>The final procedural portion of the paper deals with the tuning guidelines. There are three steps, simply put:</p>
+<ul>
+<li><p>Choose a \(\bar{M}\) &gt; 0</p>
+</li>
+<li><p>Design the \(K\) matrices from \(A_c\) according to the link properties of the robot</p>
+</li>
+<li><p>Choose a small enough \(\epsilon\) value, as this will decrease the tracking error</p>
+</li>
+</ul>
+<p>\(K_P = \bar{M}(K_1 + \epsilon^{-1}K_2)\) \(K_I = \epsilon^{-1}\bar{M}K_1\) \(K_D = \bar{M}(K_2 + \epsilon^{-1}I)\)</p>
+<p>The results shown in the end of the paper show promising results for a 2R robot manipulator. The tracking error is much better at a slow speed than a fast speed, but in either case it is sufficiently good, as well as stable. It can be seen that as \(\epsilon\) decreases, so does the tracking error - although this does seem to fight against the ability for the controller to increase speed as quickly.</p>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>It would be interesting to perhaps see this approach applied to a higher DOF robot.</p>
+</li>
+<li><p>Clearly this method has increased error at higher velocities, so is this method still viable for robots that operate in such environments?</p>
+</li>
+<li><p>This paper does a very good job of moving from one mathematical formulation to another.</p>
+</li>
+</ul>
+<h3 id="related_papers"><a href="#related_papers">Related Papers</a></h3>
+<p>Papers such as <a href="https://folk.ntnu.no/skoge/prost/proceedings/PID-12/papers/0096.pdf">this one</a> have moved more towards the idea of autotuning PID parameters.</p>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

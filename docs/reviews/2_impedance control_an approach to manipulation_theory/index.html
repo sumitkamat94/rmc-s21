@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Impedance Control: An Approach to Manipulation: Part I-Theory</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Impedance Control: An Approach to Manipulation: Part I-Theory</h2>
+<ul>
+
+<li> Authors: Hogan, N.;</li>
+
+
+<li>Venue: Journal of dynamic systems, Measurement and Control</li>
+
+
+<li>Year: 1985</li>
+
+
+<li> Reviewed by: Pouya Samanipour, Mohammad Mohammadzadeh, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#basic_ideas_and_definitions">Basic Ideas and definitions</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#comments">Comments</a></li><li><a href="#recent_papers">Recent Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>in this paper it was shown that manipulator is not an isolated systems and it is in interaction with its environment. The approach presented in this book is taking the mechanics of interaction between the manipulator and physical system into account. also, it was shown that for robot manipulator, position and force control are not sufficient and control of the dynamic behavior of the system is also required. It is shown that in order to model this interaction we need nonlinear equations, based on this fact that the environment and the manipulator should complement each other and because the environment contains inertial objects, which makes the environment admittance, the manipulator must be impedance. For a broad class of nonlinear systems a general network is presented which makes it possible to control motion and impedance separately.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(W\): Mechanical work</p>
+</li>
+<li><p>\(F\): Force</p>
+</li>
+<li><p>\(T\): Torque</p>
+</li>
+<li><p>\(:\)&#36;: Modulation by command set</p>
+</li>
+<li><p>\(S_e\): Effort&#40;force&#41; source</p>
+</li>
+<li><p>\(S_f\): Flow&#40;Velocity&#41; control</p>
+</li>
+<li><p>\(Z\): Impedance</p>
+</li>
+<li><p>\(Y\): Admittance</p>
+</li>
+<li><p>\(Z_o\): nodic Impedance</p>
+</li>
+<li><p>\(Z_n\): Nonnodic impedance</p>
+</li>
+<li><p>\(X_o\): virtual position</p>
+</li>
+<li><p>\(V_o\): virtual velocity</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>in this paper impedance control is defined as a unified approach for manipulation.it was shown the way that the controller may modify the behavior of manipulator by using the network concepts of Bond graphs.</p>
+<h3 id="basic_ideas_and_definitions"><a href="#basic_ideas_and_definitions">Basic Ideas and definitions</a></h3>
+<ul>
+<li><p>The manipulator is a set of physical structures, sensors, and actuators &#40;hardware&#41; combined with some set of control algorithms &#40;software&#41;. A unified approach to take both the hardware and the software behavior into account can be acquired by using the assumption that no controller can make the manipulator appear to the environment as anything other than a physical system.</p>
+</li>
+</ul>
+<p><img src="Capture_1.png" alt="" /></p>
+<ul>
+<li><p>in this paper admittances is defined as a system accepting effort &#40;e.g., force&#41; as inputs and yielding flow &#40;e.g., motion&#41;  as outputs; and impedances accepting flow &#40;e.g., motion&#41; as inputs and yielding effort &#40;e.g., force&#41; outputs.</p>
+</li>
+<li><p>The distinction between admittance and impedance is fundamental: and it is not an interchangeable.</p>
+</li>
+<li><p>these physical systems should be complementary to  each other. it means that along any degrees of freedom, if one is an impedance, the other must be an admittance and vice versa.</p>
+</li>
+<li><p>The impedance might be modulating during different parts of the tasks. therefore, the controller should be able to deal with this issue.</p>
+</li>
+<li><p>The simplest equivalent physical network representing impedance control is shown in the following figure. The position commanded by the high-level supervisor is represented by a flow source. To prevent causal conflict between this element and the environmental admittance &#40;which must experience an impressed effort&#41; a zero junction is interposed between the two. The impedance coupled to this zero-junction represents the relation between force and motion commanded by the supervisor and includes both the static force/displacement relation plus the possible dynamic terms required to ensure controlled dynamic behavior.</p>
+</li>
+</ul>
+<p><img src="Capture_2.png" alt="" /></p>
+<ul>
+<li><p>The only assumptions made were that the manipulator should be controllable to be capable of determining an equilibrium position of an unconstrained inertial object such as a mass, and that its static component is such that if its gradient is nonzero then zero force defines an unique position—not a restrictive set of assumptions.</p>
+</li>
+</ul>
+<p>&#40;1&#41; \(dz/dt=Z_s[z,(V_o:\)&#123;c&#125;-Y_o&#40;y&#41;&#41;&#93;:&#123;c&#125;</p>
+<p>&#40;2&#41; \(dy/dt=Y_s[y,Z_o(z,V_o:\)&#123;c&#125;-Y_o&#40;y&#41;&#41;&#93;:&#123;c&#125;</p>
+<p>&#40;3&#41; \(F=Z_o(z,[V_o:\)&#123;c&#125;-Y_o&#40;y&#41;&#93;&#41;:&#123;c&#125;</p>
+<p>&#40;4&#41; \(V=Y_o(y)\)</p>
+<h3 id="conclusion"><a href="#conclusion">Conclusion</a></h3>
+<ul>
+<li><p>The most interesting consequence of the assumptions underlying impedance control is that if the dynamic behavior of manipulator is decoupled into set of components, all these separated components can be added by a simple addition. This is the result of assuming that the environment is an admittance.  </p>
+</li>
+<li><p>When the manipulator is decoupled from its environment the terms in the dynamic equations due to the environmental admittance disappear and in principle the manipulator alone need exhibit no inertial behavior. In practice the uncoupled manipulator still has inertia. Because of the inevitable inertial dynamics of the isolated manipulator the superposition of impedances holds even when the manipulator is uncoupled from its environment as there is always an admittance to sum forces and impedances.</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>in the impedance control, the dynamic equations of the manipulator are used which make it multi-input multi-output systems which are more complicated.</p>
+</li>
+<li><p>this approach also adds nonlinearity to the equations which is again more difficult to deal with.</p>
+</li>
+</ul>
+<h3 id="recent_papers"><a href="#recent_papers">Recent Papers</a></h3>
+<ul>
+<li><p>Yang, Z., Peng, J., &amp; Liu, Y. &#40;2019&#41;. Adaptive neural network force tracking impedance control for uncertain robotic manipulator based on nonlinear velocity observer. Neurocomputing, 331, 263-280.</p>
+</li>
+<li><p>Peng, J., Yang, Z., &amp; Ma, T. &#40;2019&#41;. Position/force tracking impedance control for robotic systems with uncertainties based on adaptive jacobian and neural network. Complexity, 2019.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

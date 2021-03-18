@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title> Consistency of the EKF-SLAM Algorithm </title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2>  Consistency of the EKF-SLAM Algorithm </h2>
+<ul>
+
+<li> Authors:  Bailey, T.; Nieto, J.; Guivant, J.; Stevens, M., & Nebot, E.;</li>
+
+
+<li>Venue: International Conference on Intelligent Robots and Systems </li>
+
+
+<li>Year: 2006</li>
+
+
+<li> Reviewed by: Joe Kershaw, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#overview">Overview</a></li><li><a href="#overall_problem">Overall Problem</a></li><li><a href="#specific_problems">Specific Problems</a></li><li><a href="#results">Results</a></li><li><a href="#additional_comments">Additional comments</a></li></ol></div>
+<h3 id="overview"><a href="#overview">Overview</a></h3>
+<p>This article examines the performance of the Extended Kalman Filter&#40;EKF&#41; when used to solve the SLAM problem. Additional considerations were given with respect to various behaviors of a divergent filter.</p>
+<h3 id="overall_problem"><a href="#overall_problem">Overall Problem</a></h3>
+<p>Though it is providing desirable results, the consistency of using EKF to solve the SLAM problem non-linearly &#40;EKF-SLAM&#41; has not been studied. Previous studies suggest that EKF-SLAM will become inconsistent due to a build up of errors caused by estimating both the statistical properties and derivatives of the system. This leads to two questions. The first is, does the inconsistency of the EKF-SLAM matter in all cases. Secondly, how can the EKF-SLAM produce optimal solutions.</p>
+<h3 id="specific_problems"><a href="#specific_problems">Specific Problems</a></h3>
+<ul>
+<li><p>The first issue caused from instability is Information Gain. This is a byproduct of the linearization estimation of the statistical properties and causes the system to falsely estimate incorrect statistical values. This is in contrast to normal statistical rules where the more observations taken, the more the system converges on the real distribution.  </p>
+</li>
+<li><p>The second issue is Jagged Trajectory. Though the article cannot address why this phenomena occurs, the estimated path can actually become non-continuous and have “steps” as opposed to a constant and smooth curve.  </p>
+</li>
+</ul>
+<h3 id="results"><a href="#results">Results</a></h3>
+<ul>
+<li><p>Three different variations of the Kalman Filter and one EKF seeded with perfect Jacobians were simulated using Monte-Carlo methods. All of them displayed inconsistent behavior except for the one with the Jacobians.</p>
+</li>
+<li><p>The filters were also tested using a path finding problem with a small heading uncertainty. Though the system would diverge after a while, it was over a much longer time and was a more constant change.  </p>
+</li>
+</ul>
+<h3 id="additional_comments"><a href="#additional_comments">Additional comments</a></h3>
+<ul>
+<li><p>The two take away points from this article are as follows. Primarily, inconsistent algorithms are not always detrimental. If the problem can be solved within the timeframe of its use, there is no reason why it cannot perform optimally or efficiently. Secondly, the true problem with the filter is that it does not give off any sort of alarm when it fails. Since it is unrelated to any truth regarding it’s performance, there is no great metric being fed back that would be observable until it has well diverged from the truth.</p>
+</li>
+<li><p>An overview of various SLAM solving algorithms were compiled in 2013 in &quot;An Evaluation Of 2D SLAM Techniques Available In Robot Operating System&quot;. The most popular of which was Gmapping which utilized a Particle Filter. Additional algorithms tended to utilize Graph Theory based optimizers as opposed to gradient descent or Kalman Filters. This is going to likely continue as machine learning becomes more prevalent in the field.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+    
+  </body>
+</html>

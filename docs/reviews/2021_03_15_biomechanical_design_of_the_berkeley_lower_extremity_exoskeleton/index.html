@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Biomechanical Design of the Berkeley Lower Extremety Exoskeleton (BLEEX)</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Biomechanical Design of the Berkeley Lower Extremety Exoskeleton (BLEEX)</h2>
+<ul>
+
+<li> Authors: Zoss, A.B.; Kazerooni, H.; Chu, A.;</li>
+
+
+<li>Venue: IEEE; ASME Transactions on Mechatronics</li>
+
+
+<li>Year: 2006</li>
+
+
+<li> Reviewed by: Guan Huitao, David Yackzan, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#design">Design</a></li><li><a href="#comments">Comments</a></li><li><a href="#recent_papers">Recent Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper describes the design of an exoskeleton to be worn from hip down &#40;lower extremety&#41; on an individual to assist in the transportation of heavy objects. The strength of lower extremety exoskeletons is that in combination with human intelligence and control, they can aid in the transportation of heavy objects over terrain that is not navigable by wheeled robots &#40;like stairs or rocky terrain&#41; as well as over non-simple pathways that will take human decision and control to navigate.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(x\): state, \(X\): State space</p>
+</li>
+<li><p>\(y\): measurement, \(Y\): Measurement Space</p>
+</li>
+<li><p>Controller \(u = g(y)\)</p>
+</li>
+<li><p>\(L\): Set of labels</p>
+</li>
+<li><p>\(C_X \colon X \to L\): Classifier in state space</p>
+</li>
+<li><p>\(C_Y \colon Y \to L\): Classifier in measurement space</p>
+</li>
+<li><p>\(V\): Lyapunov function</p>
+</li>
+<li><p>\(W\): set of hyperplanes that parametrizes \(C_X\)</p>
+</li>
+<li><p>\(W^\Delta\): set of hyperplanes that parametrizes a robust version of \(C_X\)</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<ul>
+<li><p>This design outlined in this paper focuses on providing the goal of allowing its wearer to carry significant loads without expending much effort over any terrain while considering four primary aspects: &quot;a novel control scheme, high-powered compact power supplies, special communication protocol and electronics, and a design architecture to decrease the complexity and power consumption.&quot;</p>
+</li>
+</ul>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>A control scheme was designed that allows the BLEEX exoskeleton to shadow the wearers movements, both voluntary and involuntary.</p>
+</li>
+<li><p>In order to acheive this, the system uses a full dynamic model of the exoskeleton as it retrieves data from several sensors &#40;encoders, linear accelerometers, single axis force sensors, foot switches, load distribution sensors, and an inclinometer&#41; and actively calculates the kinematics of the skeleton.</p>
+</li>
+<li><p>This exoskeleton includes 7 DoF in total:</p>
+<ul>
+<li><p>3 DoF at the hip</p>
+</li>
+<li><p>1 DoF at the knee</p>
+</li>
+<li><p>3 DoY at the ankle</p>
+</li>
+</ul>
+</li>
+<li><p>The control scheme consists of a power efficient method of only actuating the joints that require the most assistance during weighted locomotion, while the other joints are free or attached with a spring to allow for natural motion of the wearer and constant assistance in a preferred direction. The joints to be actuated were identified through locomotion observation trials and are as follows:</p>
+<ul>
+<li><p>flexion/extension at the ankle</p>
+</li>
+<li><p>flexion/extension at the knee</p>
+</li>
+<li><p>flexion/extension at the hip</p>
+</li>
+</ul>
+</li>
+<li><p>The following equations were considered in determining the size and strength of the hydraulic actuators:</p>
+<ul>
+<li><p>\(T_maxpush = Ps * \frac{\pi*D_bore^2}{4}*R(\theta)\)</p>
+</li>
+<li><p>\(T_maxpull = Ps * \frac{\pi*D_bore^2-D_rod^2}{4}*R(\theta)\)</p>
+</li>
+<li><p>Where \(D_bore\) is the actuator bore diameter and \(D_rod\) is the actuator rod diameter.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="design"><a href="#design">Design</a></h3>
+<ul>
+<li><p>Actuator Design</p>
+<ul>
+<li><p>Double-acting hydraulic actuator. It has high specific power&#40;ratio of actuator power to actuator weight&#41;, and the hydraulic fluid is incompressible leading to high-control bandwidth</p>
+</li>
+</ul>
+<p>-BLEEX utilize the smallest available actuators along with a relatively low supply pressure of 6.9 MPa.&#40;The second end-point position of the actuator can be calculated by applying angle limitations.&#41;</p>
+</li>
+<li><p>With the supply pressure of actuator multiplied by system flow rate, the average power consumption for BLEEX to walk is 1143W compared to 165W of human gait. 14&#37; efficiency is due to pressure drop across servo valves, this is standard for hydraulic system even though with low efficiency.</p>
+</li>
+<li><p>Major Components Design</p>
+</li>
+<li><p>Overall model that simplified to emphasized major Components <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/3516/33921/1618670/1618670-fig-21-source-large.gif" alt="" /></p>
+</li>
+<li><p>Foot Design</p>
+<p>The BLEEX foot is a critical part due to its variety of functions including:</p>
+<ol>
+<li><p>Measures the location of foot&#39;s center of pressure and therefore, identifies the foot&#39;s configuration on the ground, this information is necessary for BLEEX control.</p>
+</li>
+<li><p>Measures the load distibution on each leg, which is also a critical information for BLEEX control.</p>
+</li>
+<li><p>Transfers the BLEEX&#39;s weight to the ground, so it must have structural integrity and long life with periodic forces</p>
+</li>
+<li><p>One of two places of rigidly connected to body, it must be comfortable for operator.</p>
+</li>
+</ol>
+<p><img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/3516/33921/1618670/1618670-fig-22-source-large.gif" alt="" /> <em>The foot part has stiff heel to tranfer weight and flexible toe for comfort. Swithched detect which part of foot is contact with ground and pressure sensor detect load-distribution.</em> -Other Parts from Torso to Shank <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/3516/33921/1618670/1618670-fig-25-source-large.gif" alt="" /> <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/3516/33921/1618670/1618670-fig-24-source-large.gif" alt="" /> <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/3516/33921/1618670/1618670-fig-23-source-large.gif" alt="" /> -Final BLEEX Design <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/3516/33921/1618670/1618670-fig-26-source-large.gif" alt="" /></p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>The major idea of this paper is to design a lower limb exoskeleton that can closely match the kinematics and dynamics of human gait. This assumption leads to a way to design the BLEEX based on the gait data.</p>
+</li>
+<li><p>Based on this idea, the 4 actuated joints were selected, and specific actuators were selected, the actuation was designed.</p>
+</li>
+<li><p>Future Work</p>
+</li>
+<li><p>Measured curve of torque vs. angle differ from human gait and therefore, not fully match with human. Need more accurate match.</p>
+</li>
+<li><p>Reduce the consumption of overall power. Potentially by reducing weight, improve efficiency, etc.</p>
+</li>
+</ul>
+<h3 id="recent_papers"><a href="#recent_papers">Recent Papers</a></h3>
+<ul>
+<li><p>This paper, titled <em>Physical Human–Robot Interaction of a Robotic Exoskeleton By Admittance Control</em> outlines a more recent approach to design of a human-assistive exoskeleton: https://saa-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid&#61;TN<em>cdi</em>crossref<em>primary</em>10<em>1109</em>TIE<em>2018</em>2821649&amp;context&#61;PC&amp;vid&#61;UKY&amp;lang&#61;en<em>US&amp;search</em>scope&#61;default<em>scope&amp;adaptor&#61;primo</em>central<em>multiple</em>fe&amp;tab&#61;default_tab&amp;query&#61;any,contains,exoskeleton&amp;offset&#61;0</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

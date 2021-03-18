@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Rapidly-Exploring Random Trees: A New Tool for Path Planning</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Rapidly-Exploring Random Trees: A New Tool for Path Planning</h2>
+<ul>
+
+<li> Authors: Steven M. LaValle</li>
+
+
+<li>Venue: (Journal name not indicated) Department of Computer Science Iowa State University</li>
+
+
+<li>Year: 1998</li>
+
+
+<li> Reviewed by: Mohammad M Moghan, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#recent_papers">Recent Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>In this paper the concept of Rapidly-Exploring Random Trees &#40;RRT&#41; has been introduced by the author. The main aim of the paper is to deal with nonholonomic constraints and high degree of freedoms. RRT method applies control input and pushes the system toward randomly selected points in an iterative manner. Therefore in this framework point to point convergence is not needed. Later it is indicated that the proposed method is effective for  holonomic, nonholonomic, and kinodynamic planning problems of up to twelve degrees of freedom.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(\tau\): Initial time</p>
+</li>
+<li><p>\(x_{init}\): Initial position</p>
+</li>
+<li><p>\(x_{rand}\): Random state</p>
+</li>
+<li><p>\(x_{near}\): Nearest neighbor</p>
+</li>
+<li><p>\(U\): Selected input</p>
+</li>
+<li><p>\(x_{new}\) New state</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>First, the author answers an interesting question in this regard: Why do we need another randomized path planning technique? He elaborates on the question by mentioning the following advantages for the new technique he proposed:</p>
+<ul>
+<li><p>Extension to general nonholonomic planning problems. Nonholonomic refers to differential constraints that cannot be completely integrated. This means they cannot be converted into constraints that involve no derivatives.</p>
+</li>
+<li><p>The randomized potential field method requires a good heuristic potential function which is hard to get when we are dealing with obstacles, kinematic differential constraints, and dynamical constraints in problems.</p>
+</li>
+<li><p>In the probabilistic road map approach the connection problem can be as difficult as designing a nonlinear controller.</p>
+</li>
+<li><p>One unique advantage of RRT that the author mentions is that this approach does not need connections between pairs states, while probabilistic roadmaps usually need thousands of connections for analysis.</p>
+</li>
+</ul>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<p>In this paper a new sampling method for is provided to guide a random search tree to reach the target. This method uses Three strategies. First defines the sampling rate and updates it at each stage. Try to balance the amount of space search around the target and search for unknown spaces. This sampling method, prevents fixed bias search towards the target and completely random search of unknown spaces.</p>
+<p>Bias toward the goal Means that the tree tends to move toward the target by sampling from The surrounding areas. Bias towards search for unknown spaces means that the tree tends to grow in the all spaces.</p>
+<p>In this method, the tree root is in the initial configuration. First, a point is randomly selected with a uniform distribution. If the selected point belong to constraints space, another point will be selected. By selecting a point from the free space, a new point is selected along the line between this point and the root of the tree which is called &#40;\(x_{new}\)&#41;. If it is possible to connect \(x_{new}\) to the root then this point will introduce to the system as a new node. The algorithem is developed accordingly: 1- \(\tau\), \(x_{init}\);   2- for K&#61;1 to K do;   3- \(x_{init}\) random state;   4- \(x_{near}\) Nearest neighbour, \(\tau\), \(x_{init}\);   5- Select input \(U\) &#40;\(x_{near}\),\(x_{rand}\)&#41;;   6- \(x_{new}\) New state &#40;\(x_{near}\),\(U\),\(\delta_{t}\)&#41;;   7- \(\tau_{add,vertex}(x_{new})\);   8- \(\tau_{add,edge}(x_{new},x_{near},U)\);   9- Return \(\tau\);</p>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>This method is not designed to &quot;look-ahead&quot; for unidentified objects, therefore this technique is suitable for robots that are working a not-changing environment like a workshop.</p>
+</li>
+<li><p>Points are randomly generated and connected to the closest available node. When a node is created, it should be checked that the node is inside the given constraints spaces</p>
+</li>
+<li><p>The above mentioned point also holds for connecting the node to its neighbor so in this case also constraints spaces need to be avoided.</p>
+</li>
+<li><p>When a node is made within the goal region or when it reaches a limit the algorithm ends.</p>
+</li>
+</ul>
+<h3 id="recent_papers"><a href="#recent_papers">Recent Papers</a></h3>
+<p>1- Kang, Jin-Gu, et al. &quot;Improved RRT-Connect Algorithm Based on Triangular Inequality for Robot Path Planning.&quot; Sensors 21.2 &#40;2021&#41;: 333.  </p>
+<p>2- Ren, Xueping, et al. &quot;Multi-target UAV path planning based on improved RRT algorithm.&quot; Journal of Physics: Conference Series. Vol. 1786. No. 1. IOP Publishing, 2021.  </p>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

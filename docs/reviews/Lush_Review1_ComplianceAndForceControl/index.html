@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Compliance and Force Control for Computer Controlled Manipulators</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Compliance and Force Control for Computer Controlled Manipulators</h2>
+<ul>
+
+<li> Authors: Mason, Matthew T.</li>
+
+
+<li>Venue: IEEE</li>
+
+
+<li>Year: 1981</li>
+
+
+<li> Reviewed by: Ryan Lush, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#recent_papers">Recent Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>The broad area of this paper is early work in in actuation and end effector force control algorithms and programming. The derive and describe models for position and force control and do so without being bogged down in the machine level language.</p>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<ul>
+<li><p>This paper seeks to address the problem of developing a force and position control system that has universal applications. The paper suggests that though various foce control systems have been implemeneted successfully by this point, they do not develop the underlying theory which goes into creating them. They seek to come up with an algorithm that is capable of combining pure force/torque control as well as pure position/orientation control.</p>
+</li>
+</ul>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>The author of this journal found that it was indeed necessary to combine force and position control for good modeling accuracy in simulation. The control system was able to handle the commands only by producing small correcting forces to compensate for the positional error</p>
+</li>
+<li><p>The author strived to formulate in precise terms a general method of control strategy synthesis rather than a control strategy for a sepcific application. They do so by dealing with abstract models of task configuration &#40;robot config and task&#41;, the manipulator &#40;actuator&#41; and the goal trajectory &#40;inverse kinematics of the end effector&#41;.</p>
+</li>
+<li><p>They studied the explicit feedback approach as well as hybrid controller approach for their problem. They ultimately decided to use the hybrid controller approach. The reason for this being it keeps the programmer and the algorithms from getting bogged down in reaction forces and torques in the joints of the system. Rather, they only give position and let the servos self-determine what is needed in the position portion of the algorithm. They avoid setting parameters for the servos to keep that internal to the system algorithm.</p>
+</li>
+<li><p>They found it was indeed possible to synthesize control strategies for compliant motion using precise coding language to describe force control. They found that the control synthesis problem was considerably simpler when the modeling was done more abstractly rather than digging into reaction forces and torques in the servos. They found that this allowed them to aply their work to a vast array of compliant motion tasks in the real world.</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>This paper does some very critical early work in modeling and simulation of task trajectories and end effector positions for robotic systems.</p>
+</li>
+<li><p>They lay the early ground work for effective end effector positioning as well as task completion for compliant motion which is not straightforward</p>
+</li>
+<li><p>It is very likely that the work we are doing in this class and <strong>specifically</strong> in Julia was made possible by the work of this researcher.</p>
+</li>
+</ul>
+<h3 id="recent_papers"><a href="#recent_papers">Recent Papers</a></h3>
+<ul>
+<li><p>With this paper being from 1981, most current work has built up significantly since this necessary work was conducted.</p>
+</li>
+<li><p>This work here however, recently referenced this work <a href="https://link.springer.com/referenceworkentry/10.1007&#37;2F978-94-007-6046-2_148">Humanoid Robotics: A Reference</a></p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

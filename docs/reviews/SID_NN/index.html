@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Real-time estimation of impaired aircraft flight envelop using feedforward neural networks</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Real-time estimation of impaired aircraft flight envelop using feedforward neural networks</h2>
+<ul>
+
+<li> Authors: Norouzi, Ramin; Kosari, Amirreza;Hossein,Sabour, Mohammad,</li>
+
+
+<li>Venue: Aerospace Science and Technology</li>
+
+
+<li>Year: 2019</li>
+
+
+<li> Reviewed by: Ruchik Mishra, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific problem</a></li><li><a href="#solution_ideas">Solution ideas</a></li><li><a href="#comments">Comments</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>For, a loss of control scenario, it becomes essential for an unammned aerial vehicle, to compute it&#39;s flight envelop in real-time scenarios, This paper discusses a neural network based approach that uses premeditated failure scenarios and trains the network based on these scenarios to estimate the flight envelop of a fixed wing UAV.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(V\): aircraft total speed.</p>
+</li>
+<li><p>\(\alpha\): angle of attack.</p>
+</li>
+<li><p>\(\beta\): sideslip angle.</p>
+</li>
+<li><p>\(p,q,r\): roll,pitch, yaw rate.</p>
+</li>
+<li><p>\(\phi,\theta,\psi, \gamma\): roll, pitch, yaw and flight angles respectively.</p>
+</li>
+<li><p>\(\delta_{th}, \delta_{a},\delta_{e},\delta_{r}\): engine throttle setting and the deflections in elevator, aileron and rudder respectively.</p>
+</li>
+<li><p>\(f\): vector of non-linear functions</p>
+</li>
+<li><p>\(x\): state vector.</p>
+</li>
+<li><p>\(u\): control vector.</p>
+</li>
+<li><p>\(x^{*},u^{*},\gamma^{*},\psi^{*}\): for the desired steady state maneuvers.</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific problem</a></h3>
+<p>In this paper, a feed forward neural network is used for estimating the flight envelop of a fixed wing UAV for any degree of loss of flight scenario. It accounts for both single or compound failures that involve structural, control surface, energy, aileron and sensor failure. This is done using decomposing each subsystem into a number of neural networks of the same structure.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution ideas</a></h3>
+<ul>
+<li><p>The maneuvering flight envelops are defined as the boundaries containing steady state maneuvers.</p>
+</li>
+<li><p>The maneuvering flight envelops comprises of 4 parameter trim states: \((h^{*},V^{*},\gamma^{*},\dot{\psi}^{*})\) which hsa the state and control vectors coreesponding to each trim state as:</p>
+<ul>
+<li><p>\(x^{*}(h^{*},V^{*},\gamma^{*},\dot{\psi}^{*})\)</p>
+</li>
+<li><p>\(u^{*}(h^{*},V^{*},\gamma^{*},\dot{\psi}^{*})\)</p>
+</li>
+</ul>
+<p>which also means that at each constant flight altitude \(h^{*}\), these represent 3D volumes.</p>
+</li>
+<li><p>Due to the infeasibility of fitting a 3D envelop to the manuevering flight, the flight path is taken as one of the inputs of the system.</p>
+</li>
+<li><p>In addition to it, the flight altitude is also taken as the input along with the parameters that are lost due to the different types of failure that can occur &#40;structural, energy, actuator, sensor&#41;.</p>
+</li>
+<li><p>The following equation shows the longitudinal body axis force coefficient:</p>
+\(C_{x} = C_{x_{0}} + C_{X_{\alpha}}\alpha+C_{X_{\alpha^{2}}}\alpha^{2}/2+ C_{X_{\beta}}\beta+C_{X_{\beta^{2}}}\beta^{2}/2+C_{X_{\hat{p}}}\hat{p}+C_{X_{\hat{p}^{2}}}\hat{p}^{2}/2+C_{X_{\hat{q}}}\hat{q}+C_{X_{\hat{q}^{2}}}\hat{q}^{2}/2+C_{X_{\hat{r}}}\hat{r}+C_{X_{\hat{r}^{2}}}\hat{r}^{2}/2+C_{X_{\delta_{a}}}\delta_{a}+C_{X_{\delta_{a}^{2}}}\delta_{a}^{2}/2+C_{X_{\delta_{e}}}\delta_{e}+C_{X_{\delta_{e}^{2}}}\delta_{e}^{2}/2+C_{X_{\delta_{r}}}\delta_{r}+C_{X_{\delta_{r}^{2}}}\delta_{r}^{2}/2\)
+</li>
+</ul>
+<p>The above equation holds true for each of \(C_{x},C_{y},C_{z},C_{l},C_{m},C_{n}\) used in this paper which gives rise to a total of 102 derivatives characterizing the aircraft aerodynamics. Number of inputs related to each failure types as discussed int he work are:</p>
+<ul>
+<li><p>Structural failure: 102</p>
+</li>
+<li><p>Left engine failure: 1</p>
+</li>
+<li><p>Right engine failure: 1</p>
+</li>
+<li><p>Rudder failure: 2</p>
+</li>
+<li><p>Aileron failure: 2</p>
+</li>
+<li><p>Elevator failure: 2</p>
+</li>
+<li><p>Further, the system is comprised of 63 subsystems to address a nunmber of single or compound failures. Each of these subsystems has a neural netwrok trained to overcome the impairment of the corresponding subsystem. the training dat is generated offline.</p>
+</li>
+<li><p>A cubic Hermit interpolating polynomial is fitted to the data points with the condition that the derivative of the polynomial is continuous and the cubic interpolant is shape-preserving. The polynomial is given by:</p>
+\(f(x) = a(x-x_{1})^{2}+b(x-x_{1})^{2}+c(x-x_{1})^{2}+d\)
+</li>
+<li><p>To reduce the computational load and to maintain the consistency of the network used, the system is designed containing 50 neural networks, each of which corresponds to the boundary point related to each failure.</p>
+</li>
+<li><p>The network architecture that is used in this work is a two-layer neural network including a hidden layer with a nonlinear digmoid function and one output layer with a linear transfer function.</p>
+</li>
+<li><p>The paper uses Bayesian regularization as the training algorithm with multiple-neural-networks training technique where each neural network is trained 10 times.</p>
+</li>
+<li><p>At each of the training processes starts with a different initial weights and biases and with different divisions of data intio training and test data set.</p>
+</li>
+<li><p>To validate the proposed method:</p>
+<ul>
+<li><p>The dynamic model was validated using the wind tunnel test.</p>
+</li>
+<li><p>Controllale trim conditions&#40;if the perturbation system about this trim state has a full rnak matrix&#41; are used to implement each triplet \((V^{*},\gamma^{*},\psi^{*})\). The intiial condition to the optimization problem is set equal to the sucessful solution of the previous triplet.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>The paper proposes a good neural network based method for the estimation of the flight envelop in real time loss of control cases.</p>
+</li>
+<li><p>But, the network still heavily relies on the offline training of the pre-meditated failure scenarios.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

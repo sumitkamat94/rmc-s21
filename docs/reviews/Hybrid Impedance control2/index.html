@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Hybrid Impedance Control of Robotic Manipulators</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#recent_papers">Recent Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>In this paper authors propose a novel technique which is called hybrid impedance control &#40;HIC&#41;. This technique reduces to Khatih&#39;s operational space control or Hogan&#39;s Impedance control when it simplifies. HIC is a combination of Hybrid Force-Position Control and Impedance Control into one strategy. The paper is offered a hybrid impedance control method based on concept of inner-outer loop control strategy and the proper impedance of the manipulator is calculated based on the environment impedance in each degree of freedom.  </p>
+<p>The main framework of the HIC is to separate the space as position and force control subspaces and then it is possible to choose the proper impedance of manipulator based on the environment impedance in each subspace.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(I\): Identity matrix</p>
+</li>
+<li><p>\(J(q)\): Jacobian matrix</p>
+</li>
+<li><p>\(C(q,\dot q)\): Coriolis term &#40;kinetic energy&#41;</p>
+</li>
+<li><p>\(M(q)\): Inertia matrix</p>
+</li>
+<li><p>\(G(q)\): Gravitational matrix&#40;Potential energy&#41;</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>HIC is combining previous approaches and novel methods to get a comprehensive plan. In this way inverse dynamics of the system combines with force control methods, i.e. impedance control and hybrid control. This method requires a careful design of the environment to get the proper control startegy.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<p>In this method, imedance and hybrid position/force methods are used for building a unified plan of control. Thus, It is possible to find the mechacical impedance of the end-effector while the desired position/force is being tracked. The hybrid impedance control is a parameter dependent control as it includes inverse dynamics. Here let have an example of a study by Akdogan et al &#91;1&#93; where the following relation is proposed for forced based impedence control:</p>
+\[\tau  = M(q)J(q)({M_d}^{ - 1}[{F_d} - {F_e} - {B_d}\dot x] - \dot J(q)\dot q) + C(q,\dot q) + G(q) + F(q) - J{(q)^T}{F_e}\]
+<p>Also, the following relation is calculated for position based impedance control:</p>
+\[\tau  = M(q)J(q)({\ddot x_d} + {M_d}^{ - 1}[ - {B_d}(\dot x - {\dot x_d}) - {k_d}(x - {x_d}) - {F_e}] - \dot J(q)\dot q) + C(q,\dot q) + G(q) + F(q) - J{(q)^T}{F_e}\]
+<p>The hybrid impedance control includes both force based and position based impedance control with a switching matrix S. This matrix is a diagonal matrix with entries either 1 or 0 and used to determine which degrees of freedom of the end effector is controlled by either position based or force based impedance control, respectively.</p>
+\[\tau  = M(q)J(q)(S{\ddot x_d} + {M_d}^{ - 1}[(I - S){F_d} - {F_e} - {B_d}(\dot x - S{\dot x_d}) - S{K_d}(x - {x_d})] - \dot J(q)\dot q) + C(q,\dot q) + G(q) + F(q) - J{(q)^T}{F_e}\]
+<p>By choosing \(M_{d}\), \(B_{d}\), \(k_{d}\) and \(S\) the desired location of the robotic end-effector will be known.</p>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>In the simulations, a constant impedance was</p>
+</li>
+</ul>
+<p>maintained, and only force and position commands were adjusted.</p>
+<ul>
+<li><p>Compare to real life for instance the Human impedances change constantly, however, and such an approach might prove advantageous in robotics</p>
+</li>
+<li><p>Numerous simplifications were made in the</p>
+</li>
+</ul>
+<p>model. Gear backlash, flexibility, static friction, torque constraints, and noise all detract from the ideal system.</p>
+<ul>
+<li><p>It is assumed that a devoted inverse dynamics controller existed which measured force signals, setting up multiple sensors for measuring force and position has its own challenge.</p>
+</li>
+</ul>
+<h3 id="recent_papers"><a href="#recent_papers">Recent Papers</a></h3>
+<p>1- Akdoğan, Erhan, et al. &quot;Hybrid impedance control of a robot manipulator for wrist and forearm rehabilitation: Performance analysis and clinical results.&quot; Mechatronics 49 &#40;2018&#41;: 77-91.</p>
+<p>2- Anderson, Robert J., and Mark W. Spong. &quot;Hybrid impedance control of robotic manipulators.&quot; IEEE Journal on Robotics and Automation 4.5 &#40;1988&#41;: 549-556.</p>
+<p>3- Kumar, Sunil, Vikas Rastogi, and Pardeep Gupta. &quot;A hybrid impedance control scheme for underwater welding robots with a passive foundation in the controller domain.&quot; Simulation 93.7 &#40;2017&#41;: 619-630.</p>
+<p>4- Li, Kaining, Xianmin Zhang, and Yanjiang Huang. &quot;Hybrid Impedance Control of Robot Manipulators based on Generalized Momentum.&quot; IOP Conference Series: Materials Science and Engineering. Vol. 825. No. 1. IOP Publishing, 2020.</p>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 16, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

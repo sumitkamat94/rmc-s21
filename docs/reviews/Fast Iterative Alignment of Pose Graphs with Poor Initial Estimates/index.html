@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title> Fast Iterative Alignment of Pose Graphs with Poor Initial Estimates</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2>  Fast Iterative Alignment of Pose Graphs with Poor Initial Estimates</h2>
+<ul>
+
+<li> Authors:  Olson, E.; Leonard, J.;  Teller, S.;</li>
+
+
+<li>Venue: ICRA</li>
+
+
+<li>Year: 2006</li>
+
+
+<li> Reviewed by: Joe Kershaw, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#overview">Overview</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solutions">Solutions</a></li><li><a href="#results">Results</a></li><li><a href="#additional_comments">Additional comments</a></li></ol></div>
+<h3 id="overview"><a href="#overview">Overview</a></h3>
+<p>This article proposes a fast algorithm for robotic trajectory planning.  The proposed algorithm solves the Simultaneous Localization And Mapping &#40;SLAM&#41; problem by utilizing a gradient descent optimizer and update multiple poses through one iteration.</p>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>Wandering robots acting within an environment need to know information about its surroundings and make decisions around traversing it. This is done by solving the complex SLAM problem via optimization algorithms. One of the major problems in solving SLAM is determining the current pose of the robot can be unreliable due to noise in chosen sensors and is further damaged if the initial values are poorly chosen. Additionally, techniques that are suited for solving this problem are slow, so their utilization is not appropriate for robotic control in practical spaces.</p>
+<h3 id="solutions"><a href="#solutions">Solutions</a></h3>
+<ul>
+<li><p>Utilizes non-linear solvers as opposed to linear ones that cause errors when the state estimates are unreliable. Specifically Stochastic Gradient Descent, which works similarly to the Gradient descent except the gradient is only determined locally. This method tends to not get stuck in valleys and local minimum compared to other optimization solvers.</p>
+</li>
+<li><p>Combines both relative pose and global pose for the state estimation called Incremental Pose. The poses input are just the differences of the origins and rotations of the previous frame. This allowed to computation efficiency of a global pose and the holistic view of the relative pose. This structure has the bonus that the Jacobian becomes a matrix consisting almost entirely of horizontally appended identity matrices.</p>
+</li>
+</ul>
+<h3 id="results"><a href="#results">Results</a></h3>
+<ul>
+<li><p>The algorithm was tested in three trials. In the first, the robot needed to run in a square pattern twice. The proposed algorithm outperformed the other methods, but was closely matched by LU decomposition, which was able to converge in fewer epochs at the cost of longer computation times.</p>
+</li>
+</ul>
+<p>The second one involved traversing a randomly generated grid map. The LU-decomposition was unable to be run due to the complexity of the system&#39;s Jacobian.  And though the MLR method performed the task quicker, it produced a lower quality map comparatively. The final one was done similarly to the previous trial, but with a real world map in which the algorithm performed admirably.</p>
+<h3 id="additional_comments"><a href="#additional_comments">Additional comments</a></h3>
+<ul>
+<li><p>The optimization of learning rates of the gradient descent was discussed as an area of future improvement. This is still a widely discussed topic today but has become easier to optimize with more powerful computers and advances in machine learning.</p>
+</li>
+<li><p>The authors also bring up the concept that just convergence is not an optimal degree of quality as one model produced a finished solution faster, but it was not as well defined as the one produced by the proposed algorithm.</p>
+</li>
+<li><p>An overview of various SLAM solving algorithms were compiled in 2013 in &quot;An Evaluation Of 2D SLAM Techniques Available In Robot Operating System&quot;. The most popular of which was Gmapping which utilized a Particle Filter. Additional algorithms tended to utilize Graph Theory based optimizers as opposed to gradient descent or Kalman Filters.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+    
+  </body>
+</html>

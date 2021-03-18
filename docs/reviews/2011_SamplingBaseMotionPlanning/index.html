@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Incremental Sampling-based Algorithms for Optimal Motion Planning</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Incremental Sampling-based Algorithms for Optimal Motion Planning</h2>
+<ul>
+
+<li> Authors: Karaman S., Frazzoli E.</li>
+
+
+<li>Venue: The MIT Press</li>
+
+
+<li>Year: 2011</li>
+
+
+<li> Reviewed by: Josh Ashley, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#recent_papers">Recent Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper deals with sampling-based algorithms for optimal motion planning, specifically Rapidly-exploring Random Trees &#40;RRTs&#41; and conditions under which this algorithm is non-optimal. It then goes on to compare RRTs to a newer algorithm, Rapidly-exploring Random Graphs &#40;RRGs&#41; and even introduces an implementation of RRGs that is structured similarly to RRTs called RRT*. </p>
+<p>This paper goes over these new algorithms and investigates their optimality and computational complexity in comparison with the conventional RRTs. </p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(X\): The space of all possible robotic states.</p>
+</li>
+<li><p>\(X_{free}\): The space of all robotic states that also avoid obstacles within the workspace. </p>
+</li>
+<li><p>\(x\): A robotic state in space \(X\)</p>
+</li>
+<li><p>\(x_{rand}\): A random sample of X.</p>
+</li>
+<li><p>\(V\): The vertex space. This is a subset of X and is what has been sampled of it so far using \(x_{rand}\)</p>
+</li>
+<li><p>\(E\): The edge space of vectors describing connections between to \(x\) in \(V\). </p>
+</li>
+<li><p>\(G\): The graph space; \(G = (V, E)\)</p>
+</li>
+<li><p>\(x_{new}\): The current robotic state in space \(X\). </p>
+</li>
+<li><p>\(x_{nearest}\): The nearest \(x\) in \(V\) to the \(x_{new}\).</p>
+</li>
+<li><p>\(X_{near}\): All \(x\) in \(V\) that is within some determined radius to \(x_{new}\)</p>
+</li>
+<li><p>\(x_{near}\): An element in \(X_{near}\)</p>
+</li>
+<li><p>ObstacleFree: A primitive function call that establishes that an edge between two vertices has no obstacles. </p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>A major struggle of sampling based approaches is optimality guarantees. That is, finding the most efficient obstacle free path in the workspace. In technical terms, RRTs likelihood to converge to some solution is 1 as the number of samples approaches infinity, but converges to 0 for finding the optimal solution. Nevertheless, the computational efficiency of sampling-based approaches is unrivaled and therefore the problem this paper aims to solve is to create a sampling-based algorithm with asymptotic optimality guarantees that maintains the computational efficiency of RRTs. </p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>The sampling approach of \(X_free\) is the same for both RRT and RRG. </p>
+</li>
+<li><p>The major algorithmic difference between RRTs and RRGs are in their extension of their path at each sampling point. The RRT&#39;s extension attempts to tell if the edge between the current \(x\) and \(x_{nearest}\) are continuously in the \(X_{free}\) space. The RRG&#39;s however check this edge for all \(X_{near}\). </p>
+</li>
+<li><p>The resulting graph maintained by these algorithms differ in structure. The RRT&#39;s algorithm resembles a tree with only one incoming neighbor while the RRG can have multiple. </p>
+</li>
+<li><p>It formalizes that the RRG and RRT have the same performance in producing a feasible solution due to their similarity. </p>
+</li>
+<li><p>Qualifying runtime complexity in terms of number of primitive calls sees that the RRG has an overhead of \(log(n)\) more calls to ObstacleFree than RRT where n is the number of sampled vertices. However, some primitive calls are more complex than others and, in particular, ObstacleFree can be done in constant time &#40;\(O(1)\)&#41; and therefore does not contribute to the worst-case complexity of RRG. </p>
+</li>
+<li><p>RRT* differs from RRT and RRG only in its Extend procedure as well. </p>
+</li>
+<li><p>RRT* uses accumulated cost to determine the path that G takes. Each iteration it connects \(x_{new}\) to the \(x_{near}\) that incurs the minimum accumulated cost up until \(x_{new}\). It also tracks the edges of \(x_{new}\) to \(X_{near}\) in order to be able to rewire G given that a new, lower-cost path arises.</p>
+</li>
+<li><p>RRT* assures convergence to a feasible solution and asymptotic optimality while retaining the tree structure of RRT.</p>
+</li>
+<li><p>Runtime complexity from RRT* to RRT is a ratio that converges to a constant value implying that they have the same O. </p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>This paper analytically compares 3 sampling-based trajectory planning approaches. </p>
+</li>
+<li><p>Figure 3 and 4 represents the difference in optimality and behaviour of the algorithms very well. </p>
+</li>
+<li><p>They do not address dynamic obstacles or differential constraints and it comes to concern that there is a possibility that some of their assumptions about the environment to get to optimality and solution convergence break down when these are introduced.</p>
+</li>
+<li><p>They assume the primitive functions they use to be solved algorithms already which is reasonable but could see largely different results in each algorithms performance if you use suboptimal primitive functions. An investigation on optimizing these primitive functions for each would be interesting. </p>
+</li>
+</ul>
+<h3 id="recent_papers"><a href="#recent_papers">Recent Papers</a></h3>
+<ul>
+<li><p><a href="&quot;https://www.sciencedirect.com/science/article/pii/S2405896317318700&quot;">Flat-RRT*: A sampling-based optimal trajectory planner for differentially flat vehicles with constrained dynamics</a> - this deals with the more real-world constraints that could violate some assumptions. </p>
+</li>
+<li><p><a href="&quot;https://dl.acm.org/doi/abs/10.1145/3388440.3414705&quot;">Efficient Exploration of Protein Conformational Pathways using RRT* and MC</a> - Application of RRT* in protein pathways.</p>
+</li>
+<li><p><a href="&quot;https://www.tandfonline.com/doi/abs/10.1080/01691864.2020.1850349&quot;">RRT*N: an efficient approach to path planning in 3D for Static and Dynamic Environments</a> - RRT* with handling dynamic environments. </p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 17, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

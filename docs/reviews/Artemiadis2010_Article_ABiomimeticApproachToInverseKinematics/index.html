@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>A Biomimetic Approach to Inverse Kinematics for a redundant Robot Arm</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> A Biomimetic Approach to Inverse Kinematics for a redundant Robot Arm</h2>
+<ul>
+
+<li> Authors: Panagiotis K. Artemiadis, Pantelis T. Kastsiaris, Kostas J. Kyriakopoulos</li>
+
+
+<li>Venue: Springer Sciense</li>
+
+
+<li>Year: 2009</li>
+
+
+<li> Reviewed by: Guan Huitao, Sumit Kamat, Landon Clark, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper solved the redundancy problem of human-like robotic arm with a biomimetic approach. The kinematics and configuration of upper arm was modeled and investigated. The data was collected from real human subjects. Then, the motion data was used to build a graphical tree model&#40;with nodes and edges&#41; and pluged in to a Gaussian Mixture Model&#40;GMM&#41;, which give us a way to optimize the angles of the joints with given root joint angle. The main novelty of this method is the method is not limited to a finite set of human motion data and the resulting robot arm motion is not restricted to identically mimic human motions. Instead, it has the ability to generate new motions.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(q\): joint angle</p>
+</li>
+<li><p>\(x,y,z\): the relative location from sensor to base sensor</p>
+</li>
+<li><p>\(I\): mutual information</p>
+</li>
+<li><p>\(g\): probability density function&#40;PDF&#41; of a GMM</p>
+</li>
+<li><p>\(J\): Jacobian matrices</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<ul>
+<li><p>Instead of mimicking the human motion, this study focuses on looking for a relationship between the joints. There were 4 human subjects participated in the study, their random upper arm motion was collected with respect to the angles of each joints. Then the sutdy becomes to find the dependencies of each joints with Baysian frame work. Moreover, by fitting the frame work to GMM we can conclude to the continuous representation. Finally, to find a most human like inverse kinematics solution boils down to maximize the Gaussian function G&#40;q&#41; in the null space.</p>
+</li>
+</ul>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>Firstly, 5 DOF upper arm model was selected with: 3DOF shoulder joint, 1DOF elbow joint and 1DOF forearm pronation-supination. The subjects have 3 sensors attached: one base sensor at shoulder, two sensors at elbow and wrist. The position data &#40;XYZ&#41; was then converted to joint angles with inverse kinematics methods</p>
+</li>
+<li><p>To capture the conditional dependency of each joint, a acyclic graphical model was built. The model edges was selected with respect to mutual information. The joint angles were discretized to nearest intger for simplification of the graphical model training.</p>
+</li>
+<li><p>For each joint angle the dependency is concluded to a continuous representation, by fitting with GMM. The resulting g&#40;i,j&#41; is the PDF of conditional probability distribution funtion of joint angle i given its parent joint angle j.</p>
+</li>
+<li><p>The g&#40;i,j&#41; is based on joint and marginal probabilities, it is maximized  if the corresponding coordination is frequently observed druing the human motion.</p>
+</li>
+<li><p>Given root joint angle, we can maximize the parent joints&#39; angle then the children joint anlge. Therefore, we can have the human-like inverse kinematics solution with any given root joint angles.</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>This paper train a graphical model of dependencies of each upper arm joint angles, then the PDF of each correlated joint was fit into GMM to get continuous representation. The peak value of g was then obtained and set to be the most human-like angle, because it is the most frequently observed in the experiment.</p>
+</li>
+<li><p>This method can generate new motions and independent from pre-existing data.</p>
+</li>
+<li><p>Note that the method only consider 5DOF while we commonly use 7DOF.</p>
+</li>
+<li><p>Note that the method heavily depend on the given root joint angles.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

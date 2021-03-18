@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Impedance Control: An Approach to Manipulation: Part II-Implementation</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Impedance Control: An Approach to Manipulation: Part II-Implementation</h2>
+<ul>
+
+<li> Authors: Hogan, N.;</li>
+
+
+<li>Venue: Transaction of ASME</li>
+
+
+<li>Year: 1985</li>
+
+
+<li> Reviewed by: Pouya Samanipour, Mohammad Mohammadzadeh, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#basic_ideas_and_definitions">Basic Ideas and definitions</a></li><li><a href="#comments">Comments</a></li><li><a href="#recent_papers">Recent Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<ul>
+<li><p>In this paper, first feedback control algorithm for applying a desired cartesian impedance on the end-point of a manipulator is presented. in this method, using inverse kinematic problem is not required any more.</p>
+</li>
+<li><p>Furthermore, The modulation of end-point Impedance without using feedback control is also considered, and it is shown that apparently &quot;redundant&quot; actuators and degrees of freedom may be used to modulate end-point impedance and may play an essential functional role in the control of dynamic interaction.</p>
+</li>
+</ul>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(W(\theta)\): Mobility tensor</p>
+</li>
+<li><p>\(I\): Inertia</p>
+</li>
+<li><p>\(F_{int}\): interface force</p>
+</li>
+<li><p>\(:\{c\}\): Modulation by command set</p>
+</li>
+<li><p>\(T_{act}\):Actuator force or torque</p>
+</li>
+<li><p>\(K[.]\): Force /displacement relation</p>
+</li>
+<li><p>\(B[.]\): Force /velocity relation</p>
+</li>
+<li><p>\(J\): Jacobian</p>
+</li>
+<li><p>\(X\): End-point position</p>
+</li>
+<li><p>\(V\): End-point position</p>
+</li>
+<li><p>\(X_o\): Commanded  position</p>
+</li>
+<li><p>\(V_o\): Commanded velocity</p>
+</li>
+<li><p>\(L(.)\): Linkage kinematic equation</p>
+</li>
+<li><p>\(G(\theta,\omega)\): accelerative coupling terms</p>
+</li>
+<li><p>\(Y(\theta)\): mobility tensor in end-point coordinate</p>
+</li>
+<li><p>\(S(\theta)\): position-dependent torques</p>
+</li>
+<li><p>\(M\): Inertia tensor in end-point coordinates</p>
+</li>
+<li><p>\(Y\): admittance</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<ul>
+<li><p>The main idea is controlling the motion of manipulator and in addition providing a disturbance response to the system; thus, it will be deviated from that motion which has an impedance form. The dynamic of interaction maybe modulated or controlled by changing the impedance.</p>
+</li>
+<li><p>One alternative to feedback control which was discussed in this paper is the use of redundancies: &quot;excess&quot; actuators or &quot;excess&quot; skeletal degrees of freedom. From a purely kinematic standpoint the neuromuscular system is multiply redundant.</p>
+</li>
+</ul>
+<h3 id="basic_ideas_and_definitions"><a href="#basic_ideas_and_definitions">Basic Ideas and definitions</a></h3>
+<ul>
+<li><p>in impedance control, the lowest term which shows the relation between output force and input translation is a stiffness. The manipulator equations can be describes as follows:</p>
+</li>
+</ul>
+<p>&#40;1&#41; \(F_{int}=K[X_o-X]\)</p>
+<p>Hence; the actuator torque can describes as follows:</p>
+<p>&#40;2&#41; \(T_{act}=J^t(\theta)K[X_o-L(\theta)]\)</p>
+<ul>
+<li><p>Another important term is showing the relation between the force and the velocity as the following:</p>
+</li>
+</ul>
+<p>&#40;3&#41; \(F_{int}=B[V_o-V]\)</p>
+<p>thus, the torque can be calculated as the following:</p>
+<p>&#40;4&#41; \(T_{act}=J^t(\theta)B[V_o-J(\theta)\omega]\)</p>
+<ul>
+<li><p>In these equations, we did not consider the gravitational, frictional and inertial dynamics of the manipulator which is kind suitable for some applications, while in other applications it cannot be neglected.</p>
+</li>
+<li><p>If we consider the manipulator behavior based on time, velocity, displacement and the viscoelastic behavior the model can be described as the following:</p>
+</li>
+</ul>
+<p>&#40;5&#41; \(F_{int}=K[X_O-X]+B[V_o-V]-Mdv/dt\)</p>
+<p>and the torque is described as the following:</p>
+<p>&#40;6&#41; \(T_{act}=I(\theta)J^{-1}(\theta)M^{-1}K[X_oL(\theta)]+
+S(\theta)+I(\theta)J^{-1}(\theta)M^{-1}B[V_o-J(\theta)\omega]+ V(\omega)+ I(\theta)J^{-1}(\theta)M^{-1}F_{int}-J^t(\theta)F_int-I(\theta)J^{-1}(\theta)G(\theta,\omega)-C(\theta,\omega)\) The input variables are the desired position and the terms of the desired dynamic behavior characterized by \(M\), \(B[•]\) and \(K[•]\).</p>
+<ul>
+<li><p>The controller of equation &#40;6&#41; was designed by a technique which is similar to pole-placement methods.</p>
+</li>
+<li><p>an alternative to feedback is the use of redundancies: &quot;excess&quot; actuators or &quot;excess&quot; skeletal degrees of freedom. These skeletal redundancies can serve to provide a measure of control over the inertial component of the endpoint dynamics. In this form, the mobility tensor can be described as below:</p>
+</li>
+</ul>
+<p>&#40;7&#41; \(W(\theta)=J(\theta)Y(\theta)J^t(\theta)\)</p>
+<ul>
+<li><p>By using intrinsic properties of the actuators , it is possible to modulate the position and velocity of the end-point impedance without using any feedback. It would be really important for industrial robots because computation time is an important factor in designing the controllers.</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>An improved understanding of how humans control the impedance of the lower limbs is necessary to optimize the mechanical design and control</p>
+</li>
+</ul>
+<p>of devices.</p>
+<ul>
+<li><p>Impedance control add nonlinearity to the equations which make them more complex.</p>
+</li>
+</ul>
+<h3 id="recent_papers"><a href="#recent_papers">Recent Papers</a></h3>
+<ul>
+<li><p>Villani, Valeria, Fabio Pini, Francesco Leali, and Cristian Secchi. &quot;Survey on human–robot collaboration in industrial settings: Safety, intuitive interfaces and applications.&quot; Mechatronics 55 &#40;2018&#41;: 248-266.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Nonlinear Control Techniques For Flexible Joint Manipulators: A Single Link Case Study</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Nonlinear Control Techniques For Flexible Joint Manipulators: A Single Link Case Study</h2>
+<ul>
+
+<li> Authors: R. Marino, M. W. Spong</li>
+
+
+<li>Venue: IEEE</li>
+
+
+<li>Year: 1986</li>
+
+
+<li> Reviewed by: Ryan Lush, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>The broad area of this paper is about solving the problem of elasticity in joints of robotic manipulators. Joint elasticity is believedf to be the main source of robot compliance and error due to the hardware that comprises the joints. This group seeked to answer the problem they had of having gears and joints which gave them very desirable characteristics but had significant compliance and elasticity in the joints.</p>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<ul>
+<li><p>These researchers seem to be having issues with their hardware and what it is capable of doing. These researchers have solid models to back up their work but their hardware doesn&#39;t perform to the strict requirements necessary to have the control algorithms correctly executed. These small to not small errors due to compliance will especially become an issue when this robot is not a single link study. Each consecutive link would compound the error in the joints for the next link and after several joints the robot would be no where close to where it should be</p>
+</li>
+</ul>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>This group found that the only nonlinearity in their single one link system was potential energy of the link since it has a sin&#40;q1&#41;. they found that this nonlinearity would become significant the farther from their equilibrium point they stretch the robot. This makes sense because their approximations would become worse and worse the farther from 0 they go with the angle q1.</p>
+</li>
+<li><p>They decided to use a linearized feedback approach to address this problem. They found necessary and sufficient conditions to prove that their system was locally feedback linearizable and that the properties they were applying to their analysis were applicable.</p>
+</li>
+<li><p>The group was able to extend techniques used in finding solutions to linear systems to this problem here. They locally linearized the system and then used pole placement techniques from linear systems to get proper feedback for the system. They then express their new closed loop system in new coordinates</p>
+</li>
+<li><p>The group found they had significant issues and time all the states of the system weren&#39;t able to be accessed. They used Adaptive Gain Scheduling to be able to operate in the whole state space. They found however, that it was very difficult to derive the closed-form expressions for their system. They also found that feedback linearization was very computationally expensive at the time and stressed new methods were needed.</p>
+</li>
+<li><p>They also found, as we saw from videos played during lecture, precise initial conditions were critical to performance and the system performing at all.  </p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>This paper is a window into very early work working on modeling and controlling what we are learning to simulate today.</p>
+</li>
+<li><p>This paper shows just how precise the controls and feedback need to be for a robot to perform. These researchers were limited greatly by the hardware available to them. This paper again shows why this field is as big and growing as quickly as it is. There is a lot of work to be done now that hardware has progressed significantly and only more things will be possible as the researchers and technology keep progressing.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

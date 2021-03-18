@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/highlight/github.min.css">
+   
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Trajectory Generation and Control for preceise aggressive maneuvers with quadrotors</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Trajectory Generation and Control for preceise aggressive maneuvers with quadrotors</h2>
+<ul>
+
+<li> Authors: Mellinger, Daniel; Michael, Nathan;Kumar Vijay</li>
+
+
+<li>Venue: The International Journal of Robotics Research</li>
+
+
+<li>Year: 2012</li>
+
+
+<li> Reviewed by: Ruchik Mishra, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific problem</a></li><li><a href="#solution_ideas">Solution ideas</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>The paper talks about dynamic trajectory generation using the concept of a family of trajectories and using a controller that has been parametrized by the goal of the quadrotor.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(\phi, \theta,\psi\): roll, pitch and yaw angles</p>
+</li>
+<li><p>\(W\): world frame</p>
+</li>
+<li><p>\(B\): body frame.</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific problem</a></h3>
+<p>The papers tests the famliy of trajectories concept that it proposes by using a goal parametrized controller on test scenarios that involve aggressive maneuvers. This family of trajectories has been developed using a sequence of control segments each of which has been derived by the dynamic model of the quadrotor.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution ideas</a></h3>
+<ul>
+<li><p>A dynamic model of the quadrotor and the motor has been derived first.</p>
+</li>
+<li><p>The control of the robot has been used to control the:</p>
+<ul>
+<li><p>desired attitude</p>
+</li>
+<li><p>hover in place,</p>
+</li>
+<li><p>control along a three-dimensional trajectory with a specified position and linear velocity.</p>
+</li>
+</ul>
+</li>
+<li><p>A sequence of the above controllers is defined for developing a family of trajectories. These are defined in segments of the following 5 phases:</p>
+<ul>
+<li><p>Hover control to a desired position: This is to reach the desired positon and yaw angle with zero linear and angular velocities. The desired roll, pitch and yaw angles are given by:</p>
+<ul>
+<li><p>\(\phi_{des} =\frac{1}{g}(\ddot{r_{1}})\sin{\psi_{T}}-\ddot{r_{2}}\cos{\psi_{T}}\)</p>
+</li>
+<li><p>\(\theta_{des} =\frac{1}{g}(\ddot{r_{1}})\cos{\psi_{T}}+\ddot{r_{2}}\sin{\psi_{T}}\)</p>
+</li>
+<li><p>\(\triangle\omega_{F} =\frac{m}{8k_{f}\omega_{h}}\ddot{r_{3}}^{des}\)</p>
+</li>
+</ul>
+</li>
+<li><p>Control to desired velocity vector: the error is given by-</p>
+<ul>
+<li><p>\(e_{v} = \dot{r}_{T}-\dot{r}\)</p>
+</li>
+</ul>
+<p>where &#36;\dot&#123;r&#125;_&#123;T&#125;&#36; represents the closest point in the trajectory and &#36;\dot&#123;r&#125;&#36; represents the current position.</p>
+</li>
+<li><p>Control to desired pitch angle: The goal is to reach the desired attitude with a specified angular velocity. The proportional derivative contol law is used with the desired angular velocities of the rotors.</p>
+</li>
+<li><p>Control to zero pitch angle:</p>
+<ul>
+<li><p>hover control to a desired position.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>An inital parameter selection is done by analytically calculating the positon of the launch point and the velocity at that point. But as the actual quadrotor has errors and does not exactly reach the launch point with the desired velocity, an iterative apporoach is used to update the  pitch angle at any time \(t\), which is given by:</p>
+<ul>
+<li><p>\(\theta^{k+1}_{C}=\theta^{k}_{C}+\gamma_{\theta}(\theta_{G}-\theta^{k}_{act})\)</p>
+</li>
+</ul>
+<p>Also, the command velocity is updated iteratively using the following:     - &#36;\upsilon^&#123;k&#43;1&#125;_&#123;C&#125;&#61;\upsilon^&#123;k&#125;_&#123;C&#125;&#43;\gamma_&#123;\upsilon&#125;&#40;\theta_&#123;G&#125;-\upsilon^&#123;k&#125;_&#123;act&#125;&#41;&#36;</p>
+</li>
+<li><p>The testing step includes 4 scenarios that include 15 trials each. These four test scenarios are:</p>
+<ul>
+<li><p>Flying through vertical opening at varying angles.</p>
+</li>
+<li><p>flying downward through a horizontal opening.</p>
+</li>
+<li><p>flying upwards through a horizontal opening.</p>
+</li>
+<li><p>perching on a target with varying angles.</p>
+</li>
+</ul>
+</li>
+<li><p>The paper claims to  attain precise control and repeatability along the trajectories obtained ensuring the desired velocities and accelerations.</p>
+</li>
+</ul>
+<h3>Comments</h3>
+<ul>
+<li><p>The paper has described good test results for their proposed method.</p>
+</li>
+<li><p>Howeverm there is no comparison made with the proposed method to the exisitng methods in the literature.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
+    
+  </body>
+</html>

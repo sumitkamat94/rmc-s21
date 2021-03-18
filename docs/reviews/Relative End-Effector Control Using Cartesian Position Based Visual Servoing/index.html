@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Relative End-Effector Control Using Cartesian Position Based Visual Servoing</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Relative End-Effector Control Using Cartesian Position Based Visual Servoing</h2>
+<ul>
+
+<li> Authors:  Wilson, W.; Williams Hulls, C.; Bell, G.;</li>
+
+
+<li>Venue:  Transactions on Robotics and Automation</li>
+
+
+<li>Year: 1996</li>
+
+
+<li> Reviewed by: Joe Kershaw, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#overview">Overview</a></li><li><a href="#overall_problem">Overall Problem</a></li><li><a href="#solutions">Solutions</a></li><li><a href="#results">Results</a></li><li><a href="#additional_comments">Additional comments</a></li></ol></div>
+<h3 id="overview"><a href="#overview">Overview</a></h3>
+<p>This article focuses on how to use a camera in order to improve state estimation of a robot end-effector.</p>
+<h3 id="overall_problem"><a href="#overall_problem">Overall Problem</a></h3>
+<p>Precise knowledge of a robot&#39;s end-effector is a primary issue in robotics. Even with inverse dynamics, the error build up over time can cause all control problems relating to the system become inaccurate. To combat this, extra sensors get utilized in the control algorithm to better estimate the pose of the robot. The sensing method chosen for this paper is a camera.</p>
+<h3 id="solutions"><a href="#solutions">Solutions</a></h3>
+<ul>
+<li><p>In addition to the classical vision control of planar motion this paper implements depth into the control algorithm. This is achieved by first &quot;teaching&quot; the robot what the target object looks like by assigning feature points that the robot bases the frame around. Similar to drive to points in manufacturing.</p>
+</li>
+<li><p>In order to take advantage of the additional sensor information an Extended Kalman Filter was used for the Bayesian inference. This helps to achieve the depth factor of the visual detection, since when the Z-axis is utilized there is very little change to the image on the camera.</p>
+</li>
+<li><p>Though the model for determining the system position is non-linear, the usage of the Kalman Filter&#40;which is optimal for linear systems&#41; is still used since it is calculated for short distances and times it is approximately linear, leading to good performance.</p>
+</li>
+<li><p>The control is done by first using forward kinematics and modifying the result using the information from the camera in order to slightly modify the final change in joints as opposed to just the inverse of the Jacobian multiplied by the goal.</p>
+</li>
+<li><p>Choices of object targets were key. The algorithm was able to act better when targeting holes of an object than the corners.</p>
+</li>
+<li><p>The multiple target points on the object allowed the controller to work even when occlusion occurred. Due to ease of implantation, points that were occluded were assumed to not have changed from the original state BUT the uncertainty of the location of that point was dramatized.</p>
+</li>
+</ul>
+<h3 id="results"><a href="#results">Results</a></h3>
+<ul>
+<li><p>Utilizing this method created much more accurate pose estimation compared to traditional kinematics by up to three times higher.  </p>
+</li>
+<li><p>During control experiments the algorithm closely followed a proposed path, but at delay of up to 200ms. This was noted as an area for improvement. However the robustness of the algorithm was proven during experiments involving occluded points were run, it produced similar results.</p>
+</li>
+</ul>
+<h3 id="additional_comments"><a href="#additional_comments">Additional comments</a></h3>
+<ul>
+<li><p>One of the large issues in this paper was lack of computing power. The researchers had issues with the speeds required to utilize the PD controller. This is becoming increasingly less problematic as computing power is still following Moore&#39;s law, and these calculations are relatively trivial in the modern day.</p>
+</li>
+<li><p>Additionally modern robotics can utilize depth cameras in order to get more prevalent data with regards to depth estimation. This is covered well in Depth Camera Based Collision Avoidance Via Active Robot Control from 2014 which utilizes the Kinect camera, as do many other image based tracking challenges.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+    
+  </body>
+</html>

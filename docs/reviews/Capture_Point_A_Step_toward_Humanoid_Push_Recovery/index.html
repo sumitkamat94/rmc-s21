@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Capture Point: A Step toward Humanoid Push Recovery</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Capture Point: A Step toward Humanoid Push Recovery</h2>
+<ul>
+
+<li> Authors: Jerry Pratt; John Carff; Sergey Drakunov; Ambarish Goswami</li>
+
+
+<li>Venue: IEEEXplore</li>
+
+
+<li>Year: 2006</li>
+
+
+<li> Reviewed by: Guan Huitao, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<ul>
+<li><p>This paper aim to solve the problem of “when and where to step” under a force disturbance using the concept of <em>Capture Points</em>. Instead of considering the arm as point mass, this paper replace it with a flywheel and thus, resulting a <em>&quot;Linear Inverted Pendulum Plus Flywheel Model&quot;</em>. Adding rotaional inertia enables the humanoid to control its centroidal angular momentum, much like the human beings do, significantly enlarging the Capture Region.</p>
+</li>
+</ul>
+<p><img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/4115555/4115556/4115602/4115602-fig-1-source-large.gif" alt="" />  <em>Abstract model of a flywheel body and a massless leg, the two actuators and CoM are located at flywheel center.</em></p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(x<sub>cpature</sub>\): Capture point</p>
+</li>
+<li><p>\(𝝉\): Joint torque</p>
+</li>
+<li><p>\(θ\): flywheel angle</p>
+</li>
+<li><p>\(X′,Ẋ′,t′,J′,τ′,θ′\): The dimensionless position, velocity, time, inertia, torque and angles.</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<ul>
+<li><p>The conept of capture point is that <em>a humanoid must step to in order to come to a complete stop.</em> Using this concept, if the Capture point is within the convex hull of the foot support, the robot is able to recover without steps, otherwise it must take one step such that the base of support regains an intersenciton with the capture region. If the capture point is outside of the kinematic workspace of the swing foot, at least two steps are needed. Caption region leads to a principle approach to humanoid push recovery.</p>
+</li>
+<li><p>When the flywheel is not available, the computed capture point x&lt;sub&gt;cpature&lt;/sub&gt; is one single point. When the flywheel is made available, the Capture Point grow to a Capture Region, either a clockwise or counterclockwise acceleration will be required. Once the Capture Region is obtained, we could find whether the biped can recover without steps, one step or more than one steps.</p>
+</li>
+</ul>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>A realistic troque-limited and anlge limited based Capture Region is computed. With a step torque due to the motor can chaieve max torque nearly instantly. We use τ&lt;sub&gt;min&lt;/sub&gt; and τ&lt;sub&gt;max&lt;/sub&gt; with the angle limit θ&lt;sub&gt;min&lt;/sub&gt; and θ&lt;sub&gt;max&lt;/sub&gt; the get the boundaty of the Capture Region.</p>
+</li>
+<li><p>To prevent slipping, the ground reaction force vector must stay within the friction cone. A step change in torque could cause the ground reaction force to be horizontal, causing slipping on any non-attached surface.</p>
+</li>
+<li><p>To reduce the variables involved, we use dimensionless analysis, the motion equation for Linear Inverted Pendulum Plus Flywheel Model become:</p>
+</li>
+</ul>
+<p>\(_**Ẍ′ = X′-τ′**_\) \(_**θ̈′ = τ′**_\)</p>
+<p>Thus, the only remaining parameters are τ′&lt;sub&gt;max&lt;/sub&gt;, τ′&lt;sub&gt;min&lt;/sub&gt;, θ′&lt;sub&gt;max&lt;/sub&gt;, θ′&lt;sub&gt;min&lt;/sub&gt;. Therefore, two Linear Inverted Pendulum Plus Flywheel system are dynamically same if they have the same values of those four variables. <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/4115555/4115556/4115602/4115602-fig-4-source-large.gif" alt="" /> <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/4115555/4115556/4115602/4115602-fig-5-source-large.gif" alt="" /> <em>The figures show how the Capture Region changes due to the change of τ′&lt;sub&gt;max&lt;/sub&gt; and θ′&lt;sub&gt;max&lt;/sub&gt; &#33;&#91;&#93;&#40;https://ieeexplore.ieee.org/mediastore</em>new/IEEE/content/media/4115555/4115556/4115602/4115602-fig-6-source-large.gif&#41; in the simulation, the robot is impulsively pushed at 0.5s, the robot recovers with a body lunge without a step.</p>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>This paper present a method to find the Capture Region, and present a 2D biped balance recovery. The model use internal angular momentum to recover from a push after stepping into the Capture Region.</p>
+</li>
+<li><p>Actually in many cases it is not critical to stop in just one step, and the Capture Point is sensible to small errors. It could cause two or three steps when one step could have been possible.</p>
+</li>
+<li><p>We could have use max torque to determine the lunge time and rotation angle, we can also use maximum rotation angle to solve torque and lunge time.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

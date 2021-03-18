@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Continuous Control With Deep Reinforcement Learning</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Continuous Control With Deep Reinforcement Learning</h2>
+<ul>
+
+<li> Authors: Lillicrap, T.P.; Hunt, J.J;Pritzel, A.; Heess, N.; Erez, T; Tassa, Y; Silver, D.; Wierstra, D.;</li>
+
+
+<li>Venue: ICLR</li>
+
+
+<li>Year: 2016</li>
+
+
+<li> Reviewed by: Joe Kershaw, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#overview">Overview</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solutions">Solutions</a></li><li><a href="#results">Results</a></li><li><a href="#additional_comments">Additional comments</a></li></ol></div>
+<h3 id="overview"><a href="#overview">Overview</a></h3>
+<p>This article focuses on utilizing reinforcement learning for control applications within physical space. </p>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>The machine learning method of Reinforcement Learning has been highly valued for its ability to observe a scenario and solve problems related to it. Though this method can handle highly dense observational inputs, it does not show the same aptitude in the physical domain. This comes from the fact that traditional reinforcement learning makes an optimal decision through an iterative thought process as opposed to just reacting. This is further complicated by the fact that acting in the real world requires more continuous inputs and actions than more simplified realms. Additionally the 3rd dimension rapidly creates complex making the problem space rise exponentially the more complex the robot is. This paper uses advances in reinforcement learning techniques and research to tune and optimize this method to overcome and act in the physical space.</p>
+<h3 id="solutions"><a href="#solutions">Solutions</a></h3>
+<ul>
+<li><p>Convert from utilizing a greedy policy to an actor-critic one. Greedy policies act too slowly for high dimensionality and reactiveness. </p>
+</li>
+<li><p>Utilize a buffer and batch learning to apply some semblance of a time domain to actions. Traditionally observations are treated as independent.</p>
+</li>
+<li><p>The utilized Reinforcement Learning algorithm was shown to be unstable when used in a neural network. To remedy this, a copy of the model was used that observed the actions of the active model and would make weight changes on a damped scale to avoid instability.</p>
+</li>
+<li><p>In order to overcome various environments, batch normalization was used for a more concise decision policy and an exploratory factor was added by adding noise to the critic network.</p>
+</li>
+</ul>
+<h3 id="results"><a href="#results">Results</a></h3>
+<ul>
+<li><p>Algorithm was performed in virtual environments performing various activities including driving and walking scenarios. These simulation would provide both a visual environment&#40;i.e. computer screen&#41; and some would provide virtual sensor feedback. Batch normalization turned out to be a key feature in this technique. Additionally, for simple task the only feed required was the image of the environment as opposed to additional feedback.  This could be promising for difficult sensing environments where only visuals are viable. </p>
+</li>
+</ul>
+<h3 id="additional_comments"><a href="#additional_comments">Additional comments</a></h3>
+<ul>
+<li><p>Though this paper was published in 2016, it already feels dated. The concepts being lauded as novel, such as batch normalization, were part of my introduction to machine learning in 2019. It is shocking how rapid the deep learning applications are evolving, but the work of live reinforcement learning is still being optimized today.  </p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+    
+  </body>
+</html>

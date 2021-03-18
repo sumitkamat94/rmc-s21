@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Personalized Kinematics for Human-Robot Collaborative Manipulation</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Personalized Kinematics for Human-Robot Collaborative Manipulation</h2>
+<ul>
+
+<li> Authors: Bestick, Aaron; Burden, Samuel;</li>
+
+
+<li>Venue: IEEE/RSJ International Conference on Intelligent Robots and Systems</li>
+
+
+<li>Year: 2015</li>
+
+
+<li> Reviewed by: Josh Ashley, Daniel Kennedy, Landon Clark, Huitao Guan, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This study uses a motion capture system to perform state estimation and parameterization of a kinematic model for a human body. This provides a personalized model for each individual and significantly improves the quality of a robotic handover task</p>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>Object handovers are a common problem in human-robot interaction and there has been significant effort in studying the best way to accomplish the task. In handoff planning, the robot posture at which the handoff occurs is critical. Cost functions can be developed to emphasize safety, visibility, comfort, or other desireable qualities. However, an inaccurate human model can often lead to inaccurate robot planning and a suboptimal handoff. This paper proposes a way to use a motion capture system to estimate the size and position of links in a human skeleton model.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>The International Society of Biomechanics recommends human representations based on five linked kinematic chains. This algorithm finds the lengths of each link and each joint&#39;s angle limits using training data from an IMU-based motion capture system.</p>
+</li>
+<li><p>This paper uses the Twist representation of rigid body transformations for its advantages over DH and similar conventions. Since Twist representation lacks singularities, the parameter estimation cost function is smooth with respect to the joint parameters. This choice of parameterization also reduces the amount of training data required to achieve reasonable accuracy.</p>
+</li>
+<li><p>Since nothing about the kinematic model is assumed prior to training with the motion capture system, the resulting model is able to capture a wide range of variations among individuals. Differences in height, limb length, and joint limits are accounted for.</p>
+</li>
+<li><p>Three handoff configurations were tested:</p>
+<ul>
+<li><p>Control: in which the robot uses the same configuration relative to its own base frame.</p>
+</li>
+<li><p>Relative: in which the robot chooses a handoff configuration relative to the human torso location.</p>
+</li>
+<li><p>Personal: in which the personalized kinematic model was used to generate ergonomic handoff configurations relative to the human receiver. This takes into account the person&#39;s actual workspace and range of motion.</p>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+    
+  </body>
+</html>

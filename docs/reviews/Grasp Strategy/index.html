@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>The Grasp Strategy of a Robot Passer Influences Performance and Quality of the Robot-Human Object Handover</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> The Grasp Strategy of a Robot Passer Influences Performance and Quality of the Robot-Human Object Handover</h2>
+<ul>
+
+<li> Authors: Ortenzi, V; Cini, F; Pardi, T; Marturi, N; Stolkin, R; Corke, P; Controzzi, M;</li>
+
+
+<li>Venue: Frontiers in Robotics and AI</li>
+
+
+<li>Year: 2020</li>
+
+
+<li> Reviewed by: Daniel Kennedy, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#future_work">Future Work</a></li><li><a href="#referenced_papers">Referenced Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper demonstrates that humans are perceptive to the position and orientation of grasp during handover tasks. The perceived quality of human-robot interaction can be improved when robots choose more &quot;task aware&quot; grasps. This allows for more ergonomic design of collaborative workspaces and less psychological strain.</p>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>A common task in human-robot interaction is the object handover. While there has been prior work in measuring the perceived quality of these interactions, an object handover is typically performed to help a human complete a subsequent task. Therefore, any performance metric should account for both the interaction and the completion of its subsequent task.</p>
+<p>This paper focuses on how the type of grasp influences the performance and quality of the handover and its subsequent task. Determining how to best grip an object is a complex task and lends itself to several algorithms. However, determining which methods are best for any particular situation is understudied, and is another focus of this paper.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>The traditional grasp strategy is to simulate contact forces between the object and the robot end effector to choose the optimal position and orientation to grasp. This method optimizes object stability while providing grasp postures within the operational workspace of the robot. It also requires the object&#39;s location and geometry to be fully characterized in advance. This is referred to as a &quot;Task Unaware Grasp&quot;. The software and simulation algorithms are provided with the SIMOX toolbox.</p>
+</li>
+<li><p>A novel new grasp strategy presented in this paper is the &quot;Task-oriented Grasp&quot;, in which grasp posture is chosen in advance for each object based on its &quot;perceived affordances.&quot; Since each object is intended to be used by a person to complete a task, the Task-oriented Grasp chooses a posture which offers the person the object&#39;s handle for a more natural and collaborative interaction. The authors propose that both the task performance and perceived quality of handover will improve by offering the human the object&#39;s affordances.</p>
+</li>
+<li><p>5 test objects were chosen from the YCB dataset &#40;Calli et al., 2015a,b, 2017&#41; to represent a variety of tasks and potential grip postures: mustard bottle, screwdriver, scissors, mug, and drill.</p>
+</li>
+<li><p>The KUKA 7-DOF robotic arm and the 5 test objects are hidden behind a screen. The robot randomly chooses an object and a grasp strategy &#40;task unaware or task-oriented&#41;, picks up the object, and presents it to a person on the other side of the screen.</p>
+</li>
+<li><p>Torque sensors in the robot detect when the person has a hold on the object and releases the grasp. The person receives the object from the robot and uses it to complete a simple task.</p>
+</li>
+<li><p>The duration of the task is measured and the person is surveyed on other qualitative aspects of the interaction.</p>
+</li>
+<li><p>In all cases the humans preferred the task-oriented grasp strategy in which they were handed an object by its perceived affordances rather than the task-unaware strategy which optimizes stability. People spent less time reconfiguring the object in their hands compared to the unaware grasp and felt the interaction as a whole was much more positive.</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>The paper presents an interesting testing methodology to compare human-robot interactions and could easily be adapted to other experimental setups. The mixture of quantitative and qualitative performance metrics gives a good overall picture of the strengths and weaknesses of the two grasping strategies. </p>
+</li>
+<li><p>The implementation of any particular grasp strategy is outside the scope of the paper, but both strategies have significant shortcomings that would make them impractical outside of a controlled test environment. The SIMOX algorithm requires full characterization of the location and geometry of the object in advance and is very computationally heavy. The task-oriented grasp does not have any particular implementation defined as of yet and therefore also requires preprogrammed grasp positions.</p>
+</li>
+</ul>
+<h3 id="future_work"><a href="#future_work">Future Work</a></h3>
+<ul>
+<li><p>There may be links to machine learning and object classification algorithms. This could provide the basis for an automated task-oriented grasp strategy.</p>
+</li>
+</ul>
+<h3 id="referenced_papers"><a href="#referenced_papers">Referenced Papers</a></h3>
+<ul>
+<li><p>The <a href="https://www.researchgate.net/publication/234016124_Simox_A_Robotics_Toolbox_for_Simulation_Motion_and_Grasp_Planning">SIMOX Algorithm</a> </p>
+</li>
+<li><p><a href="https://www.researchgate.net/publication/331095638_On_the_choice_of_grasp_type_and_location_when_handing_over_an_object">A study</a> which classifies human grip postures according to the shape of object.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 17, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+    
+  </body>
+</html>

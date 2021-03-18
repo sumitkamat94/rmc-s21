@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Determination of the flight dynamic envelop via stable manifold</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Determination of the flight dynamic envelop via stable manifold</h2>
+<ul>
+
+<li> Authors: Yuan, Guoqiang; Li, Yinghui</li>
+
+
+<li>Venue: Measurement and Control</li>
+
+
+<li>Year: 2019</li>
+
+
+<li> Reviewed by: Ruchik Mishra, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific problem</a></li><li><a href="#solution_ideas">Solution ideas</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>The determination of flight envelop for a UAV is of paramount importance. A stable manifold approach is used to determining the flight envelop as a region of interest.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(W^{s}(\hat{x})\) : Stable manifold.</p>
+</li>
+<li><p>\(W^{u}(\hat{x})\) : Ustable manifold.</p>
+</li>
+<li><p>\({\partial A}(s)\) : boundary of the region of attraction.</p>
+</li>
+<li><p>\(a\) : angle of attack.</p>
+</li>
+<li><p>\(q\) : pitch rate.</p>
+</li>
+<li><p>\(\rho\) : air density.</p>
+</li>
+<li><p>\(\delta_{e}\): elevator deflections</p>
+</li>
+<li><p>\((a_{s},q_{s},\theta_{s})\) : trim point where ROA is to be determined.</p>
+</li>
+<li><p>\(x_{s}\): asymptotically stable equillibrium point</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific problem</a></h3>
+<p>The flight envelop estimation problem has been approached from the perspective of a stable manifold on a F-16 aircraft. It is used to explicitely represent the flight dynamic envelop. In addition to it, the computation is done only on the envelop and not on the entire state space.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution ideas</a></h3>
+<ul>
+<li><p>The stable manifold is used to construct the the region of attraction that represents the dynamic fight envelop.</p>
+</li>
+<li><p>The region of attraction is defined in the paper as:</p>
+<ul>
+<li><p>\(A(x_{s}) = \left\{x \epsilon \mathbb{R}^{n}|\lim_{t \rightarrow \infty}\xi_{f}(t;x,t_{0})=x_{s} \right\}\)</p>
+</li>
+</ul>
+</li>
+<li><p>The boundary region of the region of attraction is defined by:</p>
+<ul>
+<li><p>\({\partial A}(x_{s}) = \bigcup_iW^{s}(x_{i})\)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>and for an equillibrium point \(\hat{x}\), \(\hat{x}\epsilon {\partial A}(x_{s})\) iff \(W^{u}(\hat{x})\cap A(x_{s})\neq \phi\)</p>
+<p>where \(\xi_{f}(t;x_{0},t_{0})\) is a solution to the ordinary differential equation: \(\dot{x}= f(x)\), where \(x\epsilon\mathbb{R}^{n}\) is the state variable and the vector field \(f:\mathbb{R}^{n}\rightarrow\mathbb{R}^{n}\) is Lipschitz stable.</p>
+<ul>
+<li><p>Further,the stable and the unstable manifold have been defined in the paper as:</p>
+<ul>
+<li><p>\(W^{s}(\hat{x})=\left\{x \epsilon \mathbb{R}^{n}|\lim_{t \rightarrow \infty}\xi_{f}(t;x,t_{0})=x_{s} \right\}\)</p>
+</li>
+<li><p>\(W^{s}(\hat{x})=\left\{x \epsilon \mathbb{R}^{n}|\lim_{t \rightarrow - \infty}\xi_{f}(t;x,t_{0})=x_{s} \right\}\)</p>
+</li>
+</ul>
+</li>
+<li><p>Only the longitudinal dynamics of the F-16 aircraft is used as the computation of the flight envelop in higher dimension can be complex. Th dynamic model can be described as follows:</p>
+<ul>
+<li><p>\(\dot{a} = q-\frac{1}{mV}(T\sin{a}+L-mg\cos{\theta-a})\)</p>
+</li>
+<li><p>\(\dot{q} = \frac{M}{I_{y}}\)</p>
+</li>
+<li><p>\(\dot{\theta} =q\)</p>
+</li>
+</ul>
+<p>where</p>
+<ul>
+<li><p>\(L=1/2\rho V^{2}C\overline{c}(C_{X_{T}}\sin{a}-C_{Z_{T}}\cos{a})\)</p>
+</li>
+<li><p>\(M = \frac{1}{2}\rho V^{2}S\overline{c}C_{m_{T}}+\frac{1}{2}\rho V^{2}S\overline{c}C_{Z_{T}}(x_{cgref}-x_{cg})-mgx_{cg}\)</p>
+</li>
+</ul>
+</li>
+<li><p>Th calculation accuracy is compromised by reducing removing the altitude and the speed which is gives a 3-dimensional system in place of 5 which reduces the time to compute the stability region.</p>
+</li>
+<li><p>Thus, only the pitch angle, pitch rate and angle of attack in the longitudinal dynamics.</p>
+</li>
+<li><p>To check the feasibility of the proposed method, a proportional controller that takes the actuator saturation into account is used:</p>
+<ul>
+<li><p>\(\delta_{e} = sat(k_{a}(a-a_{s})+k_{q}(q-q_{s}))\)</p>
+</li>
+</ul>
+</li>
+<li><p>The time domain results in the paper show that the unstable manifold of the Unstable equillibrium points converges to the stable equillibrium points &#40;SEP&#41;.</p>
+</li>
+<li><p>The paper concludes that the flight dynamic envelop can be obtained from the two-dimensional stable manifold of the unstable equillibrium points. Also, if a trajectory converges to SEP, then the corresponding grid point is in the dynamic envelope.</p>
+</li>
+<li><p>Also, a comparison with the level-test method is drawn and has been shown that the former is computationally more expensive than the stable manifold method as it requires an additional dimesnion of iteration &#40;\(\phi(x,t)\)&#41; is defined in the n-dimensional space whereas the proposed method iterates over &#40;n-1&#41; dimensional manifold&#41;.</p>
+<h3>Comments</h3>
+</li>
+<li><p>The complexity of the algorithm has not been explicitely mentioned. Also, the latency of the algorithm is not evaluated.</p>
+</li>
+<li><p>Also, there is no mention of how the manifold method can be scaled to higher dimensions since the altitude and the speed of the aircraft have not been included in the calculation of the stable manifold.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

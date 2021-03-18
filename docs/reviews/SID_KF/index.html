@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/highlight/github.min.css">
+   
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Broad area/overview</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Broad area/overview</h2>
+<ul>
+
+<li> Authors: Seo, Gwang-gyo; Kim, Yoonsoo; Saderla Subrahmanyam</li>
+
+
+<li>Venue: Aerospace Science and Technology</li>
+
+
+
+<li> Reviewed by: Ruchik Mishra, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><p>@def title &#61; &quot;Kalman-filter based online system identification fo fixed-wing aircraft in upset condition&quot; @def year &#61; &quot;2019&quot; @def hasmath &#61; true</p>
+<div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific problem</a></li><li><a href="#solution_ideas">Solution ideas</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>Owing to the infeasibility of performing wing tunnel test during an ongoing flight, this paper addresses the issues of online system identification &#40;SID&#41; for fixed wing UAVs. This is an important step in estimating the flight envelop. The paper specifically discusses two online SID methods for a fixed wing UAV in upset conditions &#40;example stall&#41;, one of which involves the use of kalman filters.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(C_{L}, C_{D}\): Lift and drag coefficients.</p>
+</li>
+<li><p>\(C_{m}\): Pitching moment coefficient.</p>
+</li>
+<li><p>\(C_{X}, C_{Y}, C_{Z}\): Force coefficient components along the x,y and z directions.</p>
+</li>
+<li><p>\(J_{x}, J_{y}, J_{z}\): Moments of inertia about x, y and z aes in \(kg/m^{2}\)</p>
+</li>
+<li><p>\(S\): reference wing area.</p>
+</li>
+<li><p>\(U_{0}\): Trim speed.</p>
+</li>
+<li><p>\(V\): Airspeed.</p>
+</li>
+<li><p>\(X,Y,Z\): Force components along x,y,z axis.</p>
+</li>
+<li><p>\(a_{x}, a_{y}\): Air acceleration components along x and z axis.</p>
+</li>
+<li><p>\(\overline{c}\): Mean aerodynamic chord.</p>
+</li>
+<li><p>\(p,q,r\) roll, pitch and yaw rates.</p>
+</li>
+<li><p>\(\overline{q}\): Dynamic pressure.</p>
+</li>
+<li><p>\(u,v,w\): Air velocity components alongx,y and z directions.</p>
+</li>
+<li><p>\(\hat{x}, \hat{\theta}\): Estimated state and unknown parametrs vector.</p>
+</li>
+<li><p>\(\alpha\): angle of attack</p>
+</li>
+<li><p>\(\delta_{a},\delta_{e},\delta_{r}\): aileron, elevator and rudder deflections.</p>
+</li>
+<li><p>\(\gamma\): Flight path angle.</p>
+</li>
+<li><p>\(\theta\): vector of unknown parametrs.</p>
+</li>
+<li><p>\(\xi\): Flow separation point.</p>
+</li>
+<li><p>\(\rho\): Air density.</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific problem</a></h3>
+<p>This paper propoese two different approaches for estimation of online flight dynamics of a fixed wing aircraft in upset consitions &#40;for example stall&#41;. These methods are:</p>
+<ul>
+<li><p>Least squares and Kalman filter approach. This method is used in conditions where the stall behaviour is accomodated in a linear fashion &#40;the aerodynamic coefficient \(C_{L}\) is a function of \(\dot{\alpha}\)&#41;.</p>
+</li>
+<li><p>Kirchoff&#39;s method is used when the stall behaviour is used in a non-linear fashion.</p>
+</li>
+</ul>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution ideas</a></h3>
+<ul>
+<li><p>The flight dynamical model is take to be that of a typical aircraft which is represented by:</p>
+<p>&#36;\begin&#123;bmatrix&#125;\dot&#123;u&#125;\\ \dot&#123;\alpha&#125;\\ \dot&#123;q&#125; \\ \dot&#123;\theta&#125;\end&#123;bmatrix&#125;&#36; &#61; &#36;F\begin&#123;bmatrix&#125;u\\ \alpha\\ q \\ \theta\end&#123;bmatrix&#125;&#36; &#43; &#36;G\delta_&#123;e&#125;&#36;</p>
+</li>
+<li><p>The aerodynamic coefficients of this model are described by the following equations:</p>
+<ul>
+<li><p>\(C_{L} = C_{L_{0}}+C_{L_{\alpha}}+C_{L_{q}}\frac{\overline{c}}{2U_{0}q}+C_{L_{\delta_{e}}}\delta_{e}\)</p>
+</li>
+<li><p>\(C_{m} = C_{m_{0}}+C_{m_{\alpha}}+C_{m_{q}}\frac{\overline{c}}{2U_{0}q}+C_{L_{\delta_{e}}}\delta_{e}\)</p>
+</li>
+</ul>
+</li>
+<li><p>Further, the hysteresis behaviour &#40;a phenomena in which the a system&#39;s behaviour also depends on the history of the system&#39;s state and not just on the current state of the system&#41;is accomodated in the above equations by:</p>
+<ul>
+<li><p>\(C_{L} = C_{L_{0}}+C_{L_{\alpha}}+C_{L_{q}}\frac{\overline{c}}{2U_{0}q}+C_{L_{\delta_{e}}}\delta_{e}+ C_{L_{\dot{\alpha}}}\frac{\overline{c}}{2U_{0}q}\dot{\alpha}\)</p>
+</li>
+<li><p>\(C_{m} = C_{L_{0}}+C_{L_{\alpha}}+C_{L_{q}}\frac{\overline{c}}{2U_{0}q}+C_{L_{\delta_{e}}}\delta_{e}+ C_{m_{\dot{\alpha}}}\frac{\overline{c}}{2U_{0}q}\dot{\alpha}\)</p>
+</li>
+</ul>
+</li>
+<li><p>Least squares is used as an iterative approach that can minimize the error between the input and the output data:</p>
+<p>&#36;z &#61; X\theta &#43; v&#36;</p>
+<p>where &#36;z&#36; is the output, &#36;X&#36; is the input and &#36;\theta&#36; is the unknown to be determined.</p>
+</li>
+<li><p>So, these aerodynamic coefficients, \(C_{l}\) and \(C_{m}\) are estimated using a combined the Kalman filter and the least squares approach. The least square solution for these coefficients is given by:</p>
+<p>&#36;\widehat&#123;\theta&#125;^&#123;k&#125;&#36; &#61; &#36;\begin&#123;bmatrix&#125;C_&#123;L_&#123;\alpha}}^&#123;&#40;k&#41;&#125; &amp;C_&#123;m_&#123;\alpha}}^&#123;&#40;k&#41;&#125;\\C_&#123;L_&#123;q}}^&#123;&#40;k&#41;&#125; &amp;C_&#123;q&#125;^&#123;&#40;k&#41;&#125; \\C_&#123;L_&#123;\delta_&#123;e}}&#125;^&#123;&#40;k&#41;&#125;&amp; C_&#123;m_&#123;\delta_&#123;e}}&#125;^&#123;&#40;k&#41;&#125;\\C_&#123;L_&#123;\dot&#123;\alpha}}&#125;^&#123;&#40;k&#41;&#125; &amp; C_&#123;m_&#123;\dot&#123;\alpha}}&#125;^&#123;&#40;k&#41;&#125; \end&#123;bmatrix&#125;&#36;</p>
+<p>where &#36;&#40;k&#41;&#36; is the time instant. The flight dynamic equation containing all the aerodynamic paramters are then replaced by the estimated value from the least square solution. This is then expressed as the discrete version as in the prediction step of the Kalman filter as shown in the following equation:</p>
+<p>&#36;\hat&#123;x&#125;_&#123;k&#125;^&#123;-&#125;&#36; &#61; &#36;A\hat&#123;x&#125;_&#123;k-1&#125; &#43;Bu_&#123;k-1&#125;&#36;</p>
+</li>
+<li><p>The prediction step only contains \(\alpha, q\) and \(\dot{\alpha}\) as the aerodynamic coefficients are explicitely dependent only on them.</p>
+</li>
+<li><p>Further, the non-linear relation between the aerodynamic coefficents and \(\alpha\) is described using the Kirchoff&#39; theory to represenrt he hysterisis by the following expression:</p>
+\(\xi = \frac{1}{2}\left\{1-\tanh[a_{1}(\alpha - \tau_{2}\dot{\alpha}-\alpha^{*}]\right\}\)
+<p>where \(a_{1},\alpha^{*}\) and \(\tau_{2}\) are additional paramteres to be determined.</p>
+</li>
+<li><p>The expression for determining the aerodynamic coefficients then becomes:</p>
+<ul>
+<li><p>\(C_{L} = C_{L_{0}}+C_{L_{\alpha}} (\frac{1+\surd\xi}{2})^{2}+C_{L_{q}}\frac{\overline{c}}{2U_{0}}+C_{L_{\delta_{e}}}\delta_{e}\)</p>
+</li>
+<li><p>\(C_{D} = C_{D_{0}} + \kappa C_{L}^{2}+C_{D_{\xi}}(1-\xi)\)</p>
+</li>
+<li><p>\(C_{m} = C_{m_{0}}+C_{m_{\alpha}} (\frac{1+\surd\xi}{2})^{2}+C_{m_{q}}\frac{\overline{c}}{2U_{0}}+C_{m_{\delta_{e}}}\delta_{e}+C_{m_{\xi}}(1-\xi)\)</p>
+</li>
+</ul>
+</li>
+<li><p>The non-linearity arising in the the above equations for finding the aerodynamic coefficients has been solved using Unscented Kalman filter instead of just KF.</p>
+</li>
+<li><p>The size of the moving window for calculating the solution of the least squares &#40;\(\widehat{\theta}^{k}\)&#41;, estimation errors corrsponsing to each n &#40;size of the moving window&#41; is calculated using the following equations:</p>
+<ul>
+<li><p>\(\parallel e_{C_{L}}\parallel\) &#61; \(\sqrt{\int_{0}^{t_{f}}\left\{ C_{L}\left(t\right)-\widehat{C_{L}}\left(t\right)\right\}^{2}dt}\)</p>
+</li>
+<li><p>\(\parallel e_{C_{m}}\parallel\) &#61; \(\sqrt{\int_{0}^{t_{f}}\left\{ C_{m}\left(t\right)-\widehat{C_{m}}\left(t\right)\right\}^{2}dt}\)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>where \(\widehat{C_{L}}\) and \(\widehat{C_{m}}\) are dependent on \(n\) and are calculated by the LS-KF method.</p>
+<h3>Comments</h3>
+<ul>
+<li><p>The paper successfully demonstrates how online SID can be done using LS-KF methods and Kirchoff&#39;s theory &#40;for the non-linear case&#41;.</p>
+</li>
+<li><p>However, the paper does not mention what type of flight data is being used for the finding out the aerodynamic coefficients \(C_{L}\) and \(C_{m}\).</p>
+</li>
+<li><p>Also, the paper does not talk about overcoming loss of control at different stages of the flight.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+
+    
+  </body>
+</html>

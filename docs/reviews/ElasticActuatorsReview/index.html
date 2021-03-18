@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Series Elastic Actuators</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Series Elastic Actuators</h2>
+<ul>
+
+<li> Authors: Pratt, G. A.; Williamson, M. M.</li>
+
+
+<li>Venue: IEEE</li>
+
+
+<li>Year: 1995</li>
+
+
+<li> Reviewed by: Landon Clark, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#related_papers">Related Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper looks to consider practical applications of series elastic actuators as well as control methods for such. By using elastic actuators, the control problem of each joint is transformed from position to force control. This happens as we can model positional differences between our load and motor values as the displacement across our spring, thus providing a very simple calculation to find the force applied at the link. While it is simple to model what the force will be at the load, it is far less so to properly control the force applied at the load. Thus the paper details a control method to provide stable, accurate control of the forces applied at the load.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(K_s\): elasticity spring rate &#40;otherwise referred to as a spring constant&#41;</p>
+</li>
+<li><p>\(f_l, F_l\): force applied to the load</p>
+</li>
+<li><p>\(f_m, F_m\): force applied to the motor</p>
+</li>
+<li><p>\(x_l, X_l\): position of the load</p>
+</li>
+<li><p>\(x_m, X_m\): position of the motor</p>
+</li>
+<li><p>\(M_m\): motor mass</p>
+</li>
+<li><p>\(Z\): mechanical impedance</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>To properly control the force output on the load, the paper seeks to relate \(Z\) to \(F_l\). By doing this, they were able to find performance characteristics of the actuator relative to the interface resonance. Once the model for forces was developed, a control method was necessary to fulfill their goals. </p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<p>With respect to the analysis of the motor force and impedance, it should be noted that when compared to an inelastic actuator, an elastic actuator is able to, when below interface resonance, provide maximal motor force for virtually every possible motor impedance except for those close to \(Z = 0\). However, the zero of the stiff actuator moves from \(Z = 0\) to \(Z = M_m\omega^{2}\), a fact that I believe is referencing the ability for the stiff actuator to tend to remain still with no motor power.</p>
+<p>The control method utilized is essentially two-fold. On the one front is the main feedback frequency domain controller with a single feedforward element relative to \(X_l\), and on the other hand is a PID controller acting as additional feedback into this system. The input to the controller is the desired force applied to the load, and the output is the actual force applied to the load. The paper then defines some parameters for the PID tuning, given PID&#40;s&#41;:</p>
+<ul>
+<li><p>\(PID(s) = K_p + \frac{K_{d}s}{1+\tau_{d}s} + \frac{K_i}{1/\tau_{i}s}\)</p>
+</li>
+<li><p>\(K_p, K_d, K_i\) represent standard PID gains &#40;proportional, derivative, integral&#41;</p>
+</li>
+<li><p>\(\tau_i\): integral roll-off</p>
+</li>
+<li><p>\(\tau_d\): derivative roll-off</p>
+</li>
+</ul>
+<p>\(Z\) is then defined in terms of the PID term, where PID is on the denominator of this new term. To ensure proper stability, it must be that the PID term has a positive imaginary part. The paper then suggests this is true when \(\tau_i \leq \sqrt{frac{K_d}{K_i}}\). This essentially concludes the papers discussion of controller design.</p>
+<p>Once implemented, the controller was subjected to some basic performance testing based on means squared error at given frequencies. At low frequencies there were negligible errors, at resonance, the only notable errors occurred close to \(Z = 0\), and at high frequencies all notable errors were located where the output impedance has negative real parts - denoting that the controller only works well in this case when acting as a spring or dampener.</p>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>The paper does not mention positional control of the load, so it would be interesting to see what sort of added difficulties this task would bring on.</p>
+</li>
+<li><p>The paper never mentions compensating for motor saturation, but in the results they claim that errors at resonance were caused by motor saturation. Perhaps they could have mentioned the difficulties in implementing these factors &#40;assuming they are too difficult to practically implement&#41;, as they were shown to have non-negligible effects.</p>
+</li>
+<li><p>It would be interesting to see more about trajectory planning forces kept in mind, as it would appear these actuators could make this a possibility.</p>
+</li>
+</ul>
+<h3 id="related_papers"><a href="#related_papers">Related Papers</a></h3>
+<p>Some papers such as <a href="https://ieeexplore-ieee-org.ezproxy.uky.edu/stamp/stamp.jsp?tp&#61;&amp;arnumber&#61;9357983">this one</a> have begun exploring how to implement series elastic actuators in practical environments.</p>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

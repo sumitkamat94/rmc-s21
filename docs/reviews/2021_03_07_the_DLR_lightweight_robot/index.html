@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>The DLR Lightweight Robot – Design and Control Concepts for Robots in Human Environments</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> The DLR Lightweight Robot – Design and Control Concepts for Robots in Human Environments</h2>
+<ul>
+
+<li> Authors: Albu-Schaffer, A.; Haddadin, S.; Ott, Ch.; Stemmer, A.; Wimbock, T.; Hirzinger, G.</li>
+
+
+<li>Venue: Industrial Robot</li>
+
+
+<li>Year: 2007</li>
+
+
+<li> Reviewed by: David Yackzan, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#recent_papers">Recent Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper presents a newly developed lightweight robotic &#40;LWR&#41; arm with the implementation of control methods that allow for potential operation in human environments and nuanced versatility in industrial applications.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<ul>
+<li><p>\(x\): state, \(X\): State space</p>
+</li>
+<li><p>\(y\): measurement, \(Y\): Measurement Space</p>
+</li>
+<li><p>Controller \(u = g(y)\)</p>
+</li>
+<li><p>\(L\): Set of labels</p>
+</li>
+<li><p>\(C_X \colon X \to L\): Classifier in state space</p>
+</li>
+<li><p>\(C_Y \colon Y \to L\): Classifier in measurement space</p>
+</li>
+<li><p>\(V\): Lyapunov function</p>
+</li>
+<li><p>\(W\): set of hyperplanes that parametrizes \(C_X\)</p>
+</li>
+<li><p>\(W^\Delta\): set of hyperplanes that parametrizes a robust version of \(C_X\)</p>
+</li>
+</ul>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>High performance in industrial environments is typically representid by high speed, high precision functionality. In human environments, introducing this type of robot would be high risk due to the lack of adaptability to the envirenment and the potential for high speed impacts in an unpredictable setting. The DLR robot presented in this research is designed with human interaction in mind. These design aspects involve a low robot mass to payload ratio, low velocity operation speed, and extensive sensing capability such as joint torque sensing, redundant position sensing, and wrist force-torque sensing.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<p>Hardware overview</p>
+<ul>
+<li><p>Robotic arm with 7 DoF, load-weight ratio of ~1:1, totail weight &lt; 15kg, workspace of ~1.5m</p>
+</li>
+<li><p>measurements of full state of all joints completed by strain-gauge torque sensors, magneto-resistive encoders, and redundant link-side potentiometer position sensors</p>
+</li>
+</ul>
+<p>Control aspects for robotics acting in human environments</p>
+<ul>
+<li><p>collocated joint torque sensors with actuators enable robust, passivity based control approaches which is essential for operation within human environments</p>
+</li>
+<li><p>A decentralized state feedback controller is implemented with motor position and velocity &#40;\(\theta,\theta'\)&#41; and joint torque and joint torque derivative &#40;\(\tau,\tau'\)&#41;</p>
+</li>
+<li><p>This control strategies effectively allows for gravity compensation where the robot motors actuate to counter the joint weights and the robot can be easily manipulated</p>
+</li>
+</ul>
+<p>Safety Evaluation</p>
+<ul>
+<li><p>Impact testing with crash test dummies was completed to collect safety data. At max velocity &#40;2m/s&#41; the impact of the robot with the crash test dummie&#39;s head caused <em>very low</em> injury level when measured with the Head Injury Criterion &#40;HIC&#41;.</p>
+</li>
+</ul>
+<p>Automatic planning of robust assembly applications using impedence control</p>
+<ul>
+<li><p>Another strength of this control design strategy is for use in industrial operations where assembly requires precise sensing of part to part contact</p>
+</li>
+<li><p>While this robot is not as precise as more rigid industrial robots, it makes can make up for it in some manufacturing tasks by using <em>regions of attraction &#40;ROA&#41;</em> to push a part compliantly in the calculated direction and relying on collision feedback.</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>While the testing with the HIC scale showed that this robot is unlikely to cause serious injury to humans, robots with preventative measures implemented such as vision or lidar sensing would likely be safer to operate around humans.</p>
+</li>
+</ul>
+<h3 id="recent_papers"><a href="#recent_papers">Recent Papers</a></h3>
+<ul>
+<li><p>Another article addresses the topic of Human-Robot Collaboration in Manufacturing within the DLR lab more recently: <em>Human-Robot Collaboration in Manufacturing Applications: A Review</em> &#40;https://www.mdpi.com/2218-6581/8/4/100&#41;</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 18, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Demonstration-Guided Motion Planning</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Demonstration-Guided Motion Planning</h2>
+<ul>
+
+<li> Authors: Ye G., Alterovitz R.</li>
+
+
+<li>Venue: The 15th International Symposium ISRR (2017)</li>
+
+
+<li>Year: 2017</li>
+
+
+<li> Reviewed by: Josh Ashley, Daniel Kennedy, Landon Clark, Huitao Guan, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#notation">Notation</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#recent_papers">Recent Papers</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper deals with the problem of demonstrations as inputs to path planning and utilizing these demonstrations using statistics to determine critical aspects of a trajectory to complete a path while being able to also avoid novel obstacles.</p>
+<h3 id="notation"><a href="#notation">Notation</a></h3>
+<p>None of the equations are necessary for discussing the novelty of this paper. </p>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>The problem that this paper seeks to address is how to extract meaningful information about a trajectory from a given demonstration even from differing environments.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>The paper uses variance of the kinematics of the manipulator as a function of time to determine significant aspects of demonstrations. Aspects with low variation correspond to actions the manipulator will try to reproduce in the new environment.</p>
+</li>
+<li><p>For obstacle avoidance, the manipulator uses a sampling-based trajectory planning algorithm called Multi-Component Rapidly-Exploring Roadmap &#40;MC-RRM&#41;.</p>
+</li>
+<li><p>Their implementation starts by transposing the guide path onto the current environment. If the guide path collides with an obstacle, MC-RRM is used to connect the two, now disjointed segments of the path. </p>
+</li>
+<li><p>The lowest cost path of the MC-RRM is computed using Dijkstra&#39;s algorithm.</p>
+</li>
+<li><p>Additionally, a cost metric is applied to the MC-RRM path planner that is a representation of the constraints derived from the demonstration. </p>
+</li>
+<li><p>The cost metric is a function of time and joint configuration. Where the farther the manipulator skews from the mean demonstration variables, the higher the cost becomes. </p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>The algorithm was successful in creating new trajectories while maintaining constraints only conveyed by the demonstrations. In particular, it could avoid novel objects while continuing to hold a spoon full of sugar upright. </p>
+</li>
+<li><p>Simple statistical modelling of the kinematics might not be enough to convey certain, more complex constraints. Additionally, maybe time is not the only dependency of a given constraint in a demonstration. For instance, people will intuitively move slower and more precisely when close to an obstacle to minimize risk, if the obstacles are novel then this would not be conveyed by demonstrations. </p>
+</li>
+<li><p>Multivariant analysis with more complex feature extraction methods could have great potential in analyzing the demonstrations. Particularly developing potential policy networks from the demonstrations to produce the cost. </p>
+</li>
+</ul>
+<h3 id="recent_papers"><a href="#recent_papers">Recent Papers</a></h3>
+<ul>
+<li><p><a href="https://arxiv.org/abs/2002.12089">Exploration-efficient Deep Reinforcement Learning with Demonstration Guidance for Robot Control</a> - As said in the comments, developing better feature extraction of the demonstration through machine learning.</p>
+</li>
+<li><p><a href="https://arxiv.org/abs/2010.07467">Human-guided Robot Behavior Learning: A GAN-assisted Preference-based Reinforcement Learning Approach</a> - Same concept as the other recent paper more focused and applied.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 17, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>
