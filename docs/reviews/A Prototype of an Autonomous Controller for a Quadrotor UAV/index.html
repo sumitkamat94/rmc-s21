@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>A Prototype of an Autonomous Controller for a Quadrotor UAV</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> A Prototype of an Autonomous Controller for a Quadrotor UAV</h2>
+<ul>
+
+<li> Authors: Ian D. Cowling; Oleg A. Yakimenko; James F. Whidborne; and Alastair K. Cooke;</li>
+
+
+<li>Venue: IEEE</li>
+
+
+<li>Year: 2007</li>
+
+
+<li> Reviewed by: Keith Russell, Samrat Patel, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li></ol></div>
+<div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper is concerned with autonomy of quadrotor UAVs.  Specifically, the task of creating a controller which can incorporates both trajectory planning and path following.  </p>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>With the cost of lithium ion batteries being cheaper than ever before, as well as increasingly efficient, small unmanned aircraft such as quadrotor UAVs have become very popular consumer and industrial technology.  The main goal of this paper is to introduce a prototypical method of autonomous control for UAVs.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>The property of differential flatness is used to simplify the problem of trajectory generation.</p>
+</li>
+<li><p>The path following portion of the controller uses a standard linear multi-variable control technique.</p>
+</li>
+<li><p>A quasi-optimal path planning is used so that the path can be generated in real time for robustness.  This takes into account possible changing of desired location or if discrepancies between desired and current location become too large.</p>
+</li>
+<li><p>The controller is optimized by using the property of differential flatness to repose the problem in terms of the output space &#40;i.e., the spatial coordinates as opposed to the controls&#41;, which allows for optimization based on obstacle avoidance.</p>
+</li>
+<li><p>The cost function of the controller is expressed in terms of total flight time and total distance travelled.</p>
+</li>
+<li><p>The controller was simulated in several trajectory scenarios including moving in a straight line upwards, as well as reaching a desired coordinate while avoiding a pre-defined spherical obstacle.</p>
+</li>
+<li><p>Wind and added error were factored into the controller to test for robustness and disturbance rejection as well.</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>This paper demonstrated a very thorough design process for creating an autonomous controller.</p>
+</li>
+<li><p>While the constraints and trajectories implemented in the paper are quite simple, this paper manages to create a very good working model from which more complicated obstacle and vehicle avoidance can be added in.</p>
+</li>
+</ul>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 19, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

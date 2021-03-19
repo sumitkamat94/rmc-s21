@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Visual Odometry for Ground Based Vehicle Applications</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Visual Odometry for Ground Based Vehicle Applications</h2>
+<ul>
+
+<li> Authors: David Nister; Oleg Naroditsky; James Bergen;</li>
+
+
+<li>Venue: Wiley</li>
+
+
+<li>Year: 2005</li>
+
+
+<li> Reviewed by: Keith Russell, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#citations">Citations</a></li></ol></div>
+<div class="franklin-toc"><ol><li><a href="#broad_areaoverview">Broad area/overview</a></li><li><a href="#specific_problem">Specific Problem</a></li><li><a href="#solution_ideas">Solution Ideas</a></li><li><a href="#comments">Comments</a></li><li><a href="#citations">Citations</a></li></ol></div>
+<h3 id="broad_areaoverview"><a href="#broad_areaoverview">Broad area/overview</a></h3>
+<p>This paper details a vision-based motion estimation system, using either a single or stereo camera.  Their system works in real time and is able to accurately track the motion of the camera relative to baseline GPS data.</p>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem</a></h3>
+<p>Computer vision has been a very popular research topic in the past few decades due to the enormous variety and usefulness of its real-world implementations.  This paper seeks to develop a robust and streamlined method of motion tracking based solely on visual data, either from a single or stereo camera pair.  Their model, unlike others before it, does not require any knowledge of the robot&#39;s prior motion, instead relying only on what data is available immediately from the cameras.</p>
+<h3 id="solution_ideas"><a href="#solution_ideas">Solution Ideas</a></h3>
+<ul>
+<li><p>Their solution uses Harris corner detection in every image frame, which is a method of detecting corners using computer vision developed in 1988 &#91;1&#93;.  </p>
+</li>
+<li><p>Once features are detected using the Harris corner detection, they are matched to features in the next frame using normalized correlation.</p>
+</li>
+<li><p>Once features are matched, they are tracked and triangulated into 3D points, from which the pose of the camera is computed using its relative position to those points.</p>
+</li>
+<li><p>The stereo camera scheme is similar but requires matching of features between the stereo camera image pairs.</p>
+</li>
+</ul>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<ul>
+<li><p>The model shown in this paper was able to accurately track the position of the camera for hundreds of meters using nothing but raw image data.  This is incredibly impressive, even for 2021.</p>
+</li>
+<li><p>This paper not only demonstrates a very accurate system, but a robust one, that rejects noise and requires very little input to achieve its goal.</p>
+</li>
+<li><p>While image data alone may not be the best way to localize/navigate a vehicle, the estimate given by image data is certainly a good supplement to highly utilized technology like GPS and can provide a very good alternative in cases where GPS may not be available.</p>
+</li>
+</ul>
+<h3 id="citations"><a href="#citations">Citations</a></h3>
+<p>&#91;1&#93; https://docs.opencv.org/master/dc/d0d/tutorial<em>py</em>features_harris.html</p>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 19, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.css">
+     
+  
+    <link rel="stylesheet" href="https://hpoonawala.github.io/rmc-s21/css/jtd.css">
+  <link rel="icon" href="https://hpoonawala.github.io/rmc-s21/assets/favicon.ico">
+
+   <title>Modelling and Control of Formation of Nonholonomic Mobile Robots</title>  
+</head>
+<body>                      <!-- closed in foot.html -->
+<div class="page-wrap">   <!-- closed in foot.html -->
+  <!-- SIDE BAR -->
+  <div class="side-bar">
+    <div class="header">
+      <a href="https://uk.instructure.com/courses/1991578" class="title">
+        On Canvas
+      </a>
+    </div>
+    <label for="show-menu" class="show-menu">MENU</label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="menu" id="side-menu">
+      <ul class="menu-list">
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21" class="menu-list-link ">Home</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/schedule/" class="menu-list-link ">Schedule</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/" class="menu-list-link ">Assignments</a>
+          <ul class="menu-list-child-list ">
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#programming" class="menu-list-link">Programming</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#reviews" class="menu-list-link">Reviews</a>
+            <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/assignments/#project" class="menu-list-link">Project</a>
+          </ul>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/julia/" class="menu-list-link ">Julia</a>
+        <li class="menu-list-item "><a href="https://hpoonawala.github.io/rmc-s21/resources/" class="menu-list-link ">Extras</a>
+    </div>
+    <div class="footer">
+      This is <em>Just the docs</em>, adapted from the <a href="https://github.com/pmarsceill/just-the-docs" target="_blank">Jekyll theme</a>.
+    </div>
+  </div>
+  <!-- CONTENT -->
+  <div class="main-content-wrap"> <!-- closed in foot.html -->
+    <div class="main-content">    <!-- closed in foot.html -->
+      <div class="main-header">
+        <a id="github" href="https://github.com/hpoonawala/rmc-s21">Course on GitHub</a>
+      </div>
+
+
+
+<!-- Content appended here (in class franklin-content) -->
+
+
+<h2> Modelling and Control of Formation of Nonholonomic Mobile Robots</h2>
+<ul>
+
+<li> Authors: Jaydev P. Desai; James P. Ostrowski; and Vijay Kumar;</li>
+
+
+<li>Venue: IEEE</li>
+
+
+<li>Year: 2001</li>
+
+
+<li> Reviewed by: Keith Russell, Samrat Patel, 
+</li>
+
+</ul>
+
+
+<div class="franklin-content"><div class="franklin-toc"><ol><li><a href="#broad_area_overview">Broad Area Overview</a></li><li><a href="#specific_problem">Specific Problem </a></li><li><a href="#solution">Solution</a></li><li><a href="#comments">Comments</a></li></ol></div>
+<div class="franklin-toc"><ol><li><a href="#broad_area_overview">Broad Area Overview</a></li><li><a href="#specific_problem">Specific Problem </a></li><li><a href="#solution">Solution</a></li><li><a href="#comments">Comments</a></li></ol></div>
+<h3 id="broad_area_overview"><a href="#broad_area_overview">Broad Area Overview</a></h3>
+<p>This paper addresses the control of a team of nonholonomic mobile robots navigating in a terrain with obstacles while maintaining a desired formation and changing formations when required, using graph theory. </p>
+<h3 id="specific_problem"><a href="#specific_problem">Specific Problem </a></h3>
+<p>This paper describes a problem statement which is related to concurrent control and coordinations of multiple autonomous robots and develop a framework for transitioning from one formation to the other while following a certain trajectory and changing the shape of the formation in order to negotiate with the obstacle and reverting back to the original formation shape after passing by the obstacle.</p>
+<h3 id="solution"><a href="#solution">Solution</a></h3>
+<p>The team of swarm  is modeled as triple which can be identified by the group element ‘g’ , that describes the gross position of the lead robot , a shape variable ‘r’ and and control graph H that describes the behaviour of the robot in formation using a framework that enables the representation and enumeration of possible control graphs allowing coordination of transition between two different kinds of formation shapes or topologies. When viewed in this framework the problem can be broken down into three subproblems that is  a&#41;	Trajectory planning b&#41;	Robot Control and  c&#41;	Formation control The concurrent planning of the actuator inputs increases the complexity exponentially with the number of the robots and obstacles and quickly become intractable which is solved here in this paper using robots having their own sensors and feedback controllers</p>
+<p>Another related concept of the string stability has also been  addressed here and decentralized control law for shape variables and feedback controller  have been developed for the framework for each robot to maintain position and enable changes in the leader follower formation where states and position of the leader and follower which are represented relative to each other for example the position of the follower can be described by its relative position coordinates with respect to the leader and same rules apply to the leaders position wrt to the followers. There is a unique lead robot R1 designated that controls its followers in formation which is then followed by other leaders R2 R3 .. Rn which controls other follower robots using a control graph which is a digraph with each vertex having uniquely assigned integers which are based on certain constraints for lead robot where every lead robot on &#40;vertex&#41; has no incoming edge but has at least one outgoing edge. Every edge goes from lower vertex to higher vertex in the digraph and lastly the number of edges in the vertex is equal to the number of the output variable from the robots.</p>
+<h3 id="comments"><a href="#comments">Comments</a></h3>
+<p>Control graph algorithm was developed which was proved and tested for enumerating formation control and transition using Polya&#39;s Theorem. The non linear control theory strategies were implemented for </p>
+<p>Transition from one control graph to another control graph is modelled by a transition matrix which is the difference between the final and initial adjacency matrix . Appearance of -1 in the transition matrix denotes that the edges connecting the robots vertices needs to be broken and &#43;1 means that edges need to be formed </p>
+<p>Simulation tested 3 robots and 6 robots  for transition of the formation from  triangle &#40;Initial Control Graph&#41;  a straight line &#40;Final Control Graph&#41; Rectangle shape . The formation change in sensory noise was measured. It was observed that even in the presence of sensory noise the formation converged to the desired shape and exhaustive list of desired shapes was proposed.</p>
+<p>This paper does not take into consideration the routing and switching between the nodes which is another problem that needs to be studied as message passing between the nodes, especially the control data for formation, plays an important role for keeping the formation intact.</p>
+<h3>Recent Articles</h3>
+<p>●	Teruel, E., Aragues, R., &amp; López-Nicolás, G. &#40;2019&#41;. A distributed robot swarm control for dynamic region coverage. Robotics and Autonomous Systems, 119, 51-63</p>
+<p>●	Xu, H., Li, S., Yu, D., Chen, C. P., &amp; Li, T. &#40;2021&#41;. Adaptive swarm control for high-order self-organized system with unknown heterogeneous nonlinear dynamics and unmeasured states. Neurocomputing, 440, 24-35.</p>
+<p>●	Mohanty, P. K., &amp; Dewang, H. S. &#40;2021&#41;. A smart path planner for wheeled mobile robots using adaptive particle swarm optimization. Journal of the Brazilian Society of Mechanical Sciences and Engineering, 43&#40;2&#41;, 1-18.</p>
+
+<div class="page-foot">
+  <div class="copyright">
+    <hr>
+    &copy; Hasan Poonawala. Last modified: March 19, 2021. Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+  </div>
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div> <!-- end of class main-content -->
+    </div> <!-- end of class main-content-wrap -->
+    </div> <!-- end of class page-wrap-->
+    
+      <script src="https://hpoonawala.github.io/rmc-s21/libs/katex/katex.min.js"></script>
+<script src="https://hpoonawala.github.io/rmc-s21/libs/katex/auto-render.min.js"></script>
+<script>renderMathInElement(document.body)</script>
+
+    
+    
+  </body>
+</html>
