@@ -8,15 +8,34 @@ end
 function control!(τ, t, state)
     # Do some PD
     τ .= -20 .* velocity(state) - 100*(configuration(state) - [1.0;-1.0;2.0])
+    τ .= map( x -> x > 10 ? 10 : x,τ)
+    τ .= map( x -> x < -10 ? -10 : x,τ)
 end
 
 function move_robot(mvis,mechanism)
     state=MechanismState(mechanism)
     update_state(state,mvis,0.0,0.0,0.0)
-    problem = ODEProblem(Dynamics(mechanism,control!), state, (0., 2.))
+    problem = ODEProblem(Dynamics(mechanism,control!), state, (0., 5.))
     sol = solve(problem, Vern7())
     setanimation!(mvis, sol; realtime_rate = 1.0);
+
+    ### so some plotting
+
+
+    return sol
 end
+
+function plot_sol(p,sol,colorarg,saveflag,savename)
+    qsol = vcat(sol[:]'...)
+    for i=1:3
+        push!(p,layer(x=sol.t,y=qsol[:,i],Geom.line,color=colorarg))
+    end
+    p
+    if saveflag
+        p |> PDF(savename)
+    end
+end
+
 
 function getQdesSV(state,a,b,c)
     # Creates the SegmentedVector structure using the state
@@ -35,4 +54,8 @@ set_configuration!(mvis, configuration(state))
 set_velocity!(state,[1.0,1.0,1.0])
 qdd = getQdesSV(state,2.0,2.0,2.0)
 inverse_dynamics(state,qdd)
-# move_robot(mvis,mechanism)
+sol = move_robot(mvis,mechanism);
+# p = plot()
+plot_sol(p,sol,[colorant"gold"],false,"foo.pdf")
+println("final state: ", sol[end])
+p
