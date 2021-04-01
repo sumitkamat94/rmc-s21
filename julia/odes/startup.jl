@@ -22,13 +22,13 @@ function display_urdf(urdfPath,vis)
     end
     return mvis, mechanism
 end
-
 # Example using Panda robot:
 #urdfPath = PandaRobot.urdfpath()
 #pandamech = display_urdf(urdfPath,vis)
 # display_urdf("anymal.urdf",vis)
-display_urdf("panda.urdf",vis)
-display_urdf("Cheetah.urdf",vis)
-display_urdf("planar3R.urdf",vis)
-display_urdf("anymal.urdf",vis)
-cd("laikago");display_urdf("laikago.urdf",vis);cd("..")
+
+# display_urdf("panda.urdf",vis)
+# display_urdf("Cheetah.urdf",vis)
+# display_urdf("planar3R.urdf",vis)
+# display_urdf("anymal.urdf",vis)
+# cd("laikago");display_urdf("laikago.urdf",vis);cd("..")
