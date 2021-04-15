@@ -29,7 +29,7 @@ q_goal = PointHP([748 199],0.0,-1);
 #Plot the problem instance
 tempscatterx = [q_start.coord[1]];
 tempscattery = [q_start.coord[2]];
-scatter(tempscatterx,tempscattery,color = :blue,legend = :none)
+scatter(tempscatterx,tempscattery,color = :blue,legend = :none,xlims = (-10, 1000),ylims = (-10, 1000))
 tempscatterx = [q_goal.coord[1]];
 tempscattery = [q_goal.coord[2]];
 scatter!(tempscatterx,tempscattery,color = :red,overwrite_figure =:false)
@@ -58,6 +58,7 @@ for i in 1:numNodes
     for j = 1:length(nodes)
         #print(norm(nodes[j].coord - q_goal.coord))
         if norm(nodes[j].coord - q_goal.coord)<= 30*sqrt(2)
+            scatter!([nodes[j].coord[1]],[nodes[j].coord[2]],markershape = :o,markersize = 4,markercolor = :gold)
             endflag = true;
             break
         end
@@ -70,8 +71,8 @@ for i in 1:numNodes
     q_rand = [rand(1)*x_max rand(1)*y_max];
     tempscatterxl = [q_rand[1]];
     tempscatteryl = [q_rand[2]];
-    scatter!(tempscatterxl,tempscatteryl,markershape = :x)
-
+    scatter!(tempscatterxl,tempscatteryl,markershape = :x,markersize = 3)
+    Plots.frame(anim)
     # Pick the closest node from existing list to branch out from
     ndist = Float64[];
     for j in 1:length(nodes)
@@ -79,18 +80,25 @@ for i in 1:numNodes
         tmp = rrthp.dist(n.coord, q_rand);
         push!(ndist,tmp);
     end
-    val = minimum(ndist);
-    idx=argmin(ndist)
+    local val = minimum(ndist);
+    local idx=argmin(ndist)
     q_near = nodes[idx];
-    scatter!([q_near.coord[1]],[q_near.coord[2]],markershape = :o,markersize = 2,markercolor = :red)
+    # nearest tree node
+    scatter!([q_near.coord[1]],[q_near.coord[2]],markershape = :o,markersize = 2,markercolor = :green)
+    Plots.frame(anim)
     # Steer nearest node towards random sample
     temp = rrthp.steer(q_rand, q_near.coord, val, EPS)
     q_new = PointHP([temp[1] temp[2]],0.0,-1);
     coll_flag = rrthp.noCollision(q_new.coord, q_near.coord, obs)
     #println(coll_flag)
     if coll_flag
-        plot!([q_near.coord[1], q_new.coord[1]], [q_near.coord[2], q_new.coord[2]]);
+
+        # plot new sample
         scatter!([q_new.coord[1]],[q_new.coord[2]],markershape = :diamond,markersize = 3,markercolor = :blue)
+        Plots.frame(anim)
+        #plot line:
+        plot!([q_near.coord[1], q_new.coord[1]], [q_near.coord[2], q_new.coord[2]]);
+        Plots.frame(anim)
         temp = q_new.coord;
         tempcost = rrthp.dist(q_new.coord, q_near.coord) + q_near.cost;
         q_new = PointHP([temp[1] temp[2]],tempcost,-1);
@@ -128,8 +136,10 @@ for i in 1:numNodes
 
         # Append to nodes
         push!(nodes,q_new);
-        Plots.frame(anim)
+        scatter!([q_new.coord[1]],[q_new.coord[2]],markershape = :diamond,markersize = 3,markercolor = :red)
     end
+    scatter!([q_near.coord[1]],[q_near.coord[2]],markershape = :o,markersize = 2,markercolor = :red)
+    Plots.frame(anim)
 end
 
 D = Float64[];
@@ -161,5 +171,5 @@ while start!= 0
 end
 savefig("rrt_solution.png")
 println("optimal path in reverse: ",opt_path)
-gif(anim, "rrt_anim5_fps10.gif", fps = 10)
+gif(anim, "rrt_anim6_fps10.gif", fps = 20)
 # Final result appears to be in the plot, not a data structure
