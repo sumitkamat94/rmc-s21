@@ -22,24 +22,38 @@ global Sigma = diagm([100.0;10.0]);
 global xTrue = [50;10.0]
 add_plot_ellipse(mu[1],mu[2],Sigma,0)
 
+anim = Plots.Animation()
+scatter!([xTrue[1]],[xTrue[2]],color = :green,legend = :none)
+Plots.frame(anim)
+
 # begin simulation loop
-sol = zeros(1000,4)
-for i in 1:1000
+ntimes = 100
+sol = zeros(ntimes,4)
+for i in 1:ntimes
+  print(i,",")
   global mu
   global Sigma
   global xTrue
   uk = Kgain*mu;
   xTrue = Ad*xTrue + Bd*uk+Rw*rand(2,1);
+  scatter!([xTrue[1]],[xTrue[2]],color = :green,legend = :none)
+  Plots.frame(anim)
   yk = Cd*xTrue + Rv*randn(1,1);
-  mu,Sigma = filter_update(mysys,mu,Sigma,uk,yk);
+  scatter!([yk],[xTrue[2]],color = :orange,legend = :none)
+  Plots.frame(anim)
+  mu,Sigma, mu_pred, Sigma_pred = filter_update(mysys,mu,Sigma,uk,yk);
   #println("mean:", mu)
   #println("true:",xTrue)
   sol[i,:] =transpose([mu;xTrue])
+  add_plot_ellipse(mu_pred[1],mu_pred[2],Sigma_pred,0)
+  Plots.frame(anim)
   add_plot_ellipse(mu[1],mu[2],Sigma,1)
-  scatter!([xTrue[1]],[xTrue[2]],color = :green,legend = :none,markersize=1)
+  Plots.frame(anim)
 end
+gif(anim, "slam_oneD_fps20_5.gif", fps = 20)
+savefig("oneD_kf.png")
 #plot(sol)
-plot!([1.0],[1.0])
+# plot!([1.0],[1.0])
 
 println("mean: ",mu[1:2])
 println("truth: ",xTrue)

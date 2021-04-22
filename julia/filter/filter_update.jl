@@ -13,13 +13,13 @@ function filter_update(sys,mu,Sigma,uk,yk)
     Kk = Sigma_pred*transpose(C)*inv(Sk);
     M = diagm(ones(size(C,2)))
     Gainmat = M - Kk*C;
-
+    # println("Gainmat:",Gainmat)
 
     # Update the distribution using measurement
-    mu = mu_pred + Kk*(yk - C*mu_pred);
-    Sigma =Gainmat*Sigma_pred;
+    mu_new = mu_pred + Kk*(yk - C*mu_pred);
+    Sigma_new =Gainmat*Sigma_pred;
 
-    return mu, Sigma
+    return mu_new, Sigma_new, mu_pred, Sigma_pred
 end
 
 function add_plot_ellipse(c1,c2,Sigma,colo)

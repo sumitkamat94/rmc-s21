@@ -12,8 +12,8 @@ function rotobjModel(xTrue,Rvm,Rwm,uk,lmarks)
     stheta = sin(xTrue[3])
 
     # Start populating
-    A[1,1] = 1.0;    A[1,2] = -stheta*uk[1];
-    A[2,2] = 1.0;    A[1,3] =  ctheta*uk[1];
+    A[1,1] = 1.0;    #A[1,2] = -stheta*uk[1];
+    A[2,2] = 1.0;    #A[1,3] =  ctheta*uk[1];
     A[3,3] = 1.0;
     B[1,1] = ctheta;
     B[2,1] = stheta;
@@ -35,7 +35,7 @@ end
 
 # Start
 # Define measurement+processnoise and landmarks
-Rv = diagm([0.5;0.5]) # range, bearing measurement noise
+Rv = diagm([0.05;0.05]) # range, bearing measurement noise
 Rw = diagm([0.004;0.005;0.002]) # x, y, theta process noise
 lmarks = [1.0 2.0; 2.0 4.0; -1.0 3.0; -1 -2]
 nl = size(lmarks,1)
@@ -49,17 +49,24 @@ global mu = zeros(3+2*nl);
 global Sigma = diagm(10*ones(3+2*nl));
 global xTrue = [randn(1)[1]*4.0;randn(1)[1]*4.0;randn(1)[1]*1.0]
 
+anim = Plots.Animation()
+scatter!([xTrue[1]],[xTrue[2]],color = :green,legend = :none)
+scatter!([mu[1]],[mu[2]],color = :red,legend = :none)
+scatter!([mu[4:2:end]],[mu[5:2:end]],color = :blue,legend = :none)
+add_plot_ellipse(mu[1],mu[2],Sigma[1:2,1:2],0)
+Plots.frame(anim)
+
 # Simulate multiple steps
 # Simulating both the real world
 # And the robot's processing
-for i in 1:1000
+for i in 1:100
   global mu
   global Sigma
   global xTrue
 
   # choose a control
-  v = randn(1)[1]*0.05;
-  w = randn(1)[1]*0.05;
+  v = 0.05;
+  w = 0.03;
   uk = [v;w];
 
   # get model
@@ -83,18 +90,34 @@ for i in 1:1000
   yk = yk+mysys.Rv*randn(2*nl,1)
   # The next line is what the robot's `brain` does:
   mu,Sigma = filter_update(mysys,mu,Sigma,uk,yk);
+  scatter!([xTrue[1]],[xTrue[2]],color = :green,legend = :none)
+  scatter!([mu[1]],[mu[2]],color = :red,legend = :none)
+  scatter!([mu[4:2:end]],[mu[5:2:end]],color = :blue,legend = :none)
+  # push!(allmu,[mu[1]-xTrue[1] mu[2]-xTrue[2]])
+  add_plot_ellipse(mu[1],mu[2],Sigma[1:2,1:2],0)
+  for j in 1:nl
+    add_plot_ellipse(mu[3+2*j-1],mu[3+2*j],Sigma[(3+2*j-1):(3+2*j),(3+2*j-1):(3+2*j)],1)
+  end
+  Plots.frame(anim)
 end
+gif(anim, "slam_rotating_fps20_3.gif", fps = 20)
 
+
+
+plot([1.0],[1.0])
 # Plot the ground truth...
-scatter!(lmarks[:,1],lmarks[:,2],color = :red,legend = :none)
+scatter!(lmarks[:,1],lmarks[:,2],color = :blue,legend = :none)
 scatter!([xTrue[1]],[xTrue[2]],color = :green,legend = :none)
 
 # ...and the robot's belief, after aligning landmarks
-derror = -mu[4:5]+lmarks[1,:]
-println("relative location error: ",xTrue[1:2] -mu[1:2] - derror)
-
+derror = -0.25*[1 1 1 1]*(hcat(mu[4:2:end],mu[5:2:end])-lmarks);
+# plot landmark-corrected estimates of landmark
 for j in 1:nl
   add_plot_ellipse(mu[3+2*j-1]+derror[1],mu[3+2*j]+derror[2],Sigma[(3+2*j-1):(3+2*j),(3+2*j-1):(3+2*j)],1)
 end
-add_plot_ellipse(mu[1]+derror[1],mu[2]+derror[2],Sigma[1:2,1:2],0)
+# plot landmark-corrected estimates of robot position
 scatter!([mu[1]+derror[1]],[mu[2]+derror[2]],color = :orange,legend = :none)
+add_plot_ellipse(mu[1]+derror[1],mu[2]+derror[2],Sigma[1:2,1:2],0)
+
+
+savefig("rotating_kf.png")
