@@ -2,56 +2,278 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-    <loc>https://hpoonawala.github.io/rmc-s21/404/index.html</loc>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/PIDReview/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/2021_03_08_design_of%20_a_modular_snake_robot/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Hybrid%20Impedance%20control2/index.html</loc>
+    <lastmod>2021-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/SID_stable_manifold/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/SID_KF/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Grasp%20Strategy/index.html</loc>
+    <lastmod>2021-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/17_DGMP/index.html</loc>
+    <lastmod>2021-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Personalized%20Kinematics/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/404/index.html</loc>
     <lastmod>2021-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>
 <url>
-    <loc>https://hpoonawala.github.io/rmc-s21/aboutyou/index.html</loc>
+    <loc>https://poonawalalab.github.io/rmc-s21/julia/index.html</loc>
+    <lastmod>2021-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Lush_Review4_HybridZeroDynamicsOfPlanarBipedWalkers/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/2021_03_15_biomechanical_design_of_the_berkeley_lower_extremity_exoskeleton/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Rapidly-Exploring%20Random%20Trees2/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/papers/index.html</loc>
+    <lastmod>2021-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/assignments/index.html</loc>
+    <lastmod>2021-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/2021_Auto/index.html</loc>
+    <lastmod>2021-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Fast%20Iterative%20Alignment%20of%20Pose%20Graphs%20with%20Poor%20Initial%20Estimates/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/2021_03_12_neural_network_based_reinforcement_learning_for_audio_visual_gaze_control_in_human_robot_interaction/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/A%20Prototype%20of%20an%20Autonomous%20Controller%20for%20a%20Quadrotor%20UAV/index.html</loc>
+    <lastmod>2021-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/announcements/index.html</loc>
+    <lastmod>2021-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Consensus%20and%20Cooperation%20in%20Networked%20Multi-Agent%20Systems/index.html</loc>
+    <lastmod>2021-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Continuous%20Control%20With%20Deep%20Reinforcement%20Learning/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/2006_Kalman/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/on%20the%20feedback%20linearization%20of%20robots%20with%20variable%20stiffness/index.html</loc>
+    <lastmod>2021-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/SID_NN/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Lush_Review1_ComplianceAndForceControl/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Artemiadis2010_Article_ABiomimeticApproachToInverseKinematics/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Lush_Review3_NonlinearControlTechniquesForFlexibleJointManipulators/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Trajectory/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Relative%20End-Effector%20Control%20Using%20Cartesian%20Position%20Based%20Visual%20Servoing/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Modeling%20and%20Control%20of%20Formations%20of%20Nonholonomic%20Mobile%20Robots/index.html</loc>
+    <lastmod>2021-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/2021_03_07_the_DLR_lightweight_robot/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Auto_LQR_tuning_2016/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Visual%20Odometry%20for%20Ground%20Vehicle%20Applications/index.html</loc>
+    <lastmod>2021-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/index.html</loc>
+    <lastmod>2021-02-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Lush_Review2_FeedforwardAndComputedTorqueControl/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/3_impedance%20control_an%20approach%20to%20manipulation_Implementation/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/schedule/index.html</loc>
+    <lastmod>2021-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Task_motion_planning/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/2011_SamplingBaseMotionPlanning/index.html</loc>
+    <lastmod>2021-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/2_impedance%20control_an%20approach%20to%20manipulation_theory/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/ElasticActuatorsReview/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/resources/index.html</loc>
+    <lastmod>2021-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Capture_Point_A_Step_toward_Humanoid_Push_Recovery/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/reviews/Consistency%20of%20the%20EKF-SLAM%20Algorithm/index.html</loc>
+    <lastmod>2021-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+</url>
+<url>
+    <loc>https://poonawalalab.github.io/rmc-s21/aboutyou/index.html</loc>
     <lastmod>2021-02-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://hpoonawala.github.io/rmc-s21/schedule/index.html</loc>
-    <lastmod>2021-02-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://hpoonawala.github.io/rmc-s21/assignments/index.html</loc>
-    <lastmod>2021-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://hpoonawala.github.io/rmc-s21/index.html</loc>
-    <lastmod>2021-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://hpoonawala.github.io/rmc-s21/julia/index.html</loc>
-    <lastmod>2021-01-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://hpoonawala.github.io/rmc-s21/papers/index.html</loc>
-    <lastmod>2021-02-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://hpoonawala.github.io/rmc-s21/resources/index.html</loc>
-    <lastmod>2021-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://hpoonawala.github.io/rmc-s21/reviews/2021_Auto/index.html</loc>
-    <lastmod>2021-02-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
 </url>

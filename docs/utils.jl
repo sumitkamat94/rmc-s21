@@ -48,18 +48,15 @@ function hfun_taglist()::String
     return String(take!(c))
 end
 
-function hfun_taglistall()::String
-    tag = locvar(:fd_tag)::String
+@delay function hfun_taglistall()::String
+    all_tags = globvar("fd_page_tags")
+    (all_tags === nothing) && return ""
+    all_tags = union(values(all_tags)...)
     c = IOBuffer()
-    write(c, "<ul>")
-
-    rpaths = globvar("fd_tag_pages")
-    if ~isnothing(rpaths)
-        for rpath in keys(rpaths)
-            write(c, "<li><a href = \"$rpath/\">$rpath</a></li>")
-        end
+    write(c, "Tags: ")
+    for t in all_tags
+        write(c, "<a href = \"/tag/$t/\">$t</a>, ")
     end
-    write(c, "</ul>")
     return String(take!(c))
 end
 
@@ -70,4 +67,9 @@ function hfun_reviewer_list()::String
         write(c, "$x, ")
     end
     return String(take!(c))
+end
+
+function hfun_fill_capital(params)::String
+    t = locvar(:fd_tag)
+    return uppercasefirst(t)
 end
