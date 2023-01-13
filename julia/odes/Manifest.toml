@@ -2,7 +2,7 @@
 
 julia_version = "1.8.5"
 manifest_format = "2.0"
-project_hash = "205e1056be6411338e942879d67c92d936dc20be"
+project_hash = "e4c29dc69efd099561cb79e99970fe7ba488c482"
 
 [[deps.Adapt]]
 deps = ["LinearAlgebra"]
@@ -415,6 +415,12 @@ version = "0.1.3"
 git-tree-sha1 = "f550e6e32074c939295eb5ea6de31849ac2c9625"
 uuid = "83e8ac13-25f8-5344-8a64-a9f2b223428f"
 version = "0.5.1"
+
+[[deps.Interact]]
+deps = ["CSSUtil", "InteractBase", "JSON", "Knockout", "Observables", "OrderedCollections", "Reexport", "WebIO", "Widgets"]
+git-tree-sha1 = "c5091992248c7134af7c90554305c600d5d9012b"
+uuid = "c601a237-2ae4-5e1e-952c-7a85b0c7eef1"
+version = "0.10.5"
 
 [[deps.InteractBase]]
 deps = ["Base64", "CSSUtil", "Colors", "Dates", "JSExpr", "JSON", "Knockout", "Observables", "OrderedCollections", "Random", "WebIO", "Widgets"]
