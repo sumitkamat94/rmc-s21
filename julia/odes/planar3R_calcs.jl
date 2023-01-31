@@ -11,7 +11,7 @@ base_frame = default_frame(bodies(mechanism)[1])
 ## Define point in frame of end effector
 x_in_EE = Point3D(ee_frame, 0.0, 0.0, 0.0)
 ## Extract the relative transformation between frames given the current  state
-# rigid body transform from at current state From ee to base 
+# rigid body transform from at current state ee to base 
 @show EEinBase = relative_transform(state,ee_frame,base_frame)
 @show rotation(EEinBase)
 @show translation(EEinBase)

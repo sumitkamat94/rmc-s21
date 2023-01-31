@@ -1,17 +1,9 @@
-delete!(vis);
+
+vis = Visualizer();
 mvis, mechanism = display_urdf("planar3R.urdf",vis)
 state = MechanismState(mechanism)
 
 using Blink, Interact
-mp = @manipulate for q1 in slider(-1.6:0.01:1.6; label="q1"), q2 in slider(-1.6:0.01:1.6; label="q2"), q3 in slider(-1.6:0.01:1.6; label="q3")
-    set_configuration!(state,[q1;q2;q3])
-    set_configuration!(mvis, configuration(state))
-    # println(q1,q2)
-    # hbox(vis)
-end
-# open(vis,Blink.Window())
-w = Window()
-body!(w,mp)
 
 function setVisConfig(q,state,mvis)
     set_configuration!(state,q)
@@ -45,5 +37,22 @@ function calcOrinW(state,framenum)
     EEinBase = relative_transform(state,ee_frame,base_frame)
     or_in_ee = Point3D(ee_frame, 0.0, 0.0, 0.0);
     or_in_w = EEinBase*or_in_ee
-    println("origin of frame $framenum in world: $or_in_w")
+    # return "origin of frame $framenum in world: $or_in_w"
+    return translation(EEinBase), rotation(EEinBase)
 end
+
+frames = OrderedDict(zip(["1", "2", "3", "4", "5", "6"], [1, 2, 3, 4, 5, 6]))
+mp = @manipulate for q1 in slider(-1.6:0.01:1.6; label="q1"), q2 in slider(-1.6:0.01:1.6; label="q2"), q3 in slider(-1.6:0.01:1.6; label="q3"), framenum in frames
+    set_configuration!(state,[q1;q2;q3])
+    set_configuration!(mvis, configuration(state))
+    d, R = calcOrinW(state,framenum);
+    d = round.(d,digits=3)
+    text1 = textarea("x: "*string(d[1])*"\ny: "*string(d[2])*"\nz: "*string(d[3]));
+    text2 = textarea(string(round.(R[1,:],digits=2))*"\n"*string(string(round.(R[2,:],digits=2)))*"\n"*string(string(round.(R[3,:],digits=2))));
+    hbox(text1,text2)
+end
+
+w1 = Window();
+ui = vbox(mp);   
+body!(w1,ui);
+w2 = Window();open(vis,w2);

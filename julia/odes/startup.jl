@@ -3,7 +3,7 @@ Pkg.activate(@__DIR__);
 using LinearAlgebra, StaticArrays
 using RigidBodyDynamics, RigidBodySim
 using MeshCat, MeshCatMechanisms
-vis = Visualizer();open(vis)
+# vis = Visualizer();open(vis)
 # using Gadfly, Cairo, Fontconfig
 #import PandaRobot # for visualizing Panda
 
@@ -27,7 +27,7 @@ end
 #pandamech = display_urdf(urdfPath,vis)
 # display_urdf("anymal.urdf",vis)
 
-display_urdf("panda.urdf",vis)
+# display_urdf("panda.urdf",vis)
 # display_urdf("Cheetah.urdf",vis)
 # display_urdf("planar3R.urdf",vis)
 # display_urdf("anymal.urdf",vis)
