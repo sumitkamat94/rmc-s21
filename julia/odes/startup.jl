@@ -3,7 +3,7 @@ Pkg.activate(@__DIR__);
 using LinearAlgebra, StaticArrays
 using RigidBodyDynamics, RigidBodySim
 using MeshCat, MeshCatMechanisms
-# vis = Visualizer();open(vis)
+vis = Visualizer();open(vis)
 # using Gadfly, Cairo, Fontconfig
 #import PandaRobot # for visualizing Panda
 
