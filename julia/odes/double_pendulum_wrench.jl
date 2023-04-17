@@ -27,7 +27,7 @@ function jacs(state)
     Jb=transform(Js,relative_transform(state,root_frame(mechanism),default_frame(bodies(mechanism)[end])))
     # Neither Jq nor Jqb are appropriate for a Force in coordinates aligned with the spatial frame
     # We need the Geometric Jacobian Jq as defined in RMC (Spong,Vidyasagar,Hutchinson)
-    # Fortunately, we don't need to construct it manually
+    # Fortunately, we don't need to construct it column by column
     # We use the transformation T_{bs} to do so (T_{bs} maps spatial coords to body coords)
     T_bs = relative_transform(state,root_frame(mechanism),default_frame(bodies(mechanism)[end]))
     R_bs = rotation(T_bs);

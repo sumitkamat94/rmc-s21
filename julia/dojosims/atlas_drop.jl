@@ -7,15 +7,15 @@ using Dojo
 using DojoEnvironments
 
 # ## Mechanism
-mech = DojoEnvironments.get_mechanism(:atlas, 
-    timestep=0.1, 
-    gravity=-9.81, 
-    friction_coefficient=0.5, 
-    damper=25.0, 
-    spring=1.0, 
-    contact_feet=true, 
-    contact_body=true, 
-    model_type=:simple)
+# mech = DojoEnvironments.get_mechanism(:atlas, 
+#     timestep=0.1, 
+#     gravity=-9.81, 
+#     friction_coefficient=0.5, 
+#     damper=25.0, 
+#     spring=1.0, 
+#     contact_feet=true, 
+#     contact_body=true, 
+#     model_type=:simple)
 
 # ## Simulate
 Dojo.initialize!(mech, :atlas_stance,

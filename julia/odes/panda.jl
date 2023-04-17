@@ -9,15 +9,14 @@ function control!(τ, t, state)
     τ .= map( x -> x < -act_sat ? -act_sat : x,τ)
 end
 
-
-function plot_sol(p,sol,colorarg,saveflag,savename)
+function plot_sol(plot_array,sol,colorarg,saveflag,savename,lab)
     qsol = vcat(sol[:]'...)
     for i=1:7
-        push!(p,layer(x=sol.t,y=qsol[:,i],Geom.line,color=colorarg))
+        plot!(plot_array[i],sol.t,qsol[:,i],color=colorarg,label=lab,xlabel="time",ylabel="q(t)")
     end
-    p
+    pall = plot(plot_array...)
     if saveflag
-        p |> PDF(savename)
+        pall |> PDF(savename)
     end
     for i in 1:7
         println("final joint angle $i : $(sol[end][i])")
@@ -41,8 +40,13 @@ zero_velocity!(state)
 # Update mechanism visual
 set_configuration!(mvis, configuration(state))
 
-# Create a plot
-p = plot()
+# Create a plot array
+plot_array = [] 
+for i in 1:9
+    push!(plot_array, plot())
+end
+plot(plot_array...)
+
 # Plot desired trajectory
 t_chosen =10*rand(1)[1]; println("t: ", t_chosen)
 qdes, qdes_dot, qdes_ddot = traj(t_chosen)
@@ -51,8 +55,9 @@ for i = 1:size(M,1)
     println(M[i,:])
 end
 
+t_range = range(0,t_chosen,100);
 for i=1:9
-    push!(p,layer(x -> traj(x)[1][i] ,0,10,Geom.line,linestyle=[:dashdotdot],color=[colorant"black"],size=[1pt]))
+    plot!(plot_array[i],t_range,map(x -> traj(x)[1][i],t_range),color=:black,label=:none)
 end
 ########## Set-point reg (class example)
 println("PD:")
@@ -61,7 +66,7 @@ problem = ODEProblem(Dynamics(mechanism,control!), state, (0., 10.));
 # Solve ODE problem using Tsit5 scheme, and given numerical tolerances
 sol_setreg = solve(problem, Tsit5(),reltol=1e-8,abstol=1e-8);
 # Plot joint angles vs time using Gadfly, indicate final error
-plot_sol(p,sol_setreg,[colorant"blue"],false,nothing)
+plot_sol(plot_array,sol_setreg,[colorant"blue"],false,nothing,"PDamp")
 
 ########## Higher gains (gets < 0.01 norm error)
 println("PD with higher gains:")
@@ -70,7 +75,7 @@ problem = ODEProblem(Dynamics(mechanism,control_PD!), state, (0., 10.));
 # Solve ODE problem using Tsit5 scheme, and given numerical tolerances
 sol_setreg_higher = solve(problem, Tsit5(),reltol=1e-8,abstol=1e-8);
 # Plot joint angles vs time using Gadfly
-plot_sol(p,sol_setreg_higher,[colorant"gold"],false,nothing)
+plot_sol(plot_array,sol_setreg_higher,[colorant"gold"],false,nothing,"High PDamp")
 
 ########## Use some trajectory info
 println("PD with qdot:")
@@ -79,7 +84,18 @@ problem = ODEProblem(Dynamics(mechanism,control_PD_TT!), state, (0., 10.));
 # Solve ODE problem using Tsit5 scheme, and given numerical tolerances
 sol_pd_tt = solve(problem, Tsit5(),reltol=1e-8,abstol=1e-8);
 # Plot joint angles vs time using Gadfly
-plot_sol(p,sol_pd_tt,[colorant"green"],false,nothing)
+plot_sol(plot_array,sol_pd_tt,[colorant"green"],false,nothing,"PD")
+
+
+########## Use some trajectory info
+println("Higher gain PD with qdot:")
+# Define ODE Problem, which defines closed loop using  control!
+problem = ODEProblem(Dynamics(mechanism,control_HPD_TT!), state, (0., 10.));
+# Solve ODE problem using Tsit5 scheme, and given numerical tolerances
+sol_pd_tt = solve(problem, Tsit5(),reltol=1e-8,abstol=1e-8);
+# Plot joint angles vs time using Gadfly
+plot_sol(plot_array,sol_pd_tt,[colorant"purple"],false,nothing,"High PD")
+
 
 
 ########## Computed Torque Control
@@ -89,11 +105,11 @@ problem = ODEProblem(Dynamics(mechanism,control_CTC!), state, (0., 10.));
 # Solve ODE problem using Tsit5 scheme, and given numerical tolerances
 sol_ctc = solve(problem, Tsit5(),reltol=1e-8,abstol=1e-8);
 # Plot joint angles vs time using Gadfly
-plot_sol(p,sol_ctc,[colorant"red"],false,nothing)
+plot_sol(plot_array,sol_ctc,[colorant"red"],false,nothing,"CTC")
 
-
+plot(plot_array...,layout=(3,3))
 # Open plot in browser:
-p
+# p
 
 # Animate solution
 # setanimation!(mvis, sol; realtime_rate = 1.0);
