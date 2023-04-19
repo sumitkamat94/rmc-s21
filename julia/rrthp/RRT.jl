@@ -1,27 +1,23 @@
-# Node/Point data structure
-struct PointHP
-  coord::Array{Float64,2}
-  cost::Float64
-  parent::Int
-end
+
 
 # Define environment:
 x_max = 1000;
 y_max = 1000;
-obs=([300,0,300,400.0],[300 450 400 200])
+# Green: X Y  W  H      Purple: X   Y  W  H 
+obs=([300,0,300,400.0],[300 600 400 200])
 
 # Define RRT Parameters:
-EPS = 20;
-numNodes = 10000; #4000
-
+EPS = 50; # the extend distance
+numNodes = 1000; #4000
+goalDist = 30*sqrt(2);
 # Define problem instance: start, goal points
-q_start = PointHP([0 0],0.0,0);
-q_goal = PointHP([748 199],0.0,-1);
+q_start = PointHP([0,0],0.0,0);
+q_goal = PointHP([748,199],0.0,-1);
 
 #Plot the problem instance
 tempscatterx = [q_start.coord[1]];
 tempscattery = [q_start.coord[2]];
-scatter(tempscatterx,tempscattery,color = :blue,legend = :none)
+scatter(tempscatterx,tempscattery,color = :blue,legend = :none,xlims = (-10, 1000),ylims = (-10, 1000))
 tempscatterx = [q_goal.coord[1]];
 tempscattery = [q_goal.coord[2]];
 scatter!(tempscatterx,tempscattery,color = :red,overwrite_figure =:false)
@@ -34,89 +30,22 @@ savefig("problem_setup.png")
 #gr()
 #plot(q_start.coord[1], q_start.coord[2], seriestype = :scatter, title = "My Scatter Plot")
 
-
 # Begin RRT
 nodes = PointHP[];
 push!(nodes,q_start)
 
-for i in 1:numNodes
-    # Break if goal node is already reached by existing node
-    endflag = false;
-    for j = 1:length(nodes)
-        #print(norm(nodes[j].coord - q_goal.coord))
-        if norm(nodes[j].coord - q_goal.coord)<= 25*sqrt(2)
-            endflag = true;
-            break
-        end
-    end
-    if endflag
-        break
-    end
+## To reduce memory, pre-allocate variables:
+normstore=[0.0];
+point1 = zeros(2);
+point2 = zeros(2);
+q_rand = zeros(2);
+treestore = zeros(numNodes,10)
+# Setup the animation recording
 
-    # Sample and plot
-    q_rand = [rand(1)*x_max rand(1)*y_max];
-    tempscatterx = [q_rand[1]];
-    tempscattery = [q_rand[2]];
-    scatter!(tempscatterx,tempscattery,markershape = :x)
+anim = Plots.Animation()
+# Plots.frame(anim)
 
-    # Pick the closest node from existing list to branch out from
-    ndist = Float64[];
-    for j in 1:length(nodes)
-        n = nodes[j];
-        tmp = rrthp.dist(n.coord, q_rand);
-        push!(ndist,tmp);
-    end
-    val = minimum(ndist);
-    idx=argmin(ndist)
-    q_near = nodes[idx];
-
-    # Steer nearest node towards random sample
-    temp = rrthp.steer(q_rand, q_near.coord, val, EPS)
-    q_new = PointHP([temp[1] temp[2]],0.0,-1);
-    coll_flag = rrthp.noCollision(q_new.coord, q_near.coord, obs)
-    #println(coll_flag)
-    if coll_flag
-        plot!([q_near.coord[1], q_new.coord[1]], [q_near.coord[2], q_new.coord[2]]);
-        temp = q_new.coord;
-        tempcost = rrthp.dist(q_new.coord, q_near.coord) + q_near.cost;
-        q_new = PointHP([temp[1] temp[2]],tempcost,-1);
-        # Within a radius of r, find all existing nodes
-        # we use the parent field of PointHP to store which element of node
-        # has been added to q_nearest
-        q_nearest = PointHP[];
-        r = 60;
-        for j in 1:length(nodes)
-            if rrthp.noCollision(nodes[j].coord, q_new.coord, obs) && rrthp.dist(nodes[j].coord, q_new.coord) <= r
-                push!(q_nearest, PointHP(nodes[j].coord,nodes[j].cost,j))
-            end
-        end
-        # Initialize cost to currently known value
-        q_min = q_near;
-        C_min = q_new.cost;
-
-        # Iterate through all nearest neighbors to find alternate lower
-        # cost paths
-
-        for k in 1:length(q_nearest)
-            if rrthp.noCollision(q_nearest[k].coord, q_new.coord, obs) && q_nearest[k].cost + rrthp.dist(q_nearest[k].coord, q_new.coord) < C_min
-                q_min = q_nearest[k];
-                C_min = q_nearest[k].cost + rrthp.dist(q_nearest[k].coord, q_new.coord);
-
-            end
-        end
-
-        # Update parent to least cost-from node
-        for j in 1:length(nodes)
-            if nodes[j].coord == q_min.coord
-                q_new = PointHP(q_new.coord,q_new.cost,j);
-            end
-        end
-
-        # Append to nodes
-        push!(nodes,q_new);
-    end
-end
-
+solveRRT(nodes,anim,q_rand,normstore,treestore)
 D = Float64[];
 for j in 1:length(nodes)
     tmpdist = rrthp.dist(nodes[j].coord, q_goal.coord);
@@ -140,9 +69,20 @@ while start!= 0
     #println("current node:",tempindex,", parent node: ",start)
     if start!=0
     plot!([nodes[start].coord[1], nodes[tempindex].coord[1]], [nodes[start].coord[2], nodes[tempindex].coord[2]],color = :red);
+    # Plots.frame(anim)
     end
     push!(opt_path,start)
 end
+for kk in nodes
+    scatter!([kk.coord[1]],[kk.coord[2]],markershape = :diamond,markersize = 3,markercolor = :red)
+    if kk.parent > 0
+    plot!([kk.coord[1],nodes[kk.parent].coord[1]],[kk.coord[2],nodes[kk.parent].coord[2]],markershape = :diamond,markersize = 3,markercolor = :red)
+    end
+end
 savefig("rrt_solution.png")
 println("optimal path in reverse: ",opt_path)
+# gif(anim, "rrt_anim6_fps10.gif", fps = 60)
+
 # Final result appears to be in the plot, not a data structure
+
+

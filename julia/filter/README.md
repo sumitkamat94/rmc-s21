@@ -4,7 +4,7 @@ This folder contains an implementation of a Kalman Filter, and its extension (Ex
 
 ### Instructions:
 * After entering the `read-eval-print loop` (REPL), setup the environment by running `include("startup.jl")`
-* Execute either: `include("RRT.jl")`
+* Execute 
   * 1D Mass Particle: `include("kf_point_mass_1D.jl")`
   * Translating point in plane: `include("slam_simple_point.jl")`
   * Kinematic Differential Drive Robot: `include("slam_rotating_point.jl")`

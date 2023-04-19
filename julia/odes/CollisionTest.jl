@@ -7,7 +7,10 @@
 # using RigidBodyDynamics, MeshCat, MeshCatMechanisms
 # using LinearAlgebra
 
-mechanism = parse_urdf("bed_part.urdf")
+delete!(vis)
+mechanism=parse_urdf("bed_part.urdf")
+remove_fixed_tree_joints!(mechanism)
+mvis = MechanismVisualizer(mechanism, URDFVisuals("bed_part.urdf"),vis)
 
 hs_p = Point3D(root_frame(mechanism),0.0,0.0,0.0)
 hs_v = FreeVector3D(root_frame(mechanism),0.0,0.2,1.0)
@@ -45,8 +48,10 @@ add_contact_point!(bodies(mechanism)[2],cp8)
 
 
 state = MechanismState(mechanism)
+zero_velocity!(state)
+set_configuration!(state,[1,0,0.0,0.0,0,0,1.0])
 
-final_time = 3
+final_time = 1
 ts, qs, vs = simulate(state, final_time);
 
 # mvis = MechanismVisualizer(mechanism, URDFVisuals("bed_part.urdf"))

@@ -8,7 +8,7 @@
     </visual>
   </link>
 
-  <link name="upper_link">
+  <link name="red_link">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <mass value="1" />
@@ -22,13 +22,13 @@
   </link>
   <joint name="shoulder" type="continuous">
     <parent link="base_link" />
-    <child link="upper_link" />
+    <child link="red_link" />
     <origin xyz="0 0 0.3" rpy = "0 0 0"/>
     <axis xyz="0 0 1" />
     <dynamics damping="0.1" />
   </joint>
 
-  <link name="lower_link">
+  <link name="blue_link">
     <inertial>
       <origin xyz="0.5 0 0" rpy="0 0 0" />
       <mass value="1" />
@@ -42,14 +42,14 @@
   </link>
 
   <joint name="elbow" type="continuous">
-    <parent link="upper_link" />
-    <child link="lower_link" />
+    <parent link="red_link" />
+    <child link="blue_link" />
     <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
-    <axis xyz="0 0 1" />
+    <axis xyz="0 1 0" />
     <dynamics damping="0.1" />
   </joint>
 
-  <link name="lowest_link">
+  <link name="green_link">
     <inertial>
       <origin xyz="0.5 0 0" rpy="0 0 0" />
       <mass value="1" />
@@ -63,8 +63,8 @@
   </link>
 
   <joint name="wrist" type="continuous">
-    <parent link="lower_link" />
-    <child link="lowest_link" />
+    <parent link="blue_link" />
+    <child link="green_link" />
     <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
     <axis xyz="0 0 1" />
     <dynamics damping="0.1" />
@@ -84,9 +84,9 @@
   </link>
 
   <joint name="endjoint" type="fixed">
-    <parent link="lowest_link" />
+    <parent link="green_link" />
     <child link="endeffector" />
-    <origin xyz="1.0 0.0 0" rpy="0.0 0 0 "/>
+    <origin xyz="1.0 0.0 0" rpy="0.0 0 0.0 "/>
   </joint>
 
 </robot>

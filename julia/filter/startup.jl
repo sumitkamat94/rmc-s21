@@ -1,5 +1,7 @@
 import Pkg;
 Pkg.activate(@__DIR__);
+Pkg.instantiate()
+Pkg.precompile()
 using LinearAlgebra, Plots, Random
 # object that is an LTI system
 struct LTIsys
